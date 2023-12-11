@@ -125,6 +125,8 @@ model Comment {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([videoUuid])
 }
 
 /// 動画評価テーブル
@@ -142,6 +144,7 @@ model UserVideoReaction {
   user      User         @relation(fields: [userId], references: [id])
 
   @@unique([videoUuid, userId])
+  @@index([videoUuid])
 }
 
 /// プレイリストテーブル
