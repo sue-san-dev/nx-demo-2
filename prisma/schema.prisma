@@ -1,0 +1,198 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReactionKind {
+  LIKE
+  DISLIKE
+}
+
+enum PrivacyKind {
+  PRIVATE
+  PUBLIC
+}
+
+enum Resolution {
+  p144
+  p240
+  p360
+  p480
+  p720
+  p1080
+}
+
+/// ユーザテーブル
+/// ユーザを管理する
+model User {
+  /// 名前
+  name               String
+  /// チャンネル名
+  channelName        String
+  /// メールアドレス
+  email              String                @unique
+  /// パスワード
+  password           String
+  /// 投稿動画リスト
+  videos             Video[]
+  /// 投稿コメントリスト
+  comments           Comment[]
+  /// 評価リスト
+  reactions          UserVideoReaction[]
+  /// プレイリストリスト
+  playlists          Playlist[]
+  /// 登録チャンネルリスト
+  subscribedChannels ChannelSubscription[] @relation("UserSubscriptions")
+  /// チャンネル登録者リスト
+  channelSubscribers ChannelSubscription[] @relation("UserSubscribers")
+
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// 動画テーブル
+/// 動画を管理する
+model Video {
+  /// タイトル
+  title          String
+  /// 説明
+  description    String
+  /// サムネイルURL
+  thumbnailUrl   String
+  /// 投稿者ID
+  uploaderId     Int
+  /// 投稿者
+  uploader       User                @relation(fields: [uploaderId], references: [id])
+  /// コメントリスト
+  comments       Comment[]
+  /// 評価リスト
+  reactions      UserVideoReaction[]
+  /// 解像度リスト
+  resolutions    VideoResolution[]
+  /// プレイリスト動画リスト
+  playlistVideos PlaylistVideo[]
+
+  uuid      String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// 動画解像度テーブル
+/// 動画の解像度ごとのURLを管理する
+model VideoResolution {
+  /// 対象動画UUID
+  videoUuid  String
+  /// 対象動画
+  video      Video      @relation(fields: [videoUuid], references: [uuid])
+  /// 解像度
+  resolution Resolution
+  /// 動画URL
+  url        String
+
+  @@unique([videoUuid, resolution])
+}
+
+/// コメントテーブル
+/// コメントを管理する
+model Comment {
+  /// コメント内容
+  content         String
+  /// 投稿者ID
+  commenterId     Int
+  /// 投稿者
+  commenter       User      @relation(fields: [commenterId], references: [id])
+  /// 対象動画UUID
+  videoUuid       String
+  /// 対象動画
+  video           Video     @relation(fields: [videoUuid], references: [uuid])
+  /// 親コメントID
+  parentCommentId Int?
+  /// 親コメント
+  parentComment   Comment?  @relation("ParentComment", fields: [parentCommentId], references: [id])
+  /// 子コメントリスト
+  childComments   Comment[] @relation("ParentComment")
+
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// 動画評価テーブル
+/// ユーザの動画への評価を管理する
+model UserVideoReaction {
+  /// 評価種別
+  kind      ReactionKind
+  /// 対象動画UUID
+  videoUuid String
+  /// 対象動画
+  video     Video        @relation(fields: [videoUuid], references: [uuid])
+  /// ユーザID
+  userId    Int
+  /// ユーザ
+  user      User         @relation(fields: [userId], references: [id])
+
+  @@unique([videoUuid, userId])
+}
+
+/// プレイリストテーブル
+/// プレイリストを管理するテーブル
+model Playlist {
+  /// 名称
+  name           String
+  /// プライバシー種別
+  privacyKind    PrivacyKind
+  /// 作成者ID
+  creatorId      Int
+  /// 作成者
+  creator        User            @relation(fields: [creatorId], references: [id])
+  /// プレイリスト動画リスト
+  playlistVideos PlaylistVideo[]
+
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([creatorId, name])
+}
+
+/// プレイリスト動画テーブル
+/// プレイリストと動画の関連テーブル
+model PlaylistVideo {
+  /// プレイリストID
+  playlistId Int
+  /// プレイリスト
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  /// 動画UUID
+  videoUuid  String
+  /// 動画
+  video      Video    @relation(fields: [videoUuid], references: [uuid])
+  /// 順序
+  sequenceNo Int
+
+  @@unique([playlistId, sequenceNo])
+}
+
+/// チャンネル登録テーブル
+/// チャンネルと登録者を管理する
+model ChannelSubscription {
+  /// チャンネル（ユーザー）ID
+  creatorId        Int
+  /// チャンネル（ユーザー）
+  creator          User     @relation("UserSubscriptions", fields: [creatorId], references: [id])
+  /// 登録者（ユーザー）ID
+  userId           Int
+  /// 登録者（ユーザー）
+  user             User     @relation("UserSubscribers", fields: [userId], references: [id])
+  /// 登録日時
+  subscriptionDate DateTime @default(now())
+
+  @@unique([creatorId, userId])
+}
