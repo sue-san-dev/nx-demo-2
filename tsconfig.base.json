@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-demo/domain": ["libs/shared/domain/src/index.ts"]
+      "@nx-demo/domain": ["libs/shared/domain/src/index.ts"],
+      "@nx-demo/ui-components": ["libs/client/ui-components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

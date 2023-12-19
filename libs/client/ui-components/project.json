@@ -1,0 +1,27 @@
+{
+  "name": "ui-components",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/ui-components/src",
+  "prefix": "nx-demo",
+  "tags": ["scope:client", "type:ui"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/ui-components/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/ui-components/**/*.ts",
+          "libs/client/ui-components/**/*.html"
+        ]
+      }
+    }
+  }
+}
