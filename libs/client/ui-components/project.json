@@ -22,6 +22,61 @@
           "libs/client/ui-components/**/*.html"
         ]
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/client/ui-components/.storybook",
+        "browserTarget": "ui-components:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ui-components",
+        "configDir": "libs/client/ui-components/.storybook",
+        "browserTarget": "ui-components:build-storybook",
+        "compodoc": false,
+        "styles": [
+          "apps/client/src/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/client/ui-style/src/lib/scss"
+          ]
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/client/ui-components/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "ui-components:build-storybook",
+        "staticFilePath": "dist/storybook/ui-components"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "ui-components:build-storybook:ci"
+        }
+      }
     }
   }
 }
