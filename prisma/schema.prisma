@@ -32,6 +32,7 @@ enum Resolution {
 /// ユーザテーブル
 /// ユーザを管理する
 model User {
+  id                 Int                   @id @default(autoincrement())
   /// 名前
   name               String
   /// チャンネル名
@@ -52,15 +53,14 @@ model User {
   subscribedChannels ChannelSubscription[] @relation("UserSubscriptions")
   /// チャンネル登録者リスト
   channelSubscribers ChannelSubscription[] @relation("UserSubscribers")
-
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
 }
 
 /// 動画テーブル
 /// 動画を管理する
 model Video {
+  uuid           String              @id @default(uuid())
   /// タイトル
   title          String
   /// 説明
@@ -79,10 +79,8 @@ model Video {
   resolutions    VideoResolution[]
   /// プレイリスト動画リスト
   playlistVideos PlaylistVideo[]
-
-  uuid      String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
 
   @@index([uploaderId])
 }
@@ -105,6 +103,7 @@ model VideoResolution {
 /// コメントテーブル
 /// コメントを管理する
 model Comment {
+  id              Int       @id @default(autoincrement())
   /// コメント内容
   content         String
   /// 投稿者ID
@@ -121,10 +120,8 @@ model Comment {
   parentComment   Comment?  @relation("ParentComment", fields: [parentCommentId], references: [id])
   /// 子コメントリスト
   childComments   Comment[] @relation("ParentComment")
-
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@index([videoUuid])
 }
@@ -150,6 +147,7 @@ model UserVideoReaction {
 /// プレイリストテーブル
 /// プレイリストを管理するテーブル
 model Playlist {
+  id             Int             @id @default(autoincrement())
   /// 名称
   name           String
   /// プライバシー種別
@@ -160,10 +158,8 @@ model Playlist {
   creator        User            @relation(fields: [creatorId], references: [id])
   /// プレイリスト動画リスト
   playlistVideos PlaylistVideo[]
-
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 
   @@unique([creatorId, name])
 }

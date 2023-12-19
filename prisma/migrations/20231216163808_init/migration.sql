@@ -9,11 +9,11 @@ CREATE TYPE "Resolution" AS ENUM ('p144', 'p240', 'p360', 'p480', 'p720', 'p1080
 
 -- CreateTable
 CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "channelName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -22,11 +22,11 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Video" (
+    "uuid" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "thumbnailUrl" TEXT NOT NULL,
     "uploaderId" INTEGER NOT NULL,
-    "uuid" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -42,11 +42,11 @@ CREATE TABLE "VideoResolution" (
 
 -- CreateTable
 CREATE TABLE "Comment" (
+    "id" SERIAL NOT NULL,
     "content" TEXT NOT NULL,
     "commenterId" INTEGER NOT NULL,
     "videoUuid" TEXT NOT NULL,
     "parentCommentId" INTEGER,
-    "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -62,10 +62,10 @@ CREATE TABLE "UserVideoReaction" (
 
 -- CreateTable
 CREATE TABLE "Playlist" (
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "privacyKind" "PrivacyKind" NOT NULL,
     "creatorId" INTEGER NOT NULL,
-    "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
