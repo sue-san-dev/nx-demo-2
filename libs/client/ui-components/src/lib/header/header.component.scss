@@ -1,7 +1,15 @@
+:host {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2020;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
 #container {
   height: 56px;
   padding: 0 16px;
-  display: flexbox;
   display: flex;
   flex-direction: row;
   align-items: center;
