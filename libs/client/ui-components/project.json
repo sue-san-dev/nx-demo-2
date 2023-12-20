@@ -4,6 +4,7 @@
   "sourceRoot": "libs/client/ui-components/src",
   "prefix": "nx-demo",
   "tags": ["scope:client", "type:ui"],
+  "implicitDependencies": ["ui-style"],
   "projectType": "library",
   "targets": {
     "test": {
