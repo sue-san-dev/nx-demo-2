@@ -75,11 +75,12 @@
     "@prisma/client": "^5.7.0",
     "axios": "^1.0.0",
     "nord": "^0.2.1",
-    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
+    "simplebar": "^6.2.5",
+    "the-new-css-reset": "^1.11.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"
   },
