@@ -19,7 +19,7 @@
         "styles": ["apps/client/src/styles.scss"],
         "scripts": [],
         "stylePreprocessorOptions": {
-          "includePaths": ["libs/client/ui-style/src/lib/scss"]
+          "includePaths": ["libs/client/ui-style/src/lib"]
         }
       },
       "configurations": {
