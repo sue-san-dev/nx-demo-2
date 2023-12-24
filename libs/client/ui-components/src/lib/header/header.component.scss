@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 :host {
   position: fixed;
   top: 0;
@@ -8,7 +10,7 @@
 }
 
 #container {
-  height: 56px;
+  height: vars.$app-header-height;
   padding: 0 16px;
   display: flex;
   flex-direction: row;
