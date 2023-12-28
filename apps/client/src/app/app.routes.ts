@@ -1,24 +1,9 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from '@nx-demo/ui-components';
+import { clientShellRoutes } from 'libs/client/shell/feature/src/lib/client-shell.routes';
 
 export const appRoutes: Route[] = [
-  // 登録
-
-  // ログイン
-
-  // ログイン後
   {
     path: '',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        canActivate: [/** TODO: AuthGuard */],
-        component: LayoutComponent,
-        children: [
-
-        ]
-      }
-    ]
+    children: clientShellRoutes,
   },
 ];
