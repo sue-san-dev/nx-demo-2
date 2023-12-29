@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
+  selector: 'nx-demo-sidenav',
   standalone: true,
   imports: [
-    RouterModule,
+
   ],
-  selector: 'nx-demo-root',
-  template: `<router-outlet />`,
-  styles: ``,
+  templateUrl: './sidenav.component.html',
+  styleUrl: './sidenav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent { }
+export class SidenavComponent {}

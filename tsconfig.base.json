@@ -17,7 +17,9 @@
     "paths": {
       "@nx-demo/client-shell": ["libs/client/shell/feature/src/index.ts"],
       "@nx-demo/domain": ["libs/shared/domain/src/index.ts"],
-      "@nx-demo/ui-components": ["libs/client/ui-components/src/index.ts"],
+      "@nx-demo/header": ["libs/client/shell/ui/header/src/index.ts"],
+      "@nx-demo/layout": ["libs/client/shell/ui/layout/src/index.ts"],
+      "@nx-demo/sidenav": ["libs/client/shell/ui/sidenav/src/index.ts"],
       "@nx-demo/ui-style": ["libs/client/ui-style/src/index.ts"]
     }
   },

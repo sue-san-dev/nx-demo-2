@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from '@nx-demo/ui-components';
+import { LayoutComponent } from '@nx-demo/layout';
 
 export const clientShellRoutes: Route[] = [
   {
