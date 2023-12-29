@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   selector: 'nx-demo-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: `<router-outlet />`,
+  styles: ``,
 })
 export class AppComponent { }
