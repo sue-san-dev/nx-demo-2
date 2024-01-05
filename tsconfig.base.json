@@ -27,6 +27,9 @@
       "@nx-demo/domain": [
         "libs/shared/domain/src/index.ts"
       ],
+      "@nx-demo/home": [
+        "libs/client/home/feature/src/index.ts"
+      ],
       "@nx-demo/header": [
         "libs/client/shell/ui/header/src/index.ts"
       ],
@@ -47,6 +50,9 @@
       ],
       "@nx-demo/ui-style": [
         "libs/client/ui-style/src/index.ts"
+      ],
+      "@nx-demo/utils": [
+        "libs/shared/utils/src/index.ts"
       ]
     }
   },

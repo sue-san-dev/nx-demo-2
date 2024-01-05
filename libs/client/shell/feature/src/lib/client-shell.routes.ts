@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { homeResolver } from '@nx-demo/home';
 import { LayoutComponent } from '@nx-demo/layout';
 
 export const clientShellRoutes: Route[] = [
@@ -6,11 +7,11 @@ export const clientShellRoutes: Route[] = [
     path: '',
     component: LayoutComponent,
     children: [
-      // {
-      //   path: RouterUtil.Configuration.Visualizer,
-      //   loadChildren: async () =>
-      //     (await import('@angular-spotify/web/visualizer/feature')).VisualizerModule
-      // },
+      {
+        path: '',
+        loadComponent: () => import('@nx-demo/home').then(x => x.HomeComponent),
+        resolve: { data: homeResolver }
+      },
     ]
   },
 ];

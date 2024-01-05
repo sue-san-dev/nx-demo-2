@@ -5,6 +5,7 @@ import { provideSvgIcons } from '@ngneat/svg-icon';
 import { homeIcon } from '../assets/svg/home.icon';
 import { shortIcon } from '../assets/svg/short.icon';
 import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,8 @@ export const appConfig: ApplicationConfig = {
       shortIcon,
       subscriptionsIcon,
     ]),
+    // HttpClient
+    provideHttpClient(),
     // router設定
     provideRouter(clientShellRoutes,
       // URL遷移時にアニメーション付与
