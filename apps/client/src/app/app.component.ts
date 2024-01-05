@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
   ],
   selector: 'nx-demo-root',
   template: `<router-outlet />`,
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent { }

@@ -1,4 +1,7 @@
-export const homeIcon = {
+import { SvgIconType } from '@ngneat/svg-icon/lib/providers';
+
+export const homeIcon: SvgIconType = {
+  name: 'home',
   data: `
     <svg xmlns="http://www.w3.org/2000/svg">
       <g>
@@ -6,5 +9,4 @@ export const homeIcon = {
       </g>
     </svg>
   `,
-  name: 'home'
 };

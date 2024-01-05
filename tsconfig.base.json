@@ -10,18 +10,48 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-demo/client-shell": ["libs/client/shell/feature/src/index.ts"],
-      "@nx-demo/domain": ["libs/shared/domain/src/index.ts"],
-      "@nx-demo/header": ["libs/client/shell/ui/header/src/index.ts"],
-      "@nx-demo/layout": ["libs/client/shell/ui/layout/src/index.ts"],
-      "@nx-demo/sidenav": ["libs/client/shell/ui/sidenav/src/index.ts"],
-      "@nx-demo/ui-style": ["libs/client/ui-style/src/index.ts"]
+      "@nx-demo/client-shell": [
+        "libs/client/shell/feature/src/index.ts"
+      ],
+      "@nx-demo/directives": [
+        "libs/client/shared/directives/src/index.ts"
+      ],
+      "@nx-demo/domain": [
+        "libs/shared/domain/src/index.ts"
+      ],
+      "@nx-demo/header": [
+        "libs/client/shell/ui/header/src/index.ts"
+      ],
+      "@nx-demo/layout": [
+        "libs/client/shell/ui/layout/src/index.ts"
+      ],
+      "@nx-demo/pipes": [
+        "libs/client/shared/pipes/src/index.ts"
+      ],
+      "@nx-demo/services": [
+        "libs/client/shared/services/src/index.ts"
+      ],
+      "@nx-demo/sidenav": [
+        "libs/client/shell/ui/sidenav/src/index.ts"
+      ],
+      "@nx-demo/stores": [
+        "libs/client/shared/stores/src/index.ts"
+      ],
+      "@nx-demo/ui-style": [
+        "libs/client/ui-style/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

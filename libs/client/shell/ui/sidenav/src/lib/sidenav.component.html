@@ -7,18 +7,20 @@
           <div id="sections">
             <div id="section">
               <div id="items">
+                @for (item of items; track item.title) {
                 <div id='item'>
-                  <a id="endpoint" href="/">
+                  <a id="endpoint" [routerLink]="item.path" routerLinkActive="active">
                     <div>
                       <div class="guide-icon">
                         <div style="width: 100%; height: 100%; fill: currentcolor;">
-                          <svg-icon key="home" height="24" width="24"></svg-icon>
+                          <svg-icon [key]="item.svgIconKey" height="24" width="24"></svg-icon>
                         </div>
                       </div>
-                      <div class="title">ホーム</div>
+                      <div class="title">{{ item.title }}</div>
                     </div>
                   </a>
                 </div>
+                }
               </div>
             </div>
             <div id="section"></div>
