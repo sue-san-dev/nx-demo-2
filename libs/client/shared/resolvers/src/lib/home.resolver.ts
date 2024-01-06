@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
+import { ResolveFn } from '@angular/router';
 import { UserService } from '@nx-demo/services';
+import { UrlUtil } from '@nx-demo/utils';
 import { User } from '@prisma/client';
 import { map } from 'rxjs';
 
@@ -8,13 +9,15 @@ export interface IHomeData {
   user: User;
 }
 
-export const homeResolver: ResolveFn<IHomeData> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const RESOLVED_DATA = Symbol();
+
+export const homeResolver: ResolveFn<IHomeData> = (route) => {
   const userService = inject(UserService);
-  return userService.getUser(+route.paramMap.get('id')!).pipe(
+  return userService.getUser(+route.paramMap.get(UrlUtil.UserId)!).pipe(
     map(user => {
       return {
         user,
       }
     })
-  )
+  );
 }

@@ -1,2 +1,2 @@
-export * from './lib/router-util';
+export * from './lib/url-util';
 export * from './lib/req-url-util';

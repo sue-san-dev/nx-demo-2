@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HeaderComponent } from '../../../header/src/lib/header.component';
-import { SidenavComponent } from '../../../sidenav/src/lib/sidenav.component';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '@nx-demo/header';
+import { SidenavComponent } from '@nx-demo/sidenav';
 
 @Component({
   selector: 'nx-demo-layout',

@@ -1,16 +1,17 @@
 import { Route } from '@angular/router';
-import { homeResolver } from '@nx-demo/home';
 import { LayoutComponent } from '@nx-demo/layout';
+import { RESOLVED_DATA, homeResolver } from '@nx-demo/resolvers';
 
 export const clientShellRoutes: Route[] = [
   {
     path: '',
     component: LayoutComponent,
+    title: 'YouTube Clone',
     children: [
       {
         path: '',
         loadComponent: () => import('@nx-demo/home').then(x => x.HomeComponent),
-        resolve: { data: homeResolver }
+        resolve: { [RESOLVED_DATA]: homeResolver },
       },
     ]
   },

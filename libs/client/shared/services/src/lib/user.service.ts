@@ -9,6 +9,7 @@ export class UserService {
   readonly #http = inject(HttpClient)
 
   getUser(userId: number): Observable<User> {
+    userId = 1
     return this.#http.get<User>(ReqUrlUtil.getUserUrl(userId))
   }
 }

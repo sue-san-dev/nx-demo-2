@@ -1,7 +1,10 @@
-import { RouterUtil } from './router-util';
+import { environment } from '@nx-demo/environments';
+import { UrlUtil } from './url-util';
 
 export class ReqUrlUtil {
+  static readonly #baseUrl = environment.apiUrl;
+
   static getUserUrl(userId: number) {
-    return `/${ RouterUtil.Configuration.Users }/${ userId }`;
+    return `${ this.#baseUrl }/${ UrlUtil.Users }/${ userId }`;
   }
 }

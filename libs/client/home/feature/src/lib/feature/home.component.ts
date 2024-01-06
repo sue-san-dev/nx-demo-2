@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IHomeData } from './home.resolver';
-import { JsonPipe } from '@angular/common';
+import { IHomeData, RESOLVED_DATA } from '@nx-demo/resolvers';
 
 @Component({
   selector: 'nx-demo-home',
   standalone: true,
   imports: [
-    JsonPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -15,6 +13,6 @@ import { JsonPipe } from '@angular/common';
 })
 export class HomeComponent {
   readonly #route = inject(ActivatedRoute);
-  readonly #data: IHomeData = this.#route.snapshot.data['data'];
+  readonly #data: IHomeData = this.#route.snapshot.data[RESOLVED_DATA];
   readonly userRef = this.#data.user;
 }
