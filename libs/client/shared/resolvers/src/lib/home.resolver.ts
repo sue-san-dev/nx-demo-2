@@ -9,8 +9,6 @@ export interface IHomeData {
   user: User;
 }
 
-export const RESOLVED_DATA = Symbol();
-
 export const homeResolver: ResolveFn<IHomeData> = (route) => {
   const userService = inject(UserService);
   return userService.getUser(+route.paramMap.get(UrlUtil.UserId)!).pipe(

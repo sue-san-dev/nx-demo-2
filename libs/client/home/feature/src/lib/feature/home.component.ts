@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IHomeData, RESOLVED_DATA } from '@nx-demo/resolvers';
+import { IHomeData } from '@nx-demo/resolvers';
 
 @Component({
   selector: 'nx-demo-home',
@@ -13,6 +13,6 @@ import { IHomeData, RESOLVED_DATA } from '@nx-demo/resolvers';
 })
 export class HomeComponent {
   readonly #route = inject(ActivatedRoute);
-  readonly #data: IHomeData = this.#route.snapshot.data[RESOLVED_DATA];
+  readonly #data: IHomeData = this.#route.snapshot.data['data'];
   readonly userRef = this.#data.user;
 }
