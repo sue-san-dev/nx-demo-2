@@ -13,11 +13,13 @@ export const clientShellFeatureRoutes: Route[] = [
         path: '',
         loadComponent: () => import('@nx-demo/client-browse-feature').then(x => x.ClientBrowseFeatureComponent),
         resolve: { data: browseResolver },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
       },
       {
         path: UrlUtil.Result,
         loadComponent: () => import('@nx-demo/client-search-feature').then(x => x.ClientSearchFeatureComponent),
         resolve: { data: searchResolver },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
       },
     ]
   },
