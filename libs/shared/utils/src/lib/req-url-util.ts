@@ -7,4 +7,8 @@ export class ReqUrlUtil {
   static getBrowseUrl() {
     return `${ this.#baseUrl }/${ UrlUtil.Browse }`;
   }
+
+  static getSearchUrl() {
+    return `${ this.#baseUrl }/${ UrlUtil.Search }`;
+  }
 }

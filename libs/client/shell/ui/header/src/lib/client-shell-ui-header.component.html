@@ -3,9 +3,10 @@
     ロゴ
   </div>
   <div id="center">
-    検索
+    <input style='background-color: white; color: black; padding: 8px;' [formControl]="keywordCtrl">
+    <button (click)="onClickSearch()">🔎</button>
   </div>
   <div id="end">
-    ボタン
+    アイコン
   </div>
 </div>

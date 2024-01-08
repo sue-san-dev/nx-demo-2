@@ -11,6 +11,7 @@ export class ApiBrowseController {
 
   @Get()
   async browse() {
-    return this.apiBrowseService.browse();
+    const result = await this.apiBrowseService.browse();
+    return result;
   }
 }
