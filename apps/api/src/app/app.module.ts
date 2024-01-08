@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ShellModule } from '@nx-demo/shell';
+import { ApiShellModule } from '@nx-demo/api-shell';
 
 @Module({
   imports: [
-    ShellModule,
+    ApiShellModule,
   ],
   providers: [
   ],

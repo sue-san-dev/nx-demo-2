@@ -2,9 +2,9 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class PrismaService extends PrismaClient<Prisma.PrismaClientOptions, Prisma.LogLevel> implements OnModuleInit {
+export class ApiPrismaService extends PrismaClient<Prisma.PrismaClientOptions, Prisma.LogLevel> implements OnModuleInit {
 
-  readonly #logger = new Logger(PrismaService.name);
+  readonly #logger = new Logger(ApiPrismaService.name);
 
   constructor() {
     super({ log: ['query', 'info', 'warn', 'error'] });
@@ -18,7 +18,7 @@ export class PrismaService extends PrismaClient<Prisma.PrismaClientOptions, Pris
       );
     });
     this.$on('info', (event) => {
-      this.#logger.log(`message: ${ event.message }`);
+      this.#logger.log(`info: ${ event.message }`);
     });
     this.$on('warn', (event) => {
       this.#logger.log(`warn: ${ event.message }`);

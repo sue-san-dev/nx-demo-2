@@ -1,13 +1,13 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 export async function seedUsers(prisma: PrismaClient) {
-  const _user1 = {
+  const _user1: Prisma.UserCreateInput = {
     email: 'example1@example.com',
     name: 'テスト 太郎',
     password: '1234',
     channelName: ''
   }
-  const _user2 = {
+  const _user2: Prisma.UserCreateInput = {
     email: 'example2@example.com',
     name: 'テスト 次郎',
     password: '1234',
@@ -27,6 +27,6 @@ export async function seedUsers(prisma: PrismaClient) {
 
   return {
     user1,
-    user2
+    user2,
   }
 }

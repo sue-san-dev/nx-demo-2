@@ -1,6 +1,6 @@
 import { ApplicationConfig, inject } from '@angular/core';
 import { IsActiveMatchOptions, Router, provideRouter, withViewTransitions } from '@angular/router';
-import { clientShellRoutes } from '@nx-demo/client-shell';
+import { clientShellRoutes } from '@nx-demo/client-shell-feature';
 import { provideSvgIcons } from '@ngneat/svg-icon';
 import { homeIcon } from '../assets/svg/home.icon';
 import { shortIcon } from '../assets/svg/short.icon';

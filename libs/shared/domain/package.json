@@ -1,5 +1,5 @@
 {
-  "name": "@nx-demo/domain",
+  "name": "@nx-demo/shared-domain",
   "version": "0.0.1",
   "dependencies": {},
   "type": "commonjs",

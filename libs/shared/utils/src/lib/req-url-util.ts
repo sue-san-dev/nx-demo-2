@@ -1,10 +1,10 @@
-import { environment } from '@nx-demo/environments';
+import { environment } from '@nx-demo/client-environments';
 import { UrlUtil } from './url-util';
 
 export class ReqUrlUtil {
   static readonly #baseUrl = environment.apiUrl;
 
-  static getUserUrl(userId: number) {
-    return `${ this.#baseUrl }/${ UrlUtil.Users }/${ userId }`;
+  static getBrowseUrl() {
+    return `${ this.#baseUrl }/${ UrlUtil.Browse }`;
   }
 }

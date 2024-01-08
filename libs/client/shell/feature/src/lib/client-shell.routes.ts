@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from '@nx-demo/layout';
-import { homeResolver } from '@nx-demo/resolvers';
+import { LayoutComponent } from '@nx-demo/client-shell-ui-layout';
+import { browseResolver } from '@nx-demo/client-shared-resolvers';
 
 export const clientShellRoutes: Route[] = [
   {
@@ -10,8 +10,8 @@ export const clientShellRoutes: Route[] = [
     children: [
       {
         path: '',
-        loadComponent: () => import('@nx-demo/home').then(x => x.HomeComponent),
-        resolve: { data: homeResolver },
+        loadComponent: () => import('@nx-demo/client-browse-feature').then(x => x.ClientBrowseFeatureComponent),
+        resolve: { data: browseResolver },
       },
     ]
   },

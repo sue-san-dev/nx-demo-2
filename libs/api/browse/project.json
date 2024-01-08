@@ -1,21 +1,21 @@
 {
-  "name": "user",
+  "name": "api-browse",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/api/user/src",
+  "sourceRoot": "libs/api/browse/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/api/user/**/*.ts"]
+        "lintFilePatterns": ["libs/api/browse/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/api/user/jest.config.ts"
+        "jestConfig": "libs/api/browse/jest.config.ts"
       }
     }
   },

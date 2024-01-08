@@ -1,1 +1,1 @@
-export * from './lib/home.resolver';
+export * from './lib/browse.resolver';
