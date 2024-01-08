@@ -1,0 +1,19 @@
+@use "variables" as vars;
+
+:host {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2020;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+#container {
+  height: vars.$app-header-height;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

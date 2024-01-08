@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from '@nx-demo/client-shell-ui-layout';
+import { ClientShellUiLayoutComponent } from '@nx-demo/client-shell-ui-layout';
 import { browseResolver } from '@nx-demo/client-shared-resolvers';
 
-export const clientShellRoutes: Route[] = [
+export const clientShellFeatureRoutes: Route[] = [
   {
     path: '',
-    component: LayoutComponent,
+    component: ClientShellUiLayoutComponent,
     title: 'YouTube Clone',
     children: [
       {

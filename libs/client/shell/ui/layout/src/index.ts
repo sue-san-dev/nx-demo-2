@@ -1,1 +1,1 @@
-export * from './lib/layout.component';
+export * from './lib/client-shell-ui-layout.component';

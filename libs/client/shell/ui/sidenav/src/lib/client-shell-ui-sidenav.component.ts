@@ -3,17 +3,17 @@ import { RouterModule } from '@angular/router';
 import { SvgIconComponent } from '@ngneat/svg-icon';
 
 @Component({
-  selector: 'nx-demo-sidenav',
+  selector: 'nx-demo-client-shell-ui-sidenav',
   standalone: true,
   imports: [
     RouterModule,
     SvgIconComponent,
   ],
-  templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.scss',
+  templateUrl: './client-shell-ui-sidenav.component.html',
+  styleUrl: './client-shell-ui-sidenav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent {
+export class ClientShellUiSidenavComponent {
   readonly items: { title: string, path: string, svgIconKey: string }[] = [
     {
       title: 'ホーム',

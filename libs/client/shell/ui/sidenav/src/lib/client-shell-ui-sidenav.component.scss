@@ -1,0 +1,109 @@
+@use "variables" as vars;
+
+$item-min-height: 40px;
+
+:host {
+  position: fixed;
+  z-index: 1;
+  top: -120px;
+  right: 0;
+  bottom: -120px;
+  left: 0;
+  visibility: visible;
+  width: vars.$app-sidenav-width;
+}
+
+#content-container {
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: vars.$app-sidenav-width;
+  padding: 120px 0;
+  background-color: #0f0f0f;
+}
+
+#guide-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#guide-spacer {
+  margin-top: vars.$app-header-height;
+}
+
+#guide-content {
+  flex: 1;
+  flex-basis: 1e-9px;
+  display: flex;
+  flex-direction: column;
+}
+
+#guide-inner-content {
+  overflow: hidden;
+  flex: 1;
+  flex-basis: 1e-9px;
+  overflow-y: auto;
+}
+
+#guide-renderer {
+  width: 240px;
+}
+
+#sections {
+  position: relative;
+
+  & > #section:not(:last-child) {
+    border-bottom: 1px solid vars.$color-ui-border;
+  }
+  & > #section:first-child {
+    padding: 12px;
+  }
+}
+
+#item {
+  display: block;
+  position: relative;
+  border-radius: 10px;
+  width: calc(100% - 12px);
+}
+
+#endpoint {
+  min-height: $item-min-height;
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > div {
+    position: relative;
+    padding: 0 12px;
+    min-width: 0;
+    height: $item-min-height;
+    min-height: $item-min-height;
+    width: 100%;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.guide-icon {
+  margin-right: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  vertical-align: middle;
+  fill: currentcolor;
+  stroke: none;
+  width: 24px;
+  height: 24px;
+}
