@@ -6,12 +6,14 @@ import { homeIcon } from '../assets/svg/home.icon';
 import { shortIcon } from '../assets/svg/short.icon';
 import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
 import { provideHttpClient } from '@angular/common/http';
+import { menuIcon } from '../assets/svg/menu.icon';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     // SVGアイコン
     provideSvgIcons([
       homeIcon,
+      menuIcon,
       shortIcon,
       subscriptionsIcon,
     ]),

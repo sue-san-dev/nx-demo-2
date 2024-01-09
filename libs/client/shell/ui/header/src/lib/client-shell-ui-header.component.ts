@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UrlUtil } from '@nx-demo/shared-utils';
+import { SvgIconComponent } from '@ngneat/svg-icon';
 
 @Component({
   selector: 'nx-demo-client-shell-ui-header',
   standalone: true,
   imports: [
+    RouterModule,
     ReactiveFormsModule,
+    SvgIconComponent,
   ],
   templateUrl: './client-shell-ui-header.component.html',
   styleUrl: './client-shell-ui-header.component.scss',

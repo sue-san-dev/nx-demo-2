@@ -1,6 +1,29 @@
 <div id="container">
   <div id="start">
-    ロゴ
+    <div id="guide-button">
+      <button id="button">
+        <div style="width: 100%; height: 100%; fill: currentcolor;">
+          <svg-icon key="menu" height="24" width="24"></svg-icon>
+        </div>
+      </button>
+    </div>
+
+    <div id="logo">
+      <a routerLink="/" title="Home">
+        <div>
+          <div style='display: inline-block;'>
+            <div id="logo-icon">
+              <div class="yt-icon">
+                🫠🫠
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <span id="country-code" class="style-scope ytd-topbar-logo-renderer">
+        JP
+      </span>
+    </div>
   </div>
   <div id="center">
     <input style='background-color: white; color: black; padding: 8px;' [formControl]="keywordCtrl">
