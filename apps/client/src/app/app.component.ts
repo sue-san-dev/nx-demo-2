@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ClientShellFeatureModule } from '@nx-demo/client-shell-feature';
 
 @Component({
   standalone: true,
   imports: [
-    RouterModule,
+    ClientShellFeatureModule,
   ],
   selector: 'nx-demo-root',
   template: `<router-outlet />`,

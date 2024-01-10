@@ -42,6 +42,7 @@
       "@nx-demo/client-shell-feature": [
         "libs/client/shell/feature/src/index.ts"
       ],
+      "@nx-demo/client-shell-routes": ["libs/client/shell/routes/src/index.ts"],
       "@nx-demo/client-shell-ui-header": [
         "libs/client/shell/ui/header/src/index.ts"
       ],

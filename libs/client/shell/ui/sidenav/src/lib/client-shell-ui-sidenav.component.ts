@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SvgIconComponent } from '@ngneat/svg-icon';
+import { ClientShellFeatureModule } from '@nx-demo/client-shell-feature';
 
 @Component({
   selector: 'nx-demo-client-shell-ui-sidenav',
   standalone: true,
   imports: [
-    RouterModule,
-    SvgIconComponent,
+    ClientShellFeatureModule,
   ],
   templateUrl: './client-shell-ui-sidenav.component.html',
   styleUrl: './client-shell-ui-sidenav.component.scss',

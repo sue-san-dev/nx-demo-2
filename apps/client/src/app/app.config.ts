@@ -1,12 +1,12 @@
 import { ApplicationConfig, inject } from '@angular/core';
 import { IsActiveMatchOptions, Router, provideRouter, withViewTransitions } from '@angular/router';
-import { clientShellFeatureRoutes } from '@nx-demo/client-shell-feature';
 import { provideSvgIcons } from '@ngneat/svg-icon';
 import { homeIcon } from '../assets/svg/home.icon';
 import { shortIcon } from '../assets/svg/short.icon';
 import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
 import { provideHttpClient } from '@angular/common/http';
 import { menuIcon } from '../assets/svg/menu.icon';
+import { clientShellRoutes } from '@nx-demo/client-shell-routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     // HttpClient
     provideHttpClient(),
     // router設定
-    provideRouter(clientShellFeatureRoutes,
+    provideRouter(clientShellRoutes,
       // URL遷移時にアニメーション付与
       withViewTransitions({
         onViewTransitionCreated: ({ transition }) => {

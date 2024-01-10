@@ -1,14 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ISearchData } from '@nx-demo/client-shared-resolvers';
+import { ClientShellFeatureModule } from '@nx-demo/client-shell-feature';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'nx-demo-client-search-feature',
   standalone: true,
   imports: [
-    AsyncPipe,
+    ClientShellFeatureModule,
   ],
   templateUrl: './client-search-feature.component.html',
   styleUrl: './client-search-feature.component.scss',

@@ -1,1 +1,1 @@
-export * from './lib/client-shell-feature.routes';
+export * from './lib/client-shell-feature.module';

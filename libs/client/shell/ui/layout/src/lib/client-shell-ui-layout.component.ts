@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ClientShellFeatureModule } from '@nx-demo/client-shell-feature';
 import { ClientShellUiHeaderComponent } from '@nx-demo/client-shell-ui-header';
 import { ClientShellUiSidenavComponent } from '@nx-demo/client-shell-ui-sidenav';
 
@@ -7,7 +7,7 @@ import { ClientShellUiSidenavComponent } from '@nx-demo/client-shell-ui-sidenav'
   selector: 'nx-demo-client-shell-ui-layout',
   standalone: true,
   imports: [
-    RouterModule,
+    ClientShellFeatureModule,
     ClientShellUiHeaderComponent,
     ClientShellUiSidenavComponent,
   ],
