@@ -75,6 +75,9 @@
       "@nx-demo/shared-styles": [
         "libs/shared/styles/src/index.ts"
       ],
+      "@nx-demo/shared-testing": [
+        "libs/shared/testing/src/index.ts"
+      ],
       "@nx-demo/shared-utils": [
         "libs/shared/utils/src/index.ts"
       ]
