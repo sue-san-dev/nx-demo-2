@@ -1,8 +1,0 @@
-@use "variables" as vars;
-
-#page-manager {
-  overflow-x: inherit;
-  overflow-y: visible;
-  margin-top: vars.$app-header-height;
-  margin-left: vars.$app-sidenav-width;
-}

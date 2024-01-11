@@ -1,5 +1,5 @@
 {
-  "name": "pipes",
+  "name": "client-shared-pipes",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/pipes/src",
   "prefix": "nx-demo",

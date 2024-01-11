@@ -22,8 +22,20 @@
       "@nx-demo/client-browse-feature": [
         "libs/client/browse/feature/src/index.ts"
       ],
+      "@nx-demo/client-layout-feature": [
+        "libs/client/layout/feature/src/index.ts"
+      ],
+      "@nx-demo/client-layout-ui-header": [
+        "libs/client/layout/ui/header/src/index.ts"
+      ],
+      "@nx-demo/client-layout-ui-sidenav": [
+        "libs/client/layout/ui/sidenav/src/index.ts"
+      ],
       "@nx-demo/client-search-feature": [
         "libs/client/search/feature/src/index.ts"
+      ],
+      "@nx-demo/client-shared-constants": [
+        "libs/client/shared/constants/src/index.ts"
       ],
       "@nx-demo/client-shared-directives": [
         "libs/client/shared/directives/src/index.ts"
@@ -38,22 +50,10 @@
       "@nx-demo/client-shared-stores": [
         "libs/client/shared/stores/src/index.ts"
       ],
-      "@nx-demo/client-shell-feature": [
-        "libs/client/shell/feature/src/index.ts"
-      ],
-      "@nx-demo/client-shell-routes": ["libs/client/shell/routes/src/index.ts"],
-      "@nx-demo/client-shell-ui-header": [
-        "libs/client/shell/ui/header/src/index.ts"
-      ],
-      "@nx-demo/client-shell-ui-layout": [
-        "libs/client/shell/ui/layout/src/index.ts"
-      ],
-      "@nx-demo/client-shell-ui-sidenav": [
-        "libs/client/shell/ui/sidenav/src/index.ts"
-      ],
-      "@nx-demo/shared-styles": ["libs/shared/styles/src/index.ts"],
+      "@nx-demo/client-shell": ["libs/client/shell/src/index.ts"],
       "@nx-demo/shared-domain": ["libs/shared/domain/src/index.ts"],
       "@nx-demo/shared-environments": ["libs/shared/environments/src/index.ts"],
+      "@nx-demo/shared-styles": ["libs/shared/styles/src/index.ts"],
       "@nx-demo/shared-utils": ["libs/shared/utils/src/index.ts"]
     }
   },

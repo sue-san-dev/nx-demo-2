@@ -1,11 +1,11 @@
 {
-  "name": "client-shared-directives",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/client/shared/directives/src",
+  "name": "client-layout-ui-sidenav",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/layout/ui/sidenav/src",
   "prefix": "nx-demo",
   "tags": [
     "scope:client",
-    "type:util"
+    "type:ui"
   ],
   "projectType": "library",
   "targets": {
@@ -13,7 +13,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/shared/directives/jest.config.ts"
+        "jestConfig": "libs/client/layout/ui/sidenav/jest.config.ts"
       }
     },
     "lint": {
@@ -21,8 +21,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/client/shared/directives/**/*.ts",
-          "libs/client/shared/directives/**/*.html"
+          "libs/client/layout/ui/sidenav/**/*.ts",
+          "libs/client/layout/ui/sidenav/**/*.html"
         ]
       }
     }

@@ -50,7 +50,8 @@
               {
                 "sourceTag": "type:shell",
                 "onlyDependOnLibsWithTags": [
-                  "type:feature"
+                  "type:feature",
+                  "type:util"
                 ]
               },
               {

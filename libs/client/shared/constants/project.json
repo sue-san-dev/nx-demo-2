@@ -1,7 +1,7 @@
 {
-  "name": "client-shared-directives",
+  "name": "client-shared-constants",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/client/shared/directives/src",
+  "sourceRoot": "libs/client/shared/constants/src",
   "prefix": "nx-demo",
   "tags": [
     "scope:client",
@@ -13,7 +13,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/shared/directives/jest.config.ts"
+        "jestConfig": "libs/client/shared/constants/jest.config.ts"
       }
     },
     "lint": {
@@ -21,8 +21,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/client/shared/directives/**/*.ts",
-          "libs/client/shared/directives/**/*.html"
+          "libs/client/shared/constants/**/*.ts",
+          "libs/client/shared/constants/**/*.html"
         ]
       }
     }

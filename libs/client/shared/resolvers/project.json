@@ -1,5 +1,5 @@
 {
-  "name": "resolvers",
+  "name": "client-shared-resolvers",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/resolvers/src",
   "prefix": "nx-demo",

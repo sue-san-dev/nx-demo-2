@@ -1,5 +1,5 @@
 {
-  "name": "stores",
+  "name": "client-shared-stores",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/stores/src",
   "prefix": "nx-demo",

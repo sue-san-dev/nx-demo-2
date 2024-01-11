@@ -1,5 +1,5 @@
 {
-  "name": "services",
+  "name": "client-shared-services",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/services/src",
   "prefix": "nx-demo",

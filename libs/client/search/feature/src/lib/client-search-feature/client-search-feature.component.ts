@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SHARED_MODULES } from '@nx-demo/client-shared-constants';
 import { ISearchData } from '@nx-demo/client-shared-resolvers';
-import { ClientShellFeatureModule } from '@nx-demo/client-shell-feature';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'nx-demo-client-search-feature',
   standalone: true,
   imports: [
-    ClientShellFeatureModule,
+    SHARED_MODULES,
   ],
   templateUrl: './client-search-feature.component.html',
   styleUrl: './client-search-feature.component.scss',

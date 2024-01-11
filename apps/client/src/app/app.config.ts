@@ -6,7 +6,7 @@ import { shortIcon } from '../assets/svg/short.icon';
 import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
 import { provideHttpClient } from '@angular/common/http';
 import { menuIcon } from '../assets/svg/menu.icon';
-import { clientShellRoutes } from '@nx-demo/client-shell-routes';
+import { clientShellRoutes } from '@nx-demo/client-shell';
 
 export const appConfig: ApplicationConfig = {
   providers: [
