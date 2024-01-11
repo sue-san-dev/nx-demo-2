@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
             fragment: 'ignored',
             queryParams: 'ignored',
           }
-          if (router.isActive(targetUrl, config)) {
+          if (router.isActive(targetUrl, config) || router.lastSuccessfulNavigation === null) {
             transition.skipTransition()
           }
         },
