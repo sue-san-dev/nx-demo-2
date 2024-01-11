@@ -5,7 +5,7 @@
   "prefix": "nx-demo",
   "tags": [
     "scope:client",
-    "type:feature"
+    "type:shell"
   ],
   "projectType": "library",
   "targets": {

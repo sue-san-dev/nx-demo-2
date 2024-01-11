@@ -1,10 +1,11 @@
-@import "nord/src/sass/nord";
+@import 'nord/src/sass/nord';
 
 // Font and Text
 $font-size-base: 16px;
 $line-height-base: 1;
 $letter-spacing: normal;
-$font-family-sans-serif: "segoe ui", meiryo, "yu gothic", "hiragino kaku gothic pron", sans-serif;
+$font-family-sans-serif: 'segoe ui', meiryo, 'yu gothic',
+  'hiragino kaku gothic pron', sans-serif;
 
 // Spacing
 $space-default: 24px;

@@ -1,4 +1,4 @@
-import { environment } from '@nx-demo/client-environments';
+import { environment } from '@nx-demo/shared-environments';
 import { UrlUtil } from './url-util';
 
 export class ReqUrlUtil {
