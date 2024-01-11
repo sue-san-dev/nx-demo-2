@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SvgIconComponent } from '@ngneat/svg-icon';
 
 /**
- * 出現頻度の高いModuleはこちらに定義
+ * 必須Moduleはこちらにまとめて定義
  * そうでないものは各Componentでimport
  */
 const sharedModules = [

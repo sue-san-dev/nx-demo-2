@@ -1,5 +1,5 @@
 {
-  "name": "environments",
+  "name": "client-environments",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/environments/src",
   "prefix": "nx-demo",
