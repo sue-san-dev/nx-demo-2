@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SHARED_MODULES } from '@nx-demo/client-shared-constants';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { UrlUtil } from '@nx-demo/shared-utils';
 
 @Component({

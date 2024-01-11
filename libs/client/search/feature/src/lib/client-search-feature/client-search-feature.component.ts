@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SHARED_MODULES } from '@nx-demo/client-shared-constants';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { ISearchData } from '@nx-demo/client-shared-resolvers';
 import { map } from 'rxjs';
 

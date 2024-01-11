@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ClientLayoutUiHeaderComponent } from '@nx-demo/client-layout-ui-header';
 import { ClientLayoutUiSidenavComponent } from '@nx-demo/client-layout-ui-sidenav';
-import { SHARED_MODULES } from '@nx-demo/client-shared-constants';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 
 @Component({
   selector: 'nx-demo-client-layout-feature',

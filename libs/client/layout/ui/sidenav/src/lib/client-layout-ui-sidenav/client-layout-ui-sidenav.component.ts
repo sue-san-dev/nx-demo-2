@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SHARED_MODULES } from '@nx-demo/client-shared-constants';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 
 @Component({
   selector: 'nx-demo-client-layout-ui-sidenav',

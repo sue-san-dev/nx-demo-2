@@ -4,6 +4,9 @@
   "projectType": "application",
   "prefix": "nx-demo",
   "sourceRoot": "apps/client/src",
+  "implicitDependencies": [
+    "shared-styles"
+  ],
   "tags": [
     "scope:client",
     "type:app"
