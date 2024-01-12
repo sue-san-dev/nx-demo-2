@@ -50,6 +50,9 @@
       "@nx-demo/client-shared-stores": [
         "libs/client/shared/stores/src/index.ts"
       ],
+      "@nx-demo/client-shared-ui-rich-item": [
+        "libs/client/shared/ui/rich-item/src/index.ts"
+      ],
       "@nx-demo/client-shell": ["libs/client/shell/src/index.ts"],
       "@nx-demo/shared-domain": ["libs/shared/domain/src/index.ts"],
       "@nx-demo/shared-environments": ["libs/shared/environments/src/index.ts"],

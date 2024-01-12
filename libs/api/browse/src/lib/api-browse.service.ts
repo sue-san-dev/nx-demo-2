@@ -9,6 +9,10 @@ export class ApiBrowseService {
   ) { }
 
   async browse() {
-    return this.apiPrismaService.video.findMany();
+    return this.apiPrismaService.video.findMany({
+      include: {
+        uploader: true,
+      }
+    });
   }
 }

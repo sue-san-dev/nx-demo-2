@@ -1,7 +1,9 @@
 {
   "name": "@nx-demo/shared-domain",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@prisma/client": "^5.7.0"
+  },
   "type": "commonjs",
   "main": "./index.cjs"
 }

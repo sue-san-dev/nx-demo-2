@@ -23,20 +23,54 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
       }
     },
   }
+  const _video3: Prisma.VideoCreateInput = {
+    uuid: '0f0b5dd3-37b6-4f99-5ea8-3e8b3915aa99',
+    description: '説明3',
+    title: 'タイトル3',
+    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    uploader: {
+      connect: {
+        id: user1.id,
+      }
+    },
+  }
+  const _video4: Prisma.VideoCreateInput = {
+    uuid: '39183d8e-d7e4-ed14-9a29-1e82a7c13f2c',
+    description: '説明4',
+    title: 'タイトル4',
+    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    uploader: {
+      connect: {
+        id: user2.id,
+      }
+    },
+  }
+  const _video5: Prisma.VideoCreateInput = {
+    uuid: '2638f3f7-c444-5543-6e0c-43a6d7596233',
+    description: '説明5',
+    title: 'タイトル5',
+    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    uploader: {
+      connect: {
+        id: user1.id,
+      }
+    },
+  }
 
-  const video1 = await prisma.video.upsert({
-    where: { uuid: _video1.uuid },
-    update: _video1,
-    create: _video1,
-  })
-  const video2 = await prisma.video.upsert({
-    where: { uuid: _video2.uuid },
-    update: _video2,
-    create: _video2,
-  })
+  const [video1, video2, video3, video4, video5] = [_video1, _video2, _video3, _video4, _video5]
+    .map(async video => {
+      return await prisma.video.upsert({
+        where: { uuid: video.uuid },
+        update: video,
+        create: video,
+      })
+    })
 
   return {
     video1,
     video2,
+    video3,
+    video4,
+    video5,
   }
 }
