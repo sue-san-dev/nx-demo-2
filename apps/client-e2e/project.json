@@ -22,21 +22,9 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/client-e2e/**/*.{js,ts}"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     }
   },
-  "tags": [
-    "scope:client",
-    "type:app"
-  ],
-  "implicitDependencies": [
-    "client"
-  ]
+  "tags": ["scope:client", "type:app"],
+  "implicitDependencies": ["client"]
 }

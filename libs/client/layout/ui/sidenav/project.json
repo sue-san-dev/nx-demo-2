@@ -3,10 +3,7 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/layout/ui/sidenav/src",
   "prefix": "nx-demo",
-  "tags": [
-    "scope:client",
-    "type:ui"
-  ],
+  "tags": ["scope:client", "type:ui"],
   "projectType": "library",
   "targets": {
     "test": {
@@ -18,13 +15,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/client/layout/ui/sidenav/**/*.ts",
-          "libs/client/layout/ui/sidenav/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     }
   }
 }

@@ -6,10 +6,7 @@
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/api/shell/**/*.ts"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -19,8 +16,5 @@
       }
     }
   },
-  "tags": [
-    "scope:api",
-    "type:shell"
-  ]
+  "tags": ["scope:api", "type:shell"]
 }

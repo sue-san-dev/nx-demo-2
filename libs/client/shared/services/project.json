@@ -3,10 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/services/src",
   "prefix": "nx-demo",
-  "tags": [
-    "scope:client",
-    "type:util"
-  ],
+  "tags": ["scope:client", "type:util"],
   "projectType": "library",
   "targets": {
     "test": {
@@ -18,13 +15,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/client/shared/services/**/*.ts",
-          "libs/client/shared/services/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     }
   }
 }
