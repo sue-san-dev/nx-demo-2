@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { browseResolver, searchResolver } from '@nx-demo/client-shared-resolvers';
+import { browseResolver, searchResolver, watchResolver } from '@nx-demo/client-shared-resolvers';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { ClientLayoutFeatureComponent } from '@nx-demo/client-layout-feature';
 
@@ -19,6 +19,12 @@ export const clientShellRoutes: Route[] = [
         path: UrlUtil.Result,
         loadComponent: () => import('@nx-demo/client-search-feature').then(x => x.ClientSearchFeatureComponent),
         resolve: { resolvedData: searchResolver },
+        runGuardsAndResolvers: 'always',
+      },
+      {
+        path: UrlUtil.Watch,
+        loadComponent: () => import('@nx-demo/client-watch-feature').then(x => x.ClientWatchFeatureComponent),
+        resolve: { resolvedData: watchResolver },
         runGuardsAndResolvers: 'always',
       },
     ]

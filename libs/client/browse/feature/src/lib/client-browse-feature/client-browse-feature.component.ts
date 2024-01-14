@@ -22,7 +22,7 @@ export class ClientBrowseFeatureComponent {
 
   readonly videosRef$ = this.#route.data.pipe(
     map(data => {
-      return (data as { resolvedData: IBrowseData }).resolvedData.videos
+      return (data as { resolvedData: IBrowseData }).resolvedData.videos;
     })
   );
 }

@@ -19,6 +19,7 @@
       "@nx-demo/api-prisma": ["libs/api/prisma/src/index.ts"],
       "@nx-demo/api-search": ["libs/api/search/src/index.ts"],
       "@nx-demo/api-shell": ["libs/api/shell/src/index.ts"],
+      "@nx-demo/api-watch": ["libs/api/watch/src/index.ts"],
       "@nx-demo/client-browse-feature": [
         "libs/client/browse/feature/src/index.ts"
       ],
@@ -54,6 +55,9 @@
         "libs/client/shared/ui/rich-item/src/index.ts"
       ],
       "@nx-demo/client-shell": ["libs/client/shell/src/index.ts"],
+      "@nx-demo/client-watch-feature": [
+        "libs/client/watch/feature/src/index.ts"
+      ],
       "@nx-demo/shared-domain": ["libs/shared/domain/src/index.ts"],
       "@nx-demo/shared-environments": ["libs/shared/environments/src/index.ts"],
       "@nx-demo/shared-styles": ["libs/shared/styles/src/index.ts"],

@@ -8,7 +8,7 @@ export class ApiBrowseService {
     private apiPrismaService: ApiPrismaService,
   ) { }
 
-  async browse() {
+  browse() {
     return this.apiPrismaService.video.findMany({
       include: {
         uploader: true,

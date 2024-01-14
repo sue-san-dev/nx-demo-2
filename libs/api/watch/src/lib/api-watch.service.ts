@@ -2,18 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
 
 @Injectable()
-export class ApiSearchService {
+export class ApiWatchService {
 
   constructor(
     private apiPrismaService: ApiPrismaService,
   ) { }
 
-  search(searchQuery: string) {
-    return this.apiPrismaService.video.findMany({
+  getVideo(videoKey: string) {
+    return this.apiPrismaService.video.findUnique({
       where: {
-        title: {
-          contains: searchQuery,
-        }
+        uuid: videoKey,
       },
       include: {
         uploader: true,

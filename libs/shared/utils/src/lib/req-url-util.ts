@@ -11,4 +11,8 @@ export class ReqUrlUtil {
   static getSearchUrl() {
     return `${ this.#baseUrl }/${ UrlUtil.Search }`;
   }
+
+  static getWatchUrl() {
+    return `${ this.#baseUrl }/${ UrlUtil.Watch }`;
+  }
 }

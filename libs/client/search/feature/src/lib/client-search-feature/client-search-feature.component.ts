@@ -22,7 +22,7 @@ export class ClientSearchFeatureComponent {
 
   readonly videosRef$ = this.#route.data.pipe(
     map(data => {
-      return (data as { resolvedData: ISearchData }).resolvedData.videos
+      return (data as { resolvedData: ISearchData }).resolvedData.videos;
     })
   );
 }

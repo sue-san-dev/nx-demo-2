@@ -27,7 +27,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     uuid: '0f0b5dd3-37b6-4f99-5ea8-3e8b3915aa99',
     description: '説明3',
     title: 'タイトル3',
-    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    thumbnailUrl: 'https://i.ytimg.com/vi/uYJQIKAVBw8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDuCWoa8gdxr3m8TDqkpFwXjrPtrw',
     uploader: {
       connect: {
         id: user1.id,
@@ -38,7 +38,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     uuid: '39183d8e-d7e4-ed14-9a29-1e82a7c13f2c',
     description: '説明4',
     title: 'タイトル4',
-    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    thumbnailUrl: 'https://i.ytimg.com/vi/JHcNNccA9Q8/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoTjAP&rs=AOn4CLCdzaJHglRKCiXpSvE5WoZ9VnfhBg',
     uploader: {
       connect: {
         id: user2.id,
@@ -49,7 +49,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     uuid: '2638f3f7-c444-5543-6e0c-43a6d7596233',
     description: '説明5',
     title: 'タイトル5',
-    thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    thumbnailUrl: 'https://i.ytimg.com/vi/YHOYDjJ1ta4/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCmOJipwKRu4eyRIQFFGoG1OuMfbA',
     uploader: {
       connect: {
         id: user1.id,
