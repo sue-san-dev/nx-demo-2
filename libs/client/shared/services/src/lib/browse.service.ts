@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { VideoInfo } from '@nx-demo/shared-domain';
+import { VideoMetadata } from '@nx-demo/shared-domain';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class BrowseService {
   readonly #http = inject(HttpClient)
 
-  browse(): Observable<VideoInfo[]> {
-    return this.#http.get<VideoInfo[]>(ReqUrlUtil.getBrowseUrl())
+  browse(): Observable<VideoMetadata[]> {
+    return this.#http.get<VideoMetadata[]>(ReqUrlUtil.getBrowseUrl())
   }
 }

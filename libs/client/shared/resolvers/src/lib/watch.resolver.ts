@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { VideoService } from '@nx-demo/client-shared-services';
-import { VideoInfo } from '@nx-demo/shared-domain';
+import { VideoMetadataDetail } from '@nx-demo/shared-domain';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { map } from 'rxjs';
 
 export interface IWatchData {
-  video: VideoInfo;
+  video: VideoMetadataDetail;
 }
 
 export const watchResolver: ResolveFn<IWatchData> = (route) => {

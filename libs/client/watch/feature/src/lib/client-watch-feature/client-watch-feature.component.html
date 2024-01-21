@@ -1,3 +1,7 @@
 <div>
-  {{videoRef.title}}
+  <div>{{ videoRef.title }}</div>
+  <div>コメント数：{{ videoRef.commentCount }}</div>
+  <div>いいね数：{{ videoRef.likeCount }}</div>
+  <div>チャンネル登録者数：{{ videoRef.uploader.channelSubscriberCount }}</div>
+  <div>再生回数：{{ videoRef.viewCount }}</div>
 </div>

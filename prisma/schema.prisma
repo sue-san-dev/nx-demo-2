@@ -33,14 +33,16 @@ enum Resolution {
 /// ユーザを管理する
 model User {
   id                 Int                   @id @default(autoincrement())
-  /// 名前
-  name               String
-  /// チャンネル名
-  channelName        String
+  /// アカウント名
+  accountName        String
+  /// チャンネル固有ID
+  channelHandle      String                @unique
   /// メールアドレス
   email              String                @unique
   /// パスワード
   password           String
+  /// チャンネルアバターURL
+  channelAvatarUrl   String?
   /// 投稿動画リスト
   videos             Video[]
   /// 投稿コメントリスト
@@ -49,6 +51,8 @@ model User {
   reactions          UserVideoReaction[]
   /// プレイリストリスト
   playlists          Playlist[]
+  /// 視聴履歴リスト
+  watchHistories     WatchHistory[]
   /// 登録チャンネルリスト
   subscribedChannels ChannelSubscription[] @relation("UserSubscriptions")
   /// チャンネル登録者リスト
@@ -67,6 +71,8 @@ model Video {
   description    String
   /// サムネイルURL
   thumbnailUrl   String
+  /// 再生回数
+  viewCount      Int
   /// 投稿者ID
   uploaderId     Int
   /// 投稿者
@@ -83,6 +89,21 @@ model Video {
   updatedAt      DateTime            @updatedAt
 
   @@index([uploaderId])
+}
+
+/// 動画視聴履歴テーブル
+/// ユーザの動画視聴履歴を管理する
+model WatchHistory {
+  uuid      String   @id @default(uuid())
+  /// 対象動画UUID
+  videoUuid String
+  /// ユーザID
+  userId    Int
+  /// ユーザ
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 /// 動画解像度テーブル

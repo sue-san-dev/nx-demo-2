@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { SearchService } from '@nx-demo/client-shared-services';
-import { VideoInfo } from '@nx-demo/shared-domain';
+import { VideoMetadata } from '@nx-demo/shared-domain';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { map } from 'rxjs';
 
 export interface ISearchData {
-  videos: VideoInfo[];
+  videos: VideoMetadata[];
 }
 
 export const searchResolver: ResolveFn<ISearchData> = (route) => {

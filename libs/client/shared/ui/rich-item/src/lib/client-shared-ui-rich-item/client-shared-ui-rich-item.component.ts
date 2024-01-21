@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { VideoInfo } from '@nx-demo/shared-domain';
+import { VideoMetadata } from '@nx-demo/shared-domain';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { Params } from '@angular/router';
@@ -18,12 +18,14 @@ import { Params } from '@angular/router';
 })
 export class ClientSharedUiRichItemComponent {
 
-  @Input({ required: true }) video!: VideoInfo;
+  readonly videoRef = input.required<VideoMetadata>({
+    alias: 'video',
+  });
 
-  get routerLink(): string {
+  get watchPageUrl(): string {
     return '/' + UrlUtil.Watch;
   }
-  get queryParams(): Params {
-    return { [UrlUtil.VideoKey]: this.video.uuid };
+  get watchPageQueryParams(): Params {
+    return { [UrlUtil.VideoKey]: this.videoRef().uuid };
   }
 }

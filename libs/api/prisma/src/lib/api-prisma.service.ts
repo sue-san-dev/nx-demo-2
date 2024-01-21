@@ -11,6 +11,12 @@ export class ApiPrismaService extends PrismaClient<Prisma.PrismaClientOptions, P
   }
 
   async onModuleInit() {
+    // this.$extends({
+    //   result: {
+
+    //   }
+    // });
+
     this.$on('query', (event) => {
       this.#logger.log(
         `Params: ${ event.params }`,

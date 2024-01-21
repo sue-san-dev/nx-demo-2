@@ -6,6 +6,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     description: '説明1',
     title: 'タイトル1',
     thumbnailUrl: 'https://i.ytimg.com/vi/pxn0wL_uSm4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA5-R0ttQXH147mk3eZZWR0eHpcpQ',
+    viewCount: 0,
     uploader: {
       connect: {
         id: user1.id,
@@ -17,6 +18,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     description: '説明2',
     title: 'タイトル2',
     thumbnailUrl: 'https://i.ytimg.com/vi/B83nmCSwRuw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtqJhoe9k1ruNHbtK5L0rgbPr72w',
+    viewCount: 0,
     uploader: {
       connect: {
         id: user2.id,
@@ -28,6 +30,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     description: '説明3',
     title: 'タイトル3',
     thumbnailUrl: 'https://i.ytimg.com/vi/uYJQIKAVBw8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDuCWoa8gdxr3m8TDqkpFwXjrPtrw',
+    viewCount: 0,
     uploader: {
       connect: {
         id: user1.id,
@@ -39,6 +42,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     description: '説明4',
     title: 'タイトル4',
     thumbnailUrl: 'https://i.ytimg.com/vi/JHcNNccA9Q8/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoTjAP&rs=AOn4CLCdzaJHglRKCiXpSvE5WoZ9VnfhBg',
+    viewCount: 0,
     uploader: {
       connect: {
         id: user2.id,
@@ -50,6 +54,7 @@ export async function seedVideos(prisma: PrismaClient, user1: User, user2: User)
     description: '説明5',
     title: 'タイトル5',
     thumbnailUrl: 'https://i.ytimg.com/vi/YHOYDjJ1ta4/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCmOJipwKRu4eyRIQFFGoG1OuMfbA',
+    viewCount: 0,
     uploader: {
       connect: {
         id: user1.id,
