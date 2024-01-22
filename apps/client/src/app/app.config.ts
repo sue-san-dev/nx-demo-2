@@ -7,6 +7,14 @@ import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
 import { provideHttpClient } from '@angular/common/http';
 import { menuIcon } from '../assets/svg/menu.icon';
 import { clientShellRoutes } from '@nx-demo/client-shell';
+import { moreVertIcon } from '../assets/svg/more-vert.icon';
+import { voiceIcon } from '../assets/svg/voice.icon';
+import { accountCircleIcon } from '../assets/svg/account-circle.icon';
+import { moreHorizIcon } from '../assets/svg/more-horiz.icon';
+import { thumbUpIcon } from '../assets/svg/thumb-up.icon';
+import { thumbDownIcon } from '../assets/svg/thumb-down.icon';
+import { searchIcon } from '../assets/svg/search.icon';
+import { playlistAddIcon } from '../assets/svg/playlist-add.icon';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +24,14 @@ export const appConfig: ApplicationConfig = {
       menuIcon,
       shortIcon,
       subscriptionsIcon,
+      moreVertIcon,
+      moreHorizIcon,
+      voiceIcon,
+      accountCircleIcon,
+      thumbUpIcon,
+      thumbDownIcon,
+      searchIcon,
+      playlistAddIcon,
     ]),
     // HttpClient
     provideHttpClient(),
