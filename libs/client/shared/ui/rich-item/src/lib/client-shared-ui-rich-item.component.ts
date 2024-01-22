@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { VideoMetadata } from '@nx-demo/shared-domain';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { UrlUtil } from '@nx-demo/shared-utils';
@@ -10,7 +9,6 @@ import { Params } from '@angular/router';
   standalone: true,
   imports: [
     SHARED_MODULES,
-    NgOptimizedImage,
   ],
   templateUrl: './client-shared-ui-rich-item.component.html',
   styleUrl: './client-shared-ui-rich-item.component.scss',

@@ -1,7 +1,12 @@
 <div>
+  <video controls>
+    <source src="https://vod-progressive.akamaized.net/exp=1705916600~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4910%2F18%2F474550429%2F2116238418.mp4~hmac=b79d1913ab60e66a5cb86bc2355b77437937b48edab3209a3a6f792057fe0f64/vimeo-prod-skyfire-std-us/01/4910/18/474550429/2116238418.mp4" type="video/mp4" />
+  </video>
   <div>{{ videoRef.title }}</div>
   <div>コメント数：{{ videoRef.commentCount }}</div>
   <div>いいね数：{{ videoRef.likeCount }}</div>
   <div>チャンネル登録者数：{{ videoRef.uploader.channelSubscriberCount }}</div>
   <div>再生回数：{{ videoRef.viewCount }}</div>
+  <div>アカウント名：{{ videoRef.uploader.accountName }}</div>
+  <nx-demo-client-shared-ui-avatar-icon [user]="videoRef.uploader" />
 </div>

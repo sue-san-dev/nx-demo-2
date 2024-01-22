@@ -1,12 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
+import { User } from '@prisma/client';
 
 @Component({
   selector: 'nx-demo-client-shared-ui-avatar-icon',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    SHARED_MODULES,
+  ],
   templateUrl: './client-shared-ui-avatar-icon.component.html',
   styleUrl: './client-shared-ui-avatar-icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientSharedUiAvatarIconComponent {}
+export class ClientSharedUiAvatarIconComponent {
+
+  userRef = input.required<User>({
+    alias: 'user',
+  });
+}

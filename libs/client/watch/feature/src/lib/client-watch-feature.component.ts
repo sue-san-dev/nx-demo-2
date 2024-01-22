@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
+import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
   standalone: true,
   imports: [
     SHARED_MODULES,
+    ClientSharedUiAvatarIconComponent,
   ],
   templateUrl: './client-watch-feature.component.html',
   styleUrl: './client-watch-feature.component.scss',
