@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
+import { VideoMetadataDetail } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -16,8 +16,9 @@ import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-ava
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientWatchFeatureComponent {
-
-  readonly #route = inject(ActivatedRoute);
-
-  readonly videoRef = (this.#route.snapshot.data as { resolvedData: IWatchData }).resolvedData.video;
+  /** resolve結果をinput */
+  readonly videoRef = input.required<VideoMetadataDetail, IWatchData>({
+    alias: 'resolvedData',
+    transform: data => data.video,
+  });
 }

@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { ISearchData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
-import { map } from 'rxjs';
+import { VideoMetadata } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-search-feature',
@@ -17,12 +16,9 @@ import { map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientSearchFeatureComponent {
-
-  readonly #route = inject(ActivatedRoute);
-
-  readonly videosRef$ = this.#route.data.pipe(
-    map(data => {
-      return (data as { resolvedData: ISearchData }).resolvedData.videos;
-    })
-  );
+  /** resolve結果をinput */
+  readonly videosRef = input.required<VideoMetadata[], ISearchData>({
+    alias: 'resolvedData',
+    transform: data => data.videos,
+  });
 }
