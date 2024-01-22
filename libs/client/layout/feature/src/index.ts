@@ -1,1 +1,1 @@
-export * from './lib/client-layout-feature/client-layout-feature.component';
+export * from './lib/client-layout-feature.component';

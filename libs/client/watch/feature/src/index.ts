@@ -1,1 +1,1 @@
-export * from './lib/client-watch-feature/client-watch-feature.component';
+export * from './lib/client-watch-feature.component';
