@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { ISearchData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
-import { VideoMetadata } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-search-feature',
@@ -16,9 +15,8 @@ import { VideoMetadata } from '@nx-demo/shared-domain';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientSearchFeatureComponent {
-  /** resolve結果をinput */
-  readonly videosRef = input.required<VideoMetadata[], ISearchData>({
-    alias: 'resolvedData',
-    transform: data => data.videos,
-  });
+  /** resolveデータ */
+  readonly resolvedData = input.required<ISearchData>();
+  /** ビデオ一覧 */
+  readonly videosRef = computed(() => this.resolvedData().videos);
 }

@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
-import { VideoMetadataDetail } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -16,9 +15,8 @@ import { VideoMetadataDetail } from '@nx-demo/shared-domain';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientWatchFeatureComponent {
-  /** resolve結果をinput */
-  readonly videoRef = input.required<VideoMetadataDetail, IWatchData>({
-    alias: 'resolvedData',
-    transform: data => data.video,
-  });
+  /** resolveデータ */
+  readonly resolvedData = input.required<IWatchData>();
+  /** ビデオ */
+  readonly videoRef = computed(() => this.resolvedData().video);
 }

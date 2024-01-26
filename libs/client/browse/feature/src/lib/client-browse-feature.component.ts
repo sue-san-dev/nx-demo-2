@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IBrowseData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
-import { VideoMetadata } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-browse-feature',
@@ -16,9 +15,8 @@ import { VideoMetadata } from '@nx-demo/shared-domain';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientBrowseFeatureComponent {
-  /** resolve結果をinput */
-  readonly videosRef = input.required<VideoMetadata[], IBrowseData>({
-    alias: 'resolvedData',
-    transform: data => data.videos,
-  });
+  /** resolveデータ */
+  readonly resolvedData = input.required<IBrowseData>();
+  /** ビデオ一覧 */
+  readonly videosRef = computed(() => this.resolvedData().videos);
 }
