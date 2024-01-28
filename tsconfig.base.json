@@ -29,6 +29,9 @@
       "@nx-demo/client-layout-ui-header": [
         "libs/client/layout/ui/header/src/index.ts"
       ],
+      "@nx-demo/client-layout-ui-searchbox": [
+        "libs/client/layout/ui/searchbox/src/index.ts"
+      ],
       "@nx-demo/client-layout-ui-sidenav": [
         "libs/client/layout/ui/sidenav/src/index.ts"
       ],

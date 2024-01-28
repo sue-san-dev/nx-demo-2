@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.thumbnail-container {
+  position: relative;
+
+  img {
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
+    font-size: 0.8rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    span {
+      display: inline-block;
+      background-color: black;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+  }
+}
+
+.metadata-container {
+  display: flex;
+  flex-direction: row;
+  padding-right: 24px;
+
+  .metadata {
+    line-height: 1.3;
+    font-size: 0.95rem;
+
+    .title {
+      margin-top: 12px;
+      margin-bottom: 4px;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    & :not(.title) {
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+  }
+
+  .avatar-icon {
+    flex-shrink: 0;
+    transform: scale(0.9);
+    margin-top: 12px;
+    margin-right: 12px;
+  }
+
+  .created-at::before {
+    content: "•";
+    margin: 0 4px;
+  }
+}

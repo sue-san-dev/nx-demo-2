@@ -2,6 +2,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SvgIconComponent } from '@ngneat/svg-icon';
+import { FormatCountPipe, FormatDurationPipe, TimeAgoPipe } from '@nx-demo/client-shared-pipes';
 
 /**
  * 使用頻度の高いModuleはこちらに定義してまとめてimport
@@ -12,5 +13,8 @@ export const SHARED_MODULES = [
   ReactiveFormsModule,
   NgOptimizedImage,
   AsyncPipe,
+  FormatCountPipe,
+  FormatDurationPipe,
+  TimeAgoPipe,
   SvgIconComponent,
 ];

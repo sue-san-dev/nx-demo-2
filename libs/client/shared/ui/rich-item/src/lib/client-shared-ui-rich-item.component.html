@@ -1,5 +1,19 @@
 <a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams">
-  <img [ngSrc]="videoRef().thumbnailUrl" width="400" height="200" priority>
-  <p>{{ videoRef().title }}</p>
-  <p>{{ videoRef().uploader.accountName }}</p>
+  <div class="thumbnail-container">
+    <img [ngSrc]="videoRef().thumbnailUrl" width="320" height="180" priority>
+    <div>
+      <span>{{ videoRef().duration | formatDuration }}</span>
+    </div>
+  </div>
+  <div class="metadata-container">
+    <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
+    <div class="metadata">
+      <div class="title" [title]="videoRef().title">{{ videoRef().title }}</div>
+      <div>{{ videoRef().uploader.accountName }}</div>
+      <div>
+        <span>{{ videoRef().viewCount | formatCount }} 回視聴</span>
+        <span class="created-at">{{ videoRef().createdAt | timeAgo }}</span>
+      </div>
+    </div>
+  </div>
 </a>

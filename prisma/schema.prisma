@@ -73,6 +73,8 @@ model Video {
   thumbnailUrl   String
   /// 再生回数
   viewCount      Int
+  /// 再生時間（秒単位）
+  duration       Int
   /// 投稿者ID
   uploaderId     Int
   /// 投稿者

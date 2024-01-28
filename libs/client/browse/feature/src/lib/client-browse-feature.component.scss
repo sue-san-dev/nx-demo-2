@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 40px 8px;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.content {
+  // width: 100%;
+  // margin: 0 16px;
+  // display: flex;
+}

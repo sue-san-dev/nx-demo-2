@@ -1,3 +1,7 @@
-@for (video of videosRef(); track video.uuid) {
-  <nx-demo-client-shared-ui-rich-item [video]="video"/>
-}
+<div class="container">
+  @for (video of videosRef(); track video.uuid) {
+  <div class="content">
+    <nx-demo-client-shared-ui-rich-item [video]="video" />
+  </div>
+  }
+</div>

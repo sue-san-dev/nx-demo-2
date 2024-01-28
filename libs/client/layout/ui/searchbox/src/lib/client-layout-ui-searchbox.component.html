@@ -1,0 +1,15 @@
+<div class="container">
+  <!-- <svg-icon key="search" hidden /> -->
+
+  <div class="search-input">
+    <input autocapitalize="none" autocomplete="off" autocorrect="off" tabindex="0" type="text" spellcheck="false"
+      placeholder="検索" [formControl]="keywordCtrl" (keydown.enter)="onClickSearch()">
+  </div>
+  <!-- クリアボタン -->
+  <!-- <div class="search-clear-button" hidden>
+  </div> -->
+</div>
+
+<button (click)="onClickSearch()">
+  <svg-icon key="search" />
+</button>

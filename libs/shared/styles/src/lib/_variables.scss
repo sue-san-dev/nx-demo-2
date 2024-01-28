@@ -1,11 +1,10 @@
-@import 'nord/src/sass/nord';
+@import "nord/src/sass/nord";
 
 // Font and Text
 $font-size-base: 16px;
 $line-height-base: 1;
 $letter-spacing: normal;
-$font-family-sans-serif: 'segoe ui', meiryo, 'yu gothic',
-  'hiragino kaku gothic pron', sans-serif;
+$font-family-sans-serif: "segoe ui", meiryo, "yu gothic", "hiragino kaku gothic pron", sans-serif;
 
 // Spacing
 $space-default: 24px;
@@ -18,7 +17,7 @@ $space-x-lg: calc($space-default * 2);
 // Colors
 // $color-ui-light: $nord6;
 // $color-ui-medium: $nord5;
-$color-ui-dark: $nord0;
+$color-ui-dark: #0f0f0f;
 // $color-ui-pop: $nord7;
 $color-ui-border: $nord4;
 $color-ui-primary: $nord8;

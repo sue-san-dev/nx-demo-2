@@ -1,0 +1,64 @@
+:host {
+  --bg-color: hsla(0, 0%, 100%, 0.08);
+  --border-color: hsl(0, 0%, 18.82%);
+
+  display: flex;
+  margin: 0 0 0 40px;
+  padding: 0 4px;
+  flex: 1;
+  flex-basis: 0.000000001px;
+}
+
+.container {
+  height: 40px;
+  position: relative;
+  flex: 1;
+  flex-basis: 0.000000001px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .search-input {
+    border: 1px solid var(--border-color);
+    border-radius: 40px 0 0 40px;
+    height: 40px;
+    padding: 0 4px 0 16px;
+    margin-right: -1px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    &:has(input:focus) {
+      border: 1px solid #1c62b9;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+      margin-left: 0;
+    }
+
+    input {
+      outline: none;
+      color: hsla(0, 100%, 100%, 0.88);
+      box-sizing: border-box;
+      padding: 1px 0;
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+button {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  height: 40px;
+  width: 64px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg-icon {
+    height: 24px;
+    width: 24px;
+  }
+}
