@@ -9,6 +9,6 @@ export class BrowseService {
   readonly #http = inject(HttpClient)
 
   browse(): Observable<VideoMetadata[]> {
-    return this.#http.get<VideoMetadata[]>(ReqUrlUtil.getBrowseUrl())
+    return this.#http.get<VideoMetadata[]>(ReqUrlUtil.browse.root)
   }
 }

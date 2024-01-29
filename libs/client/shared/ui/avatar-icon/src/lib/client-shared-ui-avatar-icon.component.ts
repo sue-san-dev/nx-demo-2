@@ -13,7 +13,7 @@ import { User } from '@prisma/client';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientSharedUiAvatarIconComponent {
-
+  /** ユーザ */
   readonly userRef = input.required<User>({
     alias: 'user',
   });

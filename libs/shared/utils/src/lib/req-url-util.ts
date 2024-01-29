@@ -1,18 +1,16 @@
-import { environment } from '@nx-demo/shared-environments';
 import { UrlUtil } from './url-util';
 
 export class ReqUrlUtil {
-  static readonly #baseUrl = environment.apiUrl;
 
-  static getBrowseUrl() {
-    return `${ this.#baseUrl }/${ UrlUtil.Browse }`;
-  }
+  static readonly browse = {
+    root: `/${ UrlUtil.Browse }`,
+  } as const;
 
-  static getSearchUrl() {
-    return `${ this.#baseUrl }/${ UrlUtil.Search }`;
-  }
+  static readonly search = {
+    root: `/${ UrlUtil.Search }`,
+  } as const;
 
-  static getWatchUrl() {
-    return `${ this.#baseUrl }/${ UrlUtil.Watch }`;
-  }
+  static readonly watch = {
+    root: `/${ UrlUtil.Watch }`,
+  } as const;
 }

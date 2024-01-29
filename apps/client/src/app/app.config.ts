@@ -4,7 +4,7 @@ import { provideSvgIcons } from '@ngneat/svg-icon';
 import { homeIcon } from '../assets/svg/home.icon';
 import { shortIcon } from '../assets/svg/short.icon';
 import { subscriptionsIcon } from '../assets/svg/subscriptions.icon';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { menuIcon } from '../assets/svg/menu.icon';
 import { clientShellRoutes } from '@nx-demo/client-shell';
 import { moreVertIcon } from '../assets/svg/more-vert.icon';
@@ -15,6 +15,7 @@ import { thumbUpIcon } from '../assets/svg/thumb-up.icon';
 import { thumbDownIcon } from '../assets/svg/thumb-down.icon';
 import { searchIcon } from '../assets/svg/search.icon';
 import { playlistAddIcon } from '../assets/svg/playlist-add.icon';
+import { environment } from '@nx-demo/shared-environments';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,9 +35,23 @@ export const appConfig: ApplicationConfig = {
       playlistAddIcon,
     ]),
     // HttpClient
-    provideHttpClient(),
+    provideHttpClient(
+      // Fetch APIを使用
+      withFetch(),
+      // インターセプター設定
+      withInterceptors([
+        // req加工
+        (req, next) => {
+          req = req.clone({
+            url: environment.apiUrl + req.url,
+          });
+          return next(req);
+        }
+      ]),
+    ),
     // router設定
-    provideRouter(clientShellRoutes,
+    provideRouter(
+      clientShellRoutes,
       // routeに載せたデータやURLパラメータをinputで受け取れるようにする
       withComponentInputBinding(),
       // URL遷移時にアニメーション付与

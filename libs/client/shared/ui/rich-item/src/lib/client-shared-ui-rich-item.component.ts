@@ -17,7 +17,7 @@ import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-ava
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientSharedUiRichItemComponent {
-
+  /** ビデオ */
   readonly videoRef = input.required<VideoMetadata>({
     alias: 'video',
   });

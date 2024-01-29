@@ -9,7 +9,7 @@ export class SearchService {
   readonly #http = inject(HttpClient)
 
   search(searchQuery: string): Observable<VideoMetadata[]> {
-    return this.#http.get<VideoMetadata[]>(ReqUrlUtil.getSearchUrl(), {
+    return this.#http.get<VideoMetadata[]>(ReqUrlUtil.search.root, {
       params: {
         [UrlUtil.SearchQuery]: searchQuery,
       }

@@ -9,7 +9,7 @@ export class VideoService {
   readonly #http = inject(HttpClient)
 
   getVideo(videoKey: string): Observable<VideoMetadataDetail> {
-    return this.#http.get<VideoMetadataDetail>(ReqUrlUtil.getWatchUrl(), {
+    return this.#http.get<VideoMetadataDetail>(ReqUrlUtil.watch.root, {
       params: {
         [UrlUtil.VideoKey]: videoKey,
       }
