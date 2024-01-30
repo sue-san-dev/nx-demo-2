@@ -10,7 +10,8 @@ export class ReqUrlUtil {
     root: `/${ UrlUtil.Search }`,
   } as const;
 
-  static readonly watch = {
-    root: `/${ UrlUtil.Watch }`,
+  static readonly video = {
+    root: `/${ UrlUtil.Video }`,
+    relatedVideos: `/${ UrlUtil.Video }/relatedVideos`,
   } as const;
 }

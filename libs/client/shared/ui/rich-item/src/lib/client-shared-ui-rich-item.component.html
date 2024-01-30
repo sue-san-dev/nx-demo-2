@@ -1,12 +1,14 @@
-<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams">
-  <div class="thumbnail-container">
-    <img [ngSrc]="videoRef().thumbnailUrl" width="320" height="180" priority>
+<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams" [class.is-compact]="isCompact()">
+  <div class="thumbnail-container" [ngStyle]="{ 'width.px': thumbnailWidth, 'height.px': thumbnailHeight }">
+    <img [ngSrc]="videoRef().thumbnailUrl" [width]="thumbnailWidth" [height]="thumbnailHeight" priority>
     <div>
       <span>{{ videoRef().duration | formatDuration }}</span>
     </div>
   </div>
   <div class="metadata-container">
+    @if (!isCompact()) {
     <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
+    }
     <div class="metadata">
       <div class="title" [title]="videoRef().title">{{ videoRef().title }}</div>
       <div>{{ videoRef().uploader.accountName }}</div>

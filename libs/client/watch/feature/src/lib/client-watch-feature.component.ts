@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
+import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -9,6 +10,7 @@ import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-ava
   imports: [
     SHARED_MODULES,
     ClientSharedUiAvatarIconComponent,
+    ClientSharedUiRichItemComponent,
   ],
   templateUrl: './client-watch-feature.component.html',
   styleUrl: './client-watch-feature.component.scss',
@@ -19,4 +21,6 @@ export class ClientWatchFeatureComponent {
   readonly resolvedData = input.required<IWatchData>();
   /** ビデオ */
   readonly videoRef = computed(() => this.resolvedData().video);
+  /** 関連ビデオリスト */
+  readonly relatedVideosRef = computed(() => this.resolvedData().relatedVideos);
 }

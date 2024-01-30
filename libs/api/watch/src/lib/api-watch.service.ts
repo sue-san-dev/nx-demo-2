@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
-import { VideoMetadataDetail } from '@nx-demo/shared-domain';
+import { VideoMetadata, VideoMetadataDetail } from '@nx-demo/shared-domain';
 
 @Injectable()
 export class ApiWatchService {
@@ -51,5 +51,16 @@ export class ApiWatchService {
         channelSubscriberCount: video.uploader._count.channelSubscribers,
       },
     };
+  }
+
+  async getRelatedVideos(videoKey: string, offset: number): Promise<VideoMetadata[] | null> {
+    // TODO: 将来的に機械学習で関連動画を取得するようにする
+    const videos = await this.apiPrismaService.video.findMany({
+      include: {
+        uploader: true,
+      },
+    });
+
+    return videos;
   }
 }

@@ -1,14 +1,72 @@
 <div class="container">
-  <video controls>
-    <source
-      src="https://vod-progressive.akamaized.net/exp=1705916600~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4910%2F18%2F474550429%2F2116238418.mp4~hmac=b79d1913ab60e66a5cb86bc2355b77437937b48edab3209a3a6f792057fe0f64/vimeo-prod-skyfire-std-us/01/4910/18/474550429/2116238418.mp4"
-      type="video/mp4" />
-  </video>
-  <div>{{ videoRef().title }}</div>
-  <div>コメント数：{{ videoRef().commentCount }}</div>
-  <div>いいね数：{{ videoRef().likeCount }}</div>
-  <div>チャンネル登録者数：{{ videoRef().uploader.channelSubscriberCount }}</div>
-  <div>再生回数：{{ videoRef().viewCount }}</div>
-  <div>アカウント名：{{ videoRef().uploader.accountName }}</div>
-  <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader" />
+  <div class="primary">
+    <div class="primary-inner">
+      <video controls>
+        <source
+          src="https://vod-progressive.akamaized.net/exp=1705916600~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4910%2F18%2F474550429%2F2116238418.mp4~hmac=b79d1913ab60e66a5cb86bc2355b77437937b48edab3209a3a6f792057fe0f64/vimeo-prod-skyfire-std-us/01/4910/18/474550429/2116238418.mp4"
+          type="video/mp4" />
+      </video>
+      <div class="metadata">
+        <div class="row title">
+          <span>{{ videoRef().title }}</span>
+        </div>
+        <div class="row">
+          <div class="uploader">
+            <div class="avatar">
+              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader" />
+            </div>
+            <div class="channel-info">
+              <div>
+                <span>{{ videoRef().uploader.accountName }}</span>
+              </div>
+              <div>
+                <span>チャンネル登録者数</span>
+                <span>{{ videoRef().uploader.channelSubscriberCount }}人</span>
+              </div>
+            </div>
+            <div class="subscribe-btn">
+              <button>チャンネル登録</button>
+            </div>
+          </div>
+          <div class="btn-actions">
+            <div class="reactions">リアクション</div>
+            <div class="share">共有</div>
+            <div class="save">保存</div>
+            <div class="more">
+              <svg-icon key="more_horiz" />
+            </div>
+          </div>
+        </div>
+        <div class="row description">
+          <div class="description-inner">
+            <div>
+              <span>{{ videoRef().viewCount | formatCount }}回視聴</span>
+              <span>{{ videoRef().createdAt | timeAgo }}</span>
+            </div>
+            <div>
+              <span>{{ videoRef().description }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comments">
+        <div class="comment-count">
+          <span>{{ videoRef().commentCount | number }}</span>
+          <span>件のコメント</span>
+        </div>
+        <div class="sort-menu">
+          並び替え
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="secondary">
+    <div class="secondary-inner">
+      @for (video of relatedVideosRef(); track video.uuid) {
+      <nx-demo-client-shared-ui-rich-item [video]="video" compact />
+      }
+    </div>
+  </div>
 </div>
