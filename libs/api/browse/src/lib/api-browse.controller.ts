@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiBrowseService } from './api-browse.service';
-import { VideoMetadata } from '@nx-demo/shared-domain';
+import { IVideoMetadata } from '@nx-demo/shared-domain';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
 
 @Controller()
@@ -11,7 +11,7 @@ export class ApiBrowseController {
   ) { }
 
   @Get(ReqUrlUtil.browse.root)
-  async browse(): Promise<VideoMetadata[]> {
+  async browse(): Promise<IVideoMetadata[]> {
     const result = await this.apiBrowseService.browse();
     return result;
   }

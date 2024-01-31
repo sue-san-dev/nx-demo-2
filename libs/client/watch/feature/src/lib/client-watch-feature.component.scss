@@ -82,3 +82,18 @@ video {
   font-weight: 400;
   padding: 8px;
 }
+
+.comments {
+  & > div:first-of-type {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+}
+
+.comment-display {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 32px;
+}

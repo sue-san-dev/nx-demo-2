@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { VideoMetadata } from '@nx-demo/shared-domain';
+import { IVideoMetadata } from '@nx-demo/shared-domain';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { Params } from '@angular/router';
@@ -19,7 +19,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class ClientSharedUiRichItemComponent {
   /** ビデオ */
-  readonly videoRef = input.required<VideoMetadata>({
+  readonly videoRef = input.required<IVideoMetadata>({
     alias: 'video',
   });
   /** 関連動画用のコンパクト表示 */

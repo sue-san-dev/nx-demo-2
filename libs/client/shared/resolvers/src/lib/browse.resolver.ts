@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { BrowseService } from '@nx-demo/client-shared-services';
-import { VideoMetadata } from '@nx-demo/shared-domain';
+import { IVideoMetadata } from '@nx-demo/shared-domain';
 import { map } from 'rxjs';
 
 export interface IBrowseData {
-  videos: VideoMetadata[];
+  videos: IVideoMetadata[];
 }
 
 export const browseResolver: ResolveFn<IBrowseData> = () => {

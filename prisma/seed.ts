@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { seedUsers } from './seeds/seed-users';
 import { seedVideos } from './seeds/seed-videos';
 import { seedComments } from './seeds/seed-comments';
+import { seedChildComments } from './seeds/seed-child-comments';
 
 const prisma = new PrismaClient();
 
@@ -14,6 +15,8 @@ async function main() {
   await seedVideos(prisma);
   // seed comments
   await seedComments(prisma);
+  // seed child comments
+  await seedChildComments(prisma);
 }
 
 main()

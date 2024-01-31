@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
-import { VideoMetadata, VideoMetadataDetail } from '@nx-demo/shared-domain';
+import { IComment, IVideoMetadata, IVideoMetadataDetail } from '@nx-demo/shared-domain';
 
 @Injectable()
 export class ApiWatchService {
@@ -9,7 +9,7 @@ export class ApiWatchService {
     private apiPrismaService: ApiPrismaService,
   ) { }
 
-  async getVideoMetadata(videoKey: string): Promise<VideoMetadataDetail | null> {
+  async getVideoMetadata(videoKey: string): Promise<IVideoMetadataDetail | null> {
     const video = await this.apiPrismaService.video.findUnique({
       where: {
         uuid: videoKey,
@@ -53,7 +53,45 @@ export class ApiWatchService {
     };
   }
 
-  async getRelatedVideos(videoKey: string, offset: number): Promise<VideoMetadata[] | null> {
+  async getVideoComments(videoKey: string, offset: number): Promise<IComment[]> {
+    const videoComments = await this.apiPrismaService.comment.findMany({
+      where: {
+        videoUuid: videoKey,
+        parentComment: null,
+      },
+      include: {
+        _count: {
+          select: {
+            childComments: true,
+          }
+        },
+        commenter: true,
+        video: {
+          select: {
+            _count: {
+              select: {
+                reactions: {
+                  where: {
+                    kind: 'LIKE',
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+    });
+
+    return videoComments.map(videoComment => {
+      return {
+        ...videoComment,
+        likeCount: videoComment.video._count.reactions,
+        childCommentCount: videoComment._count.childComments,
+      };
+    });
+  }
+
+  async getRelatedVideos(videoKey: string, offset: number): Promise<IVideoMetadata[]> {
     // TODO: 将来的に機械学習で関連動画を取得するようにする
     const videos = await this.apiPrismaService.video.findMany({
       include: {

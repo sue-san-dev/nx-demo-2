@@ -2,9 +2,7 @@
   <div class="primary">
     <div class="primary-inner">
       <video controls>
-        <source
-          src="assets/sample/sample_video.mp4"
-          type="video/mp4" />
+        <source src="assets/sample/sample_video.mp4" type="video/mp4" />
       </video>
       <div class="metadata">
         <div class="row title">
@@ -33,7 +31,7 @@
             <div class="share">共有</div>
             <div class="save">保存</div>
             <div class="more">
-              <svg-icon key="more_horiz" />
+              <svg-icon key="more_horiz" height="24px" width="24px" />
             </div>
           </div>
         </div>
@@ -51,12 +49,24 @@
       </div>
 
       <div class="comments">
-        <div class="comment-count">
-          <span>{{ videoRef().commentCount | number }}</span>
-          <span>件のコメント</span>
+        <div>
+          <div class="comment-count">
+            <span>{{ videoRef().commentCount | number }}</span>
+            <span>件のコメント</span>
+          </div>
+          <div class="sort-menu">
+            並び替え
+          </div>
         </div>
-        <div class="sort-menu">
-          並び替え
+        <div>
+          <div class="comment-input">
+            コメントする
+          </div>
+          <div class="comment-display">
+            @for (comment of commentsRef(); track comment.id) {
+            <nx-demo-client-shared-ui-comment [comment]="comment" />
+            }
+          </div>
         </div>
       </div>
     </div>

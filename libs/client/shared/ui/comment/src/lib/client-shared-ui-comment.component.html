@@ -1,0 +1,28 @@
+<nx-demo-client-shared-ui-avatar-icon [user]="commentRef().commenter" />
+<div class="container">
+  <div class="top">
+    <div class="channel-handle">{{ '@' + commentRef().commenter.channelHandle }}</div>
+    <div class="time-ago">{{ commentRef().createdAt | timeAgo }}</div>
+  </div>
+  <div class="middle">
+    <div class="content">
+      {{ commentRef().content }}
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="like">
+      <svg-icon key="thumb_up" height="24px" width="24px" />
+      <div class="count">
+        @if (commentRef().likeCount > 0) {
+        {{ commentRef().likeCount }}
+        }
+      </div>
+    </div>
+    <div class="dislike">
+      <svg-icon key="thumb_down" height="24px" width="24px" />
+    </div>
+    <div class="reply">
+      返信
+    </div>
+  </div>
+</div>

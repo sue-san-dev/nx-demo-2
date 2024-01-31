@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ReqUrlUtil, UrlUtil } from '@nx-demo/shared-utils';
 import { Observable } from 'rxjs';
-import { IVideoMetadata } from '@nx-demo/shared-domain';
+import { IComment } from '@nx-demo/shared-domain';
 
 @Injectable({ providedIn: 'root' })
-export class SearchService {
+export class CommentService {
 
   readonly #http = inject(HttpClient);
 
-  search(searchQuery: string): Observable<IVideoMetadata[]> {
-    return this.#http.get<IVideoMetadata[]>(ReqUrlUtil.search.root, {
+  getComments(videoKey: string, offset: number): Observable<IComment[]> {
+    return this.#http.get<IComment[]>(ReqUrlUtil.video.comments, {
       params: {
-        [UrlUtil.SearchQuery]: searchQuery,
+        [UrlUtil.VideoKey]: videoKey,
+        [UrlUtil.Offset]: offset,
       }
     });
   }

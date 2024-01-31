@@ -6,9 +6,9 @@ const videoWithUploader = Prisma.validator<Prisma.VideoDefaultArgs>()({
   }
 });
 
-export type VideoMetadata = Prisma.VideoGetPayload<typeof videoWithUploader>;
+export type IVideoMetadata = Prisma.VideoGetPayload<typeof videoWithUploader>;
 
-export type VideoMetadataDetail = VideoMetadata & {
+export type IVideoMetadataDetail = IVideoMetadata & {
   // コメント数
   commentCount: number,
   // いいね数

@@ -12,6 +12,7 @@ export class ReqUrlUtil {
 
   static readonly video = {
     root: `/${ UrlUtil.Video }`,
+    comments: `/${ UrlUtil.Video }/comments`,
     relatedVideos: `/${ UrlUtil.Video }/relatedVideos`,
   } as const;
 }

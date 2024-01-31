@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiSearchService } from './api-search.service';
 import { ReqUrlUtil, UrlUtil } from '@nx-demo/shared-utils';
-import { VideoMetadata } from '@nx-demo/shared-domain';
+import { IVideoMetadata } from '@nx-demo/shared-domain';
 
 @Controller()
 export class ApiSearchController {
@@ -11,7 +11,7 @@ export class ApiSearchController {
   ) { }
 
   @Get(ReqUrlUtil.search.root)
-  async browse(@Query(UrlUtil.SearchQuery) searchQuery: string): Promise<VideoMetadata[]> {
+  async browse(@Query(UrlUtil.SearchQuery) searchQuery: string): Promise<IVideoMetadata[]> {
     const result = await this.apiSearchService.search(searchQuery);
     return result;
   }
