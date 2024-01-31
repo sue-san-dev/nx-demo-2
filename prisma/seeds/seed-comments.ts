@@ -4,7 +4,7 @@ import { createMockComment } from '../../libs/shared/testing/src';
 
 export async function seedComments(prisma: PrismaClient) {
   // レコード作成数
-  const length = 100;
+  const length = 1000;
   // ユーザ全件取得
   const users = await prisma.user.findMany();
   // ビデオ全件取得
