@@ -11,11 +11,14 @@
         <div class="row">
           <div class="uploader">
             <div class="avatar">
-              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader" />
+              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader"
+                routerLink="../{{ videoRef().uploader.channelHandle }}" />
             </div>
             <div class="channel-info">
               <div>
-                <span>{{ videoRef().uploader.accountName }}</span>
+                <span class="account-name" routerLink="../{{ videoRef().uploader.channelHandle }}">
+                  {{ videoRef().uploader.accountName }}
+                </span>
               </div>
               <div>
                 <span>チャンネル登録者数</span>
@@ -94,7 +97,8 @@
   <div class="secondary">
     <div class="secondary-inner">
       @for (video of relatedVideosRef(); track video.uuid) {
-      <nx-demo-client-shared-ui-rich-item [video]="video" minimal horizontal thumbnailHeight="94" thumbnailWidth="168" />
+      <nx-demo-client-shared-ui-rich-item [video]="video" minimal horizontal thumbnailHeight="94"
+        thumbnailWidth="168" />
       }
     </div>
   </div>
