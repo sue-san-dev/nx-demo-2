@@ -53,11 +53,11 @@ export class ApiWatchService {
     };
   }
 
-  async getVideoComments(videoKey: string, offset: number): Promise<IComment[]> {
+  async getVideoComments(videoKey: string, offset: number, parentCommentId?: number): Promise<IComment[]> {
     const videoComments = await this.apiPrismaService.comment.findMany({
       where: {
         videoUuid: videoKey,
-        parentComment: null,
+        parentComment: parentCommentId ? { id: parentCommentId } : null,
       },
       include: {
         _count: {

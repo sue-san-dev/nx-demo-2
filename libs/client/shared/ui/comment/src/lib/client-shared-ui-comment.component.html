@@ -25,4 +25,17 @@
       返信
     </div>
   </div>
+  @if (commentRef().childCommentCount > 0) {
+  <div class="child-comments">
+    <button (click)="onToggleChildCommentsDisplay()">{{ commentRef().childCommentCount }}件の返信</button>
+
+    @if (childComments().length && showChildComments()) {
+    <div class="comment-display">
+      @for (childComment of childComments(); track childComment.id) {
+      <nx-demo-client-shared-ui-comment [comment]="childComment" />
+      }
+    </div>
+    }
+  </div>
+  }
 </div>

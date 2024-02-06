@@ -22,8 +22,9 @@ export class ApiWatchController {
   async getVideoComments(
     @Query(UrlUtil.VideoKey) videoKey: string,
     @Query(UrlUtil.Offset, ParseIntPipe) offset: number,
+    @Query(UrlUtil.ParentCommentId, new ParseIntPipe({ optional: true })) parentCommentId?: number,
   ): Promise<IComment[]> {
-    const result = await this.apiWatchService.getVideoComments(videoKey, offset);
+    const result = await this.apiWatchService.getVideoComments(videoKey, offset, parentCommentId);
 
     return result;
   }
