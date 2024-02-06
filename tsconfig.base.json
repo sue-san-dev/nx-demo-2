@@ -57,6 +57,9 @@
       "@nx-demo/client-shared-ui-avatar-icon": [
         "libs/client/shared/ui/avatar-icon/src/index.ts"
       ],
+      "@nx-demo/client-shared-ui-button": [
+        "libs/client/shared/ui/button/src/index.ts"
+      ],
       "@nx-demo/client-shared-ui-comment": [
         "libs/client/shared/ui/comment/src/index.ts"
       ],

@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  max-width: 100%;
+}
+
+button {
+  padding: 0 16px;
+  height: 36px;
+  font-size: 14px;
+  line-height: 36px;
+  border-radius: 18px;
+  position: relative;
+  margin: 0;
+  white-space: nowrap;
+  min-width: 0;
+  text-transform: none;
+  font-weight: 500;
+  line-height: 18px;
+  border: none;
+  cursor: pointer;
+  outline-width: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  flex: 1;
+  flex-basis: 0.000000001px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &.normal {
+    color: #f1f1f1;
+    padding: 0 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  &.ghost {
+    color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  &.inverse {
+    color: #0f0f0f;
+    background-color: #f1f1f1;
+  }
+}
