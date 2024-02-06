@@ -22,23 +22,25 @@ export class ClientSharedUiRichItemComponent {
   readonly videoRef = input.required<IVideoMetadata>({
     alias: 'video',
   });
-  /** 関連動画用のコンパクト表示 */
-  readonly isCompact = input<boolean, BooleanInput>(false, {
-    alias: 'compact',
+  /** サムネとメタ情報を横並び */
+  readonly isHorizontal = input<boolean, BooleanInput>(false, {
+    alias: 'horizontal',
     transform: coerceBooleanProperty,
   });
+  /** 縮小表示 */
+  readonly isMinimal = input<boolean, BooleanInput>(false, {
+    alias: 'minimal',
+    transform: coerceBooleanProperty,
+  });
+  /** サムネ幅.px */
+  readonly thumbnailWidth = input.required<string>();
+  /** サムネ高さ.px */
+  readonly thumbnailHeight = input.required<string>();
 
   get watchPageUrl(): string {
     return '/' + UrlUtil.Watch;
   }
   get watchPageQueryParams(): Params {
     return { [UrlUtil.VideoKey]: this.videoRef().uuid };
-  }
-
-  get thumbnailWidth(): number {
-    return this.isCompact() ? 168 : 320;
-  }
-  get thumbnailHeight(): number {
-    return this.isCompact() ? 94 : 180;
   }
 }
