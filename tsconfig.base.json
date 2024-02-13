@@ -56,6 +56,9 @@
       "@nx-demo/client-layout-ui-sidenav": [
         "libs/client/layout/ui/sidenav/src/index.ts"
       ],
+      "@nx-demo/client-login-feature": [
+        "libs/client/login/feature/src/index.ts"
+      ],
       "@nx-demo/client-search-feature": [
         "libs/client/search/feature/src/index.ts"
       ],
