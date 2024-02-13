@@ -5,6 +5,10 @@ import { ClientLayoutFeatureComponent } from '@nx-demo/client-layout-feature';
 
 export const clientShellRoutes: Route[] = [
   {
+    path: UrlUtil.Login,
+    loadComponent: () => import('@nx-demo/client-login-feature').then(x => x.ClientLoginFeatureComponent),
+  },
+  {
     path: '',
     component: ClientLayoutFeatureComponent,
     title: 'YouTube Clone',

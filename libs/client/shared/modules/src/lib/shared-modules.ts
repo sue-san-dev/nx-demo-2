@@ -1,4 +1,4 @@
-import { AsyncPipe, DecimalPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
+import { DecimalPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SvgIconComponent } from '@ngneat/svg-icon';
@@ -15,7 +15,6 @@ export const SHARED_MODULES = [
   NgOptimizedImage,
   NgStyle,
   NgClass,
-  AsyncPipe,
   DecimalPipe,
   FormatCountPipe,
   FormatDurationPipe,

@@ -9,4 +9,5 @@ export class UrlUtil {
   static readonly Offset = 'offset';
   static readonly ParentCommentId = 'parent';
   static readonly ChannelHandle = 'channelHandle';
+  static readonly Login = 'login';
 }
