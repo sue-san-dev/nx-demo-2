@@ -3,6 +3,7 @@ import { Prisma, PrismaClient } from '@prisma/client';
 
 export const createMockUser = (
   prisma: PrismaClient,
+  userData: Partial<Prisma.UserCreateInput> = {},
 ) => {
 
   const user: Prisma.UserCreateInput = {
@@ -11,6 +12,7 @@ export const createMockUser = (
     password: faker.internet.password(),
     channelHandle: faker.string.alpha(10),
     channelAvatarUrl: faker.internet.avatar(),
+    ...userData,
   };
 
   return prisma.user.create({

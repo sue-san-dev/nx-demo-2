@@ -5,6 +5,7 @@ export class ReqUrlUtil {
   static readonly auth = {
     login: `/${ UrlUtil.auth }/login`,
     logout: `/${ UrlUtil.auth }/logout`,
+    signUp: `/${ UrlUtil.auth }/signUp`,
   } as const;
 
   static readonly browse = {
