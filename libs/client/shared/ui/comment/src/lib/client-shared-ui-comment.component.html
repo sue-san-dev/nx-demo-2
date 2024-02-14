@@ -1,20 +1,20 @@
-<nx-demo-client-shared-ui-avatar-icon [user]="commentRef().commenter" />
+<nx-demo-client-shared-ui-avatar-icon [user]="comment().commenter" />
 <div class="container">
   <div class="top">
-    <div class="channel-handle">{{ '@' + commentRef().commenter.channelHandle }}</div>
-    <div class="time-ago">{{ commentRef().createdAt | timeAgo }}</div>
+    <div class="channel-handle">{{ '@' + comment().commenter.channelHandle }}</div>
+    <div class="time-ago">{{ comment().createdAt | timeAgo }}</div>
   </div>
   <div class="middle">
     <div class="content">
-      {{ commentRef().content }}
+      {{ comment().content }}
     </div>
   </div>
   <div class="bottom">
     <div class="like">
       <svg-icon key="thumb_up" height="24px" width="24px" />
       <div class="count">
-        @if (commentRef().likeCount > 0) {
-        {{ commentRef().likeCount }}
+        @if (comment().likeCount > 0) {
+        {{ comment().likeCount }}
         }
       </div>
     </div>
@@ -25,9 +25,9 @@
       返信
     </div>
   </div>
-  @if (commentRef().childCommentCount > 0) {
+  @if (comment().childCommentCount > 0) {
   <div class="child-comments">
-    <button (click)="onToggleChildCommentsDisplay()">{{ commentRef().childCommentCount }}件の返信</button>
+    <button (click)="onToggleChildCommentsDisplay()">{{ comment().childCommentCount }}件の返信</button>
 
     @if (childComments().length && showChildComments()) {
     <div class="comment-display">

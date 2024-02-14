@@ -20,13 +20,11 @@ export class ClientSharedUiCommentComponent {
   readonly #commentService = inject(CommentService);
 
   /** コメント */
-  commentRef = input.required<IComment>({
-    alias: 'comment',
-  });
+  readonly comment = input.required<IComment>();
   /** 子コメントリストを表示するか */
-  showChildComments = signal<boolean>(false);
+  readonly showChildComments = signal<boolean>(false);
   /** 子コメントリスト */
-  childComments = signal<IComment[]>([]);
+  readonly childComments = signal<IComment[]>([]);
 
   /** 子コメント表示切り替え */
   onToggleChildCommentsDisplay() {
@@ -36,7 +34,7 @@ export class ClientSharedUiCommentComponent {
       if (this.showChildComments()) return;
       this.showChildComments.set(true);
 
-      this.#commentService.getComments(this.commentRef().videoUuid, 0, this.commentRef().id)
+      this.#commentService.getComments(this.comment().videoUuid, 0, this.comment().id)
         .subscribe(childComments => {
           this.childComments.set(childComments);
         });

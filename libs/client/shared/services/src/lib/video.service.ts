@@ -12,7 +12,7 @@ export class VideoService {
   getVideo(videoKey: string): Observable<IVideoMetadataDetail> {
     return this.#http.get<IVideoMetadataDetail>(ReqUrlUtil.video.root, {
       params: {
-        [UrlUtil.VideoKey]: videoKey,
+        [UrlUtil.videoKey]: videoKey,
       }
     });
   }
@@ -20,8 +20,8 @@ export class VideoService {
   getRelatedVideos(videoKey: string, offset: number): Observable<IVideoMetadata[]> {
     return this.#http.get<IVideoMetadata[]>(ReqUrlUtil.video.relatedVideos, {
       params: {
-        [UrlUtil.VideoKey]: videoKey,
-        [UrlUtil.Offset]: offset,
+        [UrlUtil.videoKey]: videoKey,
+        [UrlUtil.offset]: offset,
       }
     });
   }

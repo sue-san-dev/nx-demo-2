@@ -24,20 +24,20 @@ import { concat, of } from 'rxjs';
 })
 export class ClientWatchFeatureComponent {
 
-  commentService = inject(CommentService);
+  readonly #commentService = inject(CommentService);
 
   /** resolveデータ */
   readonly resolvedData = input.required<IWatchData>();
   /** ビデオ */
-  readonly videoRef = computed(() => this.resolvedData().video);
+  readonly video = computed(() => this.resolvedData().video);
   /** 関連ビデオリスト */
-  readonly relatedVideosRef = computed(() => this.resolvedData().relatedVideos);
+  readonly relatedVideos = computed(() => this.resolvedData().relatedVideos);
   /** コメントリスト */
-  readonly commentsRef = computedAsync<IComment[]>(() => {
+  readonly comments = computedAsync<IComment[]>(() => {
     // 再初期化後、コメントリスト取得
     return concat(
       of([]),
-      this.commentService.getComments(this.videoRef().uuid, 0),
+      this.#commentService.getComments(this.video().uuid, 0),
     );
   }, {
     initialValue: [],

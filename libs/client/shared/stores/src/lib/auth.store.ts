@@ -1,13 +1,21 @@
 import { computed, inject } from '@angular/core';
-import { signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { AuthService } from '@nx-demo/client-shared-services';
+import { ILoginPayload } from '@nx-demo/shared-domain';
+import { catchError, firstValueFrom } from 'rxjs';
+
+type State = {
+  isLoggedIn: boolean,
+};
+
+const initState: State = {
+  isLoggedIn: false,
+};
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
 
-  withState({
-    isLoggedIn: false,
-  }),
+  withState(initState),
 
   withMethods(state => {
     const { isLoggedIn } = state;
@@ -15,9 +23,13 @@ export const AuthStore = signalStore(
 
     return {
       /** ログイン */
-      login: (email: string, password: string) => {
-        isLoggedIn()
-        return authService.login(email, password);
+      login: (data: ILoginPayload) => {
+        authService.login(data).pipe(
+          // catchError(),
+        ).subscribe(res => {
+          res.accessToken
+          patchState(state, { isLoggedIn: true });
+        });
       },
     }
   }),
@@ -31,7 +43,7 @@ export const AuthStore = signalStore(
     }
   }),
 
-  withHooks(() => {
-    
-  }),
+  // withHooks(() => {
+
+  // }),
 );

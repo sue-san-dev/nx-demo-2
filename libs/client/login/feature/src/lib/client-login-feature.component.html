@@ -1,1 +1,13 @@
-<p>client-login-feature works!</p>
+<div class="container">
+  <div>
+    <label>email</label>
+    <input type="text" [formControl]="loginForm.controls.email">
+  </div>
+  <div>
+    <label>password</label>
+    <input type="password" [formControl]="loginForm.controls.password">
+  </div>
+  <nx-demo-client-shared-ui-button variant="normal" (click)="login()">
+    ログイン
+  </nx-demo-client-shared-ui-button>
+</div>

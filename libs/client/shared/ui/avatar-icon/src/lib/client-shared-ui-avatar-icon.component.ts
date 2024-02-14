@@ -14,7 +14,5 @@ import { User } from '@prisma/client';
 })
 export class ClientSharedUiAvatarIconComponent {
   /** ユーザ */
-  readonly userRef = input.required<User>({
-    alias: 'user',
-  });
+  readonly user = input.required<User>();
 }

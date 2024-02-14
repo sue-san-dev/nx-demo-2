@@ -11,7 +11,7 @@ export class ApiSearchController {
   ) { }
 
   @Get(ReqUrlUtil.search.root)
-  async browse(@Query(UrlUtil.SearchQuery) searchQuery: string): Promise<IVideoMetadata[]> {
+  async browse(@Query(UrlUtil.searchQuery) searchQuery: string): Promise<IVideoMetadata[]> {
     const result = await this.apiSearchService.search(searchQuery);
     return result;
   }

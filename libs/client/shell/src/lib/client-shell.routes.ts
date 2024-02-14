@@ -5,7 +5,7 @@ import { ClientLayoutFeatureComponent } from '@nx-demo/client-layout-feature';
 
 export const clientShellRoutes: Route[] = [
   {
-    path: UrlUtil.Login,
+    path: UrlUtil.login,
     loadComponent: () => import('@nx-demo/client-login-feature').then(x => x.ClientLoginFeatureComponent),
   },
   {
@@ -20,19 +20,19 @@ export const clientShellRoutes: Route[] = [
         runGuardsAndResolvers: 'always',
       },
       {
-        path: UrlUtil.Result,
+        path: UrlUtil.result,
         loadComponent: () => import('@nx-demo/client-search-feature').then(x => x.ClientSearchFeatureComponent),
         resolve: { resolvedData: searchResolver },
         runGuardsAndResolvers: 'always',
       },
       {
-        path: UrlUtil.Watch,
+        path: UrlUtil.watch,
         loadComponent: () => import('@nx-demo/client-watch-feature').then(x => x.ClientWatchFeatureComponent),
         resolve: { resolvedData: watchResolver },
         runGuardsAndResolvers: 'always',
       },
       {
-        path: `:${ UrlUtil.ChannelHandle }`,
+        path: `:${ UrlUtil.channelHandle }`,
         loadChildren: () => import('@nx-demo/client-shell').then(x => x.clientChannelRoutes),
       },
     ]
