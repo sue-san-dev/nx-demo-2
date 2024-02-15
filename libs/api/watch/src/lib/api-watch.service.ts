@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
 import { IComment, IVideoMetadata, IVideoMetadataDetail } from '@nx-demo/shared-domain';
+import { PrismaExcludeUtil } from '@nx-demo/shared-utils';
 
 @Injectable()
 export class ApiWatchService {
@@ -65,7 +66,9 @@ export class ApiWatchService {
             childComments: true,
           }
         },
-        commenter: true,
+        commenter: {
+          select: PrismaExcludeUtil.userWithoutPassword,
+        },
         video: {
           select: {
             _count: {
@@ -95,7 +98,9 @@ export class ApiWatchService {
     // TODO: 将来的に機械学習で関連動画を取得するようにする
     const videos = await this.apiPrismaService.video.findMany({
       include: {
-        uploader: true,
+        uploader: {
+          select: PrismaExcludeUtil.userWithoutPassword,
+        },
       },
     });
 

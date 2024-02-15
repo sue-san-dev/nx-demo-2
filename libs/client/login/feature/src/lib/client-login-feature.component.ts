@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { AuthStore } from '@nx-demo/client-shared-stores';
 
@@ -15,16 +16,18 @@ import { AuthStore } from '@nx-demo/client-shared-stores';
 })
 export class ClientLoginFeatureComponent {
 
-  readonly fb = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #fb = inject(FormBuilder);
   readonly authStore = inject(AuthStore);
 
-  readonly loginForm = this.fb.nonNullable.group({
+  readonly loginForm = this.#fb.nonNullable.group({
     email: ['', Validators.required, Validators.email],
     password: ['', Validators.required],
   });
 
-  login() {
+  async login() {
     const { email, password } = this.loginForm.getRawValue();
-    this.authStore.login({ email, password });
+    await this.authStore.login({ email, password });
+    this.#router.navigateByUrl('/');
   }
 }

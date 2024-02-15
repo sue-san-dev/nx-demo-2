@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Post, Res } from '@nestjs/common';
 import { ApiAuthService } from './api-auth.service';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
-import { ILoginPayload } from '@nx-demo/shared-domain';
+import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { Response } from 'express';
 
 @Controller()
@@ -12,22 +12,23 @@ export class ApiAuthController {
   ) { }
 
   @Post(ReqUrlUtil.auth.login)
-  async login(@Body() { email, password }: ILoginPayload, @Res({ passthrough: true }) response: Response): Promise<boolean> {
-    console.log('★')
-    const user = await this.apiAuthService.getUserByEmail(email);
-    if (user == null) throw new BadRequestException('ユーザが見つかりません');
+  async login(@Body() payload: ILoginPayload, @Res({ passthrough: true }) response: Response): Promise<IUser> {
+    const user = await this.apiAuthService.getUserByEmail(payload.email);
+    if (user == null) throw new BadRequestException('ユーザー名またはパスワードが無効です');
 
-    const valid = await this.apiAuthService.validateUser(user, password);
-    if (!valid) throw new BadRequestException('パスワードが違います');
-
-    // TODO: レスポンスからパスワードを除外する
+    const valid = await this.apiAuthService.validateUser(payload.password, user);
+    if (!valid) throw new BadRequestException('ユーザー名またはパスワードが無効です');
 
     const tokens = await this.apiAuthService.getAccessToken(user);
     // cookieにtokenセット
-    response.cookie('access_token', tokens.access_token, { httpOnly: true, secure: true });
-    response.cookie('refresh_token', tokens.refresh_token, { httpOnly: true, secure: true });
+    response.cookie('accessToken', tokens.accessToken, { httpOnly: true, secure: true });
+    response.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true });
 
-    return true;
+    // passwordフィールドを除外して返却
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+
+    return userWithoutPassword;
   }
 
   @Post(ReqUrlUtil.auth.logout)

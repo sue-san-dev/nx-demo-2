@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
-import { User } from '@prisma/client';
+import { IUser } from '@nx-demo/shared-domain';
 
 @Component({
   selector: 'nx-demo-client-shared-ui-avatar-icon',
@@ -14,5 +14,5 @@ import { User } from '@prisma/client';
 })
 export class ClientSharedUiAvatarIconComponent {
   /** ユーザ */
-  readonly user = input.required<User>();
+  readonly user = input.required<IUser>();
 }

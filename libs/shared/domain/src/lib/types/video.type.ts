@@ -1,8 +1,11 @@
+import { PrismaExcludeUtil } from '@nx-demo/shared-utils';
 import { Prisma } from '@prisma/client';
 
 const videoWithUploader = Prisma.validator<Prisma.VideoDefaultArgs>()({
   include: {
-    uploader: true,
+    uploader: {
+      select: PrismaExcludeUtil.userWithoutPassword,
+    },
   }
 });
 

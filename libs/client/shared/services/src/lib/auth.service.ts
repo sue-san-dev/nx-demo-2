@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { ILoginPayload, ITokenResponse } from '@nx-demo/shared-domain';
+import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ export class AuthService {
 
   readonly #http = inject(HttpClient);
 
-  login(data: ILoginPayload): Observable<ITokenResponse> {
-    return this.#http.post<ITokenResponse>(ReqUrlUtil.auth.login, data);
+  login(data: ILoginPayload): Observable<IUser> {
+    return this.#http.post<IUser>(ReqUrlUtil.auth.login, data);
   }
 }

@@ -1,15 +1,14 @@
 import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { AuthService } from '@nx-demo/client-shared-services';
-import { ILoginPayload } from '@nx-demo/shared-domain';
+import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { catchError, firstValueFrom } from 'rxjs';
 
 type State = {
-  isLoggedIn: boolean,
+  loginUser: IUser | null,
 };
-
 const initState: State = {
-  isLoggedIn: false,
+  loginUser: null,
 };
 
 export const AuthStore = signalStore(
@@ -18,25 +17,22 @@ export const AuthStore = signalStore(
   withState(initState),
 
   withMethods(state => {
-    const { isLoggedIn } = state;
     const authService = inject(AuthService);
 
     return {
       /** ログイン */
-      login: (data: ILoginPayload) => {
-        authService.login(data).pipe(
-          // catchError(),
-        ).subscribe(res => {
-          res.accessToken
-          patchState(state, { isLoggedIn: true });
-        });
+      login: async (data: ILoginPayload) => {
+        const loginUser = await firstValueFrom(
+          authService.login(data).pipe(
+            // catchError(),
+          )
+        );
+        patchState(state, { loginUser });
       },
     }
   }),
 
   withComputed(state => {
-    const { isLoggedIn } = state;
-
     return {
       // selected: computed(() => flights().filter((f) => basket()[f.id])),
       // criteria: computed(() => ({ from: from(), to: to() })),

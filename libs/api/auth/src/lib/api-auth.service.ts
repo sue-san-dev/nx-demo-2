@@ -23,8 +23,8 @@ export class ApiAuthService {
     });
   }
 
-  validateUser(user: User, password: string) {
-    return bcrypt.compare(user.password, password);
+  validateUser(password: string, user: User) {
+    return bcrypt.compare(password, user.password);
   }
 
   async getAccessToken(user: User) {
@@ -33,13 +33,13 @@ export class ApiAuthService {
       sub: user.id,
     };
 
-    const [access_token, refresh_token] = await Promise.all([
-      // access_token取得
+    const [accessToken, refreshToken] = await Promise.all([
+      // accessToken取得
       this.jwtService.signAsync(payload, {
         secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
         expiresIn: this.configService.get('JWT_ACCESS_TOKEN_EXPIRES_IN'),
       }),
-      // refresh_token取得
+      // refreshToken取得
       this.jwtService.signAsync(payload, {
         secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
         expiresIn: this.configService.get('JWT_REFRESH_TOKEN_EXPIRES_IN'),
@@ -47,8 +47,8 @@ export class ApiAuthService {
     ]);
 
     return {
-      access_token,
-      refresh_token,
+      accessToken,
+      refreshToken,
     };
   }
 }
