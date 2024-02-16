@@ -21,8 +21,8 @@ export class ClientLoginFeatureComponent {
   readonly authStore = inject(AuthStore);
 
   readonly loginForm = this.#fb.nonNullable.group({
-    email: ['', Validators.required, Validators.email],
-    password: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
   });
 
   async login() {

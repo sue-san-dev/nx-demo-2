@@ -33,7 +33,7 @@ export const clientShellRoutes: Route[] = [
       },
       {
         path: `:${ UrlUtil.channelHandle }`,
-        loadChildren: () => import('@nx-demo/client-shell').then(x => x.clientChannelRoutes),
+        loadChildren: () => import('./feature-routes/client-channel.routes').then(x => x.clientChannelRoutes),
       },
     ]
   },
