@@ -12,4 +12,8 @@ export class AuthService {
   login(data: ILoginPayload): Observable<IUser> {
     return this.#http.post<IUser>(ReqUrlUtil.auth.login, data);
   }
+
+  logout(): Observable<void> {
+    return this.#http.post<void>(ReqUrlUtil.auth.logout, null);
+  }
 }

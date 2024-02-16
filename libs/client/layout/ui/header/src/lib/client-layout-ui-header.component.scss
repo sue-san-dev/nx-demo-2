@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2020;
+  z-index: 2;
   transform: translateY(0);
   transition: transform 0.3s ease;
   background-color: vars.$color-ui-dark;
@@ -112,4 +112,8 @@
     align-items: center;
     gap: 4px;
   }
+}
+
+nx-demo-client-shared-ui-avatar-icon:hover {
+  cursor: pointer;
 }

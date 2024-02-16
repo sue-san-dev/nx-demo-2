@@ -3,6 +3,7 @@ import { UrlUtil } from './url-util';
 export class ReqUrlUtil {
 
   static readonly auth = {
+    root: `/${ UrlUtil.auth }`,
     login: `/${ UrlUtil.auth }/login`,
     logout: `/${ UrlUtil.auth }/logout`,
     signUp: `/${ UrlUtil.auth }/signUp`,

@@ -11,6 +11,35 @@ export class ApiAuthController {
     private apiAuthService: ApiAuthService,
   ) { }
 
+  /**
+   * 認証
+   * @param response 
+   * @returns 
+   */
+  @Post(ReqUrlUtil.auth.root)
+  async auth(
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<IUser> {
+    
+
+    const tokens = await this.apiAuthService.getAccessToken(user);
+    // cookieにtokenセット
+    response.cookie('accessToken', tokens.accessToken, { httpOnly: true, secure: true });
+    response.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true });
+
+    // passwordフィールドを除外して返却
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+
+    return userWithoutPassword;
+  }
+
+  /**
+   * ログイン
+   * @param payload 
+   * @param response 
+   * @returns 
+   */
   @Post(ReqUrlUtil.auth.login)
   async login(
     @Body() payload: ILoginPayload,
@@ -34,11 +63,24 @@ export class ApiAuthController {
     return userWithoutPassword;
   }
 
+  /**
+   * ログアウト
+   * @param response 
+   */
   @Post(ReqUrlUtil.auth.logout)
-  async logout(): Promise<boolean> {
-    return true;
+  async logout(
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<void> {
+
+    // cookieのtoken削除
+    response.clearCookie('accessToken', { httpOnly: true, secure: true });
+    response.clearCookie('refreshToken', { httpOnly: true, secure: true });
   }
 
+  /**
+   * ユーザ新規登録
+   * @returns 
+   */
   @Post(ReqUrlUtil.auth.signUp)
   async signUp(): Promise<boolean> {
     return true;

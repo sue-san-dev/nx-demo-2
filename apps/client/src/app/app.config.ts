@@ -16,6 +16,7 @@ import { thumbDownIcon } from '../assets/svg/thumb-down.icon';
 import { searchIcon } from '../assets/svg/search.icon';
 import { playlistAddIcon } from '../assets/svg/playlist-add.icon';
 import { environment } from '@nx-demo/shared-environments';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +35,8 @@ export const appConfig: ApplicationConfig = {
       searchIcon,
       playlistAddIcon,
     ]),
+    // アニメーション
+    provideAnimationsAsync(),
     // HttpClient
     provideHttpClient(
       // Fetch APIを使用

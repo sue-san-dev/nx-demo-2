@@ -30,7 +30,10 @@
   </div>
   <div id="end">
     @if (authStore.loginUser(); as loginUser) {
-      <nx-demo-client-shared-ui-avatar-icon [user]="loginUser" />
+      <nx-demo-client-shared-ui-avatar-icon [user]="loginUser" [matMenuTriggerFor]="menu" />
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onLogout()">ログアウト</button>
+      </mat-menu>
     } @else {
       <nx-demo-client-shared-ui-button variant="normal">
         <a class="login-btn" routerLink="/login">

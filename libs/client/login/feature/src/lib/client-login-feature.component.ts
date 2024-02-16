@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { AuthStore } from '@nx-demo/client-shared-stores';
@@ -18,6 +19,7 @@ export class ClientLoginFeatureComponent {
 
   readonly #router = inject(Router);
   readonly #fb = inject(FormBuilder);
+  readonly #matSnackBar = inject(MatSnackBar);
   readonly authStore = inject(AuthStore);
 
   readonly loginForm = this.#fb.nonNullable.group({
@@ -27,7 +29,12 @@ export class ClientLoginFeatureComponent {
 
   async login() {
     const { email, password } = this.loginForm.getRawValue();
-    await this.authStore.login({ email, password });
-    this.#router.navigateByUrl('/');
+    this.authStore.login({ email, password }).subscribe({
+      next: () => {
+        this.#matSnackBar.open('ログインしました', undefined, { duration: 2000 });
+        this.#router.navigateByUrl('/');
+      },
+      error: console.error,
+    });
   }
 }
