@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/shared/modules/src",
   "prefix": "nx-demo",
-  "tags": ["scope:client", "type:ui"],
+  "tags": ["scope:client", "type:util"],
   "projectType": "library",
   "targets": {
     "test": {

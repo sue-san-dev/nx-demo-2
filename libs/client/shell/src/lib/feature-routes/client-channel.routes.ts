@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
-import { browseResolver, searchResolver, watchResolver } from '@nx-demo/client-shared-resolvers';
-import { UrlUtil } from '@nx-demo/shared-utils';
+import { browseResolver } from '@nx-demo/client-shared-resolvers';
 import { ClientChannelFeatureComponent } from '@nx-demo/client-channel-feature';
 
 export const clientChannelRoutes: Route[] = [
