@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { browseResolver, searchResolver, watchResolver } from '@nx-demo/client-shared-resolvers';
+import { browseResolver, rootResolver, searchResolver, watchResolver } from '@nx-demo/client-shared-resolvers';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { ClientLayoutFeatureComponent } from '@nx-demo/client-layout-feature';
 
@@ -12,6 +12,7 @@ export const clientShellRoutes: Route[] = [
     path: '',
     component: ClientLayoutFeatureComponent,
     title: 'YouTube Clone',
+    resolve: { _: rootResolver },
     children: [
       {
         path: '',

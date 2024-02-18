@@ -19,19 +19,20 @@ export const AuthStore = signalStore(
   withMethods(state => {
     const authService = inject(AuthService);
 
+    /** state更新 */
+    const updateState = (loginUser: IUser | null) => {
+      patchState(state, { loginUser });
+    };
+
     return {
+      /** 認証 */
+      auth: () => authService.auth().pipe(tap(updateState)),
       /** ログイン */
-      login: (data: ILoginPayload) => {
-        return authService.login(data).pipe(
-          tap(loginUser => patchState(state, { loginUser })),
-        );
-      },
+      login: (data: ILoginPayload) => authService.login(data).pipe(tap(updateState)),
       /** ログアウト */
-      logout: () => {
-        return authService.logout().pipe(
-          tap(() => patchState(state, { loginUser: null })),
-        );
-      },
+      logout: () => authService.logout().pipe(tap(() => updateState(null))),
+      /** LoginUser情報をクリアする */
+      clearLoginUser: () => updateState(null),
     }
   }),
 );

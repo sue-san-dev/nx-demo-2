@@ -9,6 +9,10 @@ export class AuthService {
 
   readonly #http = inject(HttpClient);
 
+  auth(): Observable<IUser | null> {
+    return this.#http.post<IUser | null>(ReqUrlUtil.auth.root, null);
+  }
+
   login(data: ILoginPayload): Observable<IUser> {
     return this.#http.post<IUser>(ReqUrlUtil.auth.login, data);
   }

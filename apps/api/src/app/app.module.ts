@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ApiShellModule } from '@nx-demo/api-shell';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
 @Module({
@@ -17,20 +16,6 @@ import Joi from 'joi';
         JWT_REFRESH_TOKEN_EXPIRES_IN: Joi.string().required(),
       }),
     }),
-    JwtModule.register({
-      global: true,
-    }),
-    // JwtModule.registerAsync({
-    //   useFactory: (configService: ConfigService) => {
-    //     return {
-    //       secret: configService.get('JWT_ACCESS_TOKEN_SECRET'),
-    //       signOptions: {
-    //         expiresIn: configService.get('JWT_ACCESS_TOKEN_EXPIRES_IN'),
-    //       },
-    //     }
-    //   },
-    //   inject: [ConfigService],
-    // }),
   ],
   providers: [
   ],

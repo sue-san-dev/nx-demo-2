@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
-import { IAccessTokenPayload } from '@nx-demo/shared-domain';
+import { IAccessTokenPayload, IUser } from '@nx-demo/shared-domain';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { PrismaExcludeUtil } from '@nx-demo/shared-utils';
 
 @Injectable()
 export class ApiAuthService {
@@ -14,6 +15,15 @@ export class ApiAuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
   ) { }
+
+  getUserById(id: number) {
+    return this.apiPrismaService.user.findUnique({
+      where: {
+        id,
+      },
+      select: PrismaExcludeUtil.userWithoutPassword,
+    });
+  }
 
   getUserByEmail(email: string) {
     return this.apiPrismaService.user.findUnique({
@@ -27,7 +37,7 @@ export class ApiAuthService {
     return bcrypt.compare(password, user.password);
   }
 
-  async getAccessToken(user: User) {
+  async getAccessToken(user: IUser) {
     const payload: IAccessTokenPayload = {
       email: user.email,
       sub: user.id,
