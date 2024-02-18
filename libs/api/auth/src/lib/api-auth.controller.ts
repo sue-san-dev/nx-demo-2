@@ -86,6 +86,7 @@ export class ApiAuthController {
     // cookieにtokenセット
     response.cookie('accessToken', tokens.accessToken, { httpOnly: true, secure: true });
     response.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true });
+    response.cookie('isAuthenticated', 'true', { secure: true });
   }
 
   /**
@@ -97,6 +98,7 @@ export class ApiAuthController {
     // cookieのtoken削除
     response.clearCookie('accessToken', { httpOnly: true, secure: true });
     response.clearCookie('refreshToken', { httpOnly: true, secure: true });
+    response.cookie('isAuthenticated', 'false', { secure: true });
   }
 
   /**

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
@@ -10,7 +10,9 @@ export class AuthService {
   readonly #http = inject(HttpClient);
 
   auth(): Observable<IUser | null> {
-    return this.#http.post<IUser | null>(ReqUrlUtil.auth.root, null);
+    const headers = new HttpHeaders()
+      .set('X-Skip-Interceptor', 'true');
+    return this.#http.post<IUser | null>(ReqUrlUtil.auth.root, null, { headers });
   }
 
   login(data: ILoginPayload): Observable<IUser> {

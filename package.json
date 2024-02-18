@@ -92,6 +92,7 @@
     "cookie-parser": "^1.4.6",
     "date-fns": "^3.3.1",
     "joi": "^17.12.1",
+    "ngx-cookie-service": "^17.1.0",
     "ngxtension": "2.0.0",
     "nord": "0.2.1",
     "passport": "^0.7.0",
