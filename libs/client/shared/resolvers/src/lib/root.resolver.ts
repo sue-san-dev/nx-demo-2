@@ -5,5 +5,5 @@ import { AuthStore } from '@nx-demo/client-shared-stores';
 export const rootResolver: ResolveFn<unknown> = () => {
   const authStore = inject(AuthStore);
 
-  return authStore.auth();
+  return authStore.loginUser() ?? authStore.auth();
 }

@@ -1,1 +1,1 @@
-export * from './lib/cookie-check.interceptor';
+export * from './lib/auth-state-check.interceptor';

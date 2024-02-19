@@ -37,13 +37,13 @@ export class ApiAuthService {
     return bcrypt.compare(password, user.password);
   }
 
-  async getAccessToken(user: IUser) {
+  async getTokens(user: IUser) {
     const payload: IAccessTokenPayload = {
       email: user.email,
       sub: user.id,
     };
 
-    const [accessToken, refreshToken] = await Promise.all([
+    const [accessTokenValue, refreshTokenValue] = await Promise.all([
       // accessToken取得
       this.jwtService.signAsync(payload, {
         secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
@@ -57,8 +57,14 @@ export class ApiAuthService {
     ]);
 
     return {
-      accessToken,
-      refreshToken,
+      accessToken: {
+        value: accessTokenValue,
+        expires: new Date(this.jwtService.decode(accessTokenValue).exp * 1000),
+      },
+      refreshToken: {
+        value: refreshTokenValue,
+        expires: new Date(this.jwtService.decode(refreshTokenValue).exp * 1000),
+      },
     };
   }
 }

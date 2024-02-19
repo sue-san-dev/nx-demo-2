@@ -17,7 +17,7 @@ import { searchIcon } from '../assets/svg/search.icon';
 import { playlistAddIcon } from '../assets/svg/playlist-add.icon';
 import { environment } from '@nx-demo/shared-environments';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { cookieCheckInterceptor } from '@nx-demo/client-shared-interceptors';
+import { authStateCheckInterceptor } from '@nx-demo/client-shared-interceptors';
 import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
@@ -47,8 +47,8 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       // インターセプター設定
       withInterceptors([
-        // レスポンスヘッダ確認インターセプター
-        cookieCheckInterceptor,
+        // 認証状態確認インターセプター
+        authStateCheckInterceptor,
         // req加工インターセプター
         (req, next) => {
           req = req.clone({

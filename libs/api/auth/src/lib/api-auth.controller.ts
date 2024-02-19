@@ -4,7 +4,6 @@ import { ReqUrlUtil } from '@nx-demo/shared-utils';
 import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { Response } from 'express';
 import { ReqUserId } from '@nx-demo/api-shared-decorators';
-import { User } from '@prisma/client';
 
 @Controller()
 export class ApiAuthController {
@@ -24,12 +23,9 @@ export class ApiAuthController {
     @ReqUserId() reqUserId: number | null,
     @Res({ passthrough: true }) response: Response,
   ): Promise<IUser | null> {
-    if (reqUserId == null) return null;
+    const user = reqUserId ? await this.apiAuthService.getUserById(reqUserId) : null;
 
-    const user = await this.apiAuthService.getUserById(reqUserId);
-    if (user == null) return null;
-
-    await this.#setTokenToCookie(user, response);
+    await this.#setOrClearCookie(response, user);
     return user;
   }
 
@@ -50,8 +46,11 @@ export class ApiAuthController {
     const valid = await this.apiAuthService.validateUser(payload.password, user);
     if (!valid) throw new BadRequestException('ユーザー名またはパスワードが無効です');
 
-    await this.#setTokenToCookie(user, response);
-    return this.#getUserWithoutPassword(user);
+    await this.#setOrClearCookie(response, user);
+    // userからpasswordフィールドを除外して返却
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   /**
@@ -59,10 +58,10 @@ export class ApiAuthController {
    * @param response 
    */
   @Post(ReqUrlUtil.auth.logout)
-  logout(
+  async logout(
     @Res({ passthrough: true }) response: Response,
-  ): void {
-    this.#removeTokenFromCookie(response);
+  ): Promise<void> {
+    await this.#setOrClearCookie(response, null);
   }
 
   /**
@@ -76,39 +75,21 @@ export class ApiAuthController {
   }
 
   /**
-   * tokenをcookieにセット
-   * @param user 
+   * cookieのセット/クリア
    * @param response 
-   * @returns 
-   */
-  async #setTokenToCookie(user: IUser, response: Response) {
-    const tokens = await this.apiAuthService.getAccessToken(user);
-    // cookieにtokenセット
-    response.cookie('accessToken', tokens.accessToken, { httpOnly: true, secure: true });
-    response.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true });
-    response.cookie('isAuthenticated', 'true', { secure: true });
-  }
-
-  /**
-   * cookieからtokenを削除
-   * @param response 
-   * @returns 
-   */
-  #removeTokenFromCookie(response: Response) {
-    // cookieのtoken削除
-    response.clearCookie('accessToken', { httpOnly: true, secure: true });
-    response.clearCookie('refreshToken', { httpOnly: true, secure: true });
-    response.cookie('isAuthenticated', 'false', { secure: true });
-  }
-
-  /**
-   * userからpasswordフィールドを除外して返却
    * @param user 
    * @returns 
    */
-  #getUserWithoutPassword(user: User) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...userWithoutPassword } = user;
-    return userWithoutPassword;
+  async #setOrClearCookie(response: Response, user: IUser | null) {
+    if (user) {
+      const { accessToken, refreshToken } = await this.apiAuthService.getTokens(user);
+      response.cookie('accessToken', accessToken.value, { httpOnly: true, secure: true, expires: accessToken.expires });
+      response.cookie('refreshToken', refreshToken.value, { httpOnly: true, secure: true, expires: refreshToken.expires });
+      response.cookie('isAuthenticated', 'true', { secure: true });
+    } else {
+      response.clearCookie('accessToken');
+      response.clearCookie('refreshToken');
+      response.clearCookie('isAuthenticated');
+    }
   }
 }
