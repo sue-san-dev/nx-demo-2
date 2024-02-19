@@ -1,0 +1,29 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  background: linear-gradient(90deg, rgba(76,86,106,1) 0%, rgba(94,129,172,1) 100%);
+  border-radius: 16px;
+  padding: 48px;
+
+  label {
+    display: inline-block;
+    width: 8em;
+  }
+  input {
+    background-color: #e5e9f0;
+    padding: 8px;
+    border-radius: 6px;
+    color: #3b4252;
+  }
+}

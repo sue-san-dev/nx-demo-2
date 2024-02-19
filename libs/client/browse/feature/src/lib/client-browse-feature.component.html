@@ -1,5 +1,5 @@
 <div class="container">
-  @for (video of videosRef(); track video.uuid) {
+  @for (video of videos(); track video.uuid) {
   <div class="content">
     <nx-demo-client-shared-ui-rich-item [video]="video" thumbnailHeight="180" thumbnailWidth="320" />
   </div>

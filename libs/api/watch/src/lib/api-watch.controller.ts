@@ -10,7 +10,7 @@ export class ApiWatchController {
 
   @Get(ReqUrlUtil.video.root)
   async getVideoMetadata(
-    @Query(UrlUtil.VideoKey) videoKey: string,
+    @Query(UrlUtil.videoKey) videoKey: string,
   ): Promise<IVideoMetadataDetail> {
     const result = await this.apiWatchService.getVideoMetadata(videoKey);
     if (result == null) throw new Error();
@@ -20,9 +20,9 @@ export class ApiWatchController {
 
   @Get(ReqUrlUtil.video.comments)
   async getVideoComments(
-    @Query(UrlUtil.VideoKey) videoKey: string,
-    @Query(UrlUtil.Offset, ParseIntPipe) offset: number,
-    @Query(UrlUtil.ParentCommentId, new ParseIntPipe({ optional: true })) parentCommentId?: number,
+    @Query(UrlUtil.videoKey) videoKey: string,
+    @Query(UrlUtil.offset, ParseIntPipe) offset: number,
+    @Query(UrlUtil.parentCommentId, new ParseIntPipe({ optional: true })) parentCommentId?: number,
   ): Promise<IComment[]> {
     const result = await this.apiWatchService.getVideoComments(videoKey, offset, parentCommentId);
 
@@ -31,8 +31,8 @@ export class ApiWatchController {
 
   @Get(ReqUrlUtil.video.relatedVideos)
   async getRelatedVideos(
-    @Query(UrlUtil.VideoKey) videoKey: string,
-    @Query(UrlUtil.Offset, ParseIntPipe) offset: number,
+    @Query(UrlUtil.videoKey) videoKey: string,
+    @Query(UrlUtil.offset, ParseIntPipe) offset: number,
   ): Promise<IVideoMetadata[]> {
     const result = await this.apiWatchService.getRelatedVideos(videoKey, offset);
 

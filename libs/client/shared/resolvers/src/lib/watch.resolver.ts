@@ -3,7 +3,7 @@ import { ResolveFn } from '@angular/router';
 import { VideoService } from '@nx-demo/client-shared-services';
 import { IVideoMetadata, IVideoMetadataDetail } from '@nx-demo/shared-domain';
 import { UrlUtil } from '@nx-demo/shared-utils';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 export interface IWatchData {
   video: IVideoMetadataDetail;
@@ -12,18 +12,11 @@ export interface IWatchData {
 
 export const watchResolver: ResolveFn<IWatchData> = (route) => {
   const videoService = inject(VideoService);
-  const videoKey = route.queryParamMap.get(UrlUtil.VideoKey);
+  const videoKey = route.queryParamMap.get(UrlUtil.videoKey);
   if (videoKey == null) throw new Error();
 
-  return forkJoin([
-    videoService.getVideo(videoKey),
-    videoService.getRelatedVideos(videoKey, 0),
-  ]).pipe(
-    map(([video, relatedVideos]) => {
-      return {
-        video,
-        relatedVideos,
-      }
-    })
-  );
+  return forkJoin({
+    video: videoService.getVideo(videoKey),
+    relatedVideos: videoService.getRelatedVideos(videoKey, 0),
+  });
 }

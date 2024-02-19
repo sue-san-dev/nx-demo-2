@@ -15,9 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-demo/api-auth": ["libs/api/auth/src/index.ts"],
       "@nx-demo/api-browse": ["libs/api/browse/src/index.ts"],
       "@nx-demo/api-prisma": ["libs/api/prisma/src/index.ts"],
       "@nx-demo/api-search": ["libs/api/search/src/index.ts"],
+      "@nx-demo/api-shared-decorators": [
+        "libs/api/shared/decorators/src/index.ts"
+      ],
+      "@nx-demo/api-shared-guards": ["libs/api/shared/guards/src/index.ts"],
       "@nx-demo/api-shell": ["libs/api/shell/src/index.ts"],
       "@nx-demo/api-watch": ["libs/api/watch/src/index.ts"],
       "@nx-demo/client-browse-feature": [
@@ -56,11 +61,17 @@
       "@nx-demo/client-layout-ui-sidenav": [
         "libs/client/layout/ui/sidenav/src/index.ts"
       ],
+      "@nx-demo/client-login-feature": [
+        "libs/client/login/feature/src/index.ts"
+      ],
       "@nx-demo/client-search-feature": [
         "libs/client/search/feature/src/index.ts"
       ],
       "@nx-demo/client-shared-directives": [
         "libs/client/shared/directives/src/index.ts"
+      ],
+      "@nx-demo/client-shared-interceptors": [
+        "libs/client/shared/interceptors/src/index.ts"
       ],
       "@nx-demo/client-shared-modules": [
         "libs/client/shared/modules/src/index.ts"

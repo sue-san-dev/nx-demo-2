@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ApiPrismaService } from '@nx-demo/api-prisma';
+import { PrismaExcludeUtil } from '@nx-demo/shared-utils';
 
 @Injectable()
 export class ApiBrowseService {
@@ -11,7 +12,9 @@ export class ApiBrowseService {
   browse() {
     return this.apiPrismaService.video.findMany({
       include: {
-        uploader: true,
+        uploader: {
+          select: PrismaExcludeUtil.userWithoutPassword,
+        },
       }
     });
   }

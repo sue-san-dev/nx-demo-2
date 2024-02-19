@@ -11,13 +11,11 @@ export class CommentService {
 
   getComments(videoKey: string, offset: number, parentCommentId?: number): Observable<IComment[]> {
     const params = {
-      [UrlUtil.VideoKey]: videoKey,
-      [UrlUtil.Offset]: offset,
+      [UrlUtil.videoKey]: videoKey,
+      [UrlUtil.offset]: offset,
     };
     if (parentCommentId) {
-      Object.assign(params, {
-        [UrlUtil.ParentCommentId]: parentCommentId,
-      })
+      Object.assign(params, { [UrlUtil.parentCommentId]: parentCommentId });
     }
 
     return this.#http.get<IComment[]>(ReqUrlUtil.video.comments, {

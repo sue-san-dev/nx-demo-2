@@ -18,7 +18,7 @@
         "tsConfig": "apps/client/tsconfig.app.json",
         "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
         "styles": ["apps/client/src/styles.scss"],
-        "scripts": ["node_modules/simplebar/dist/simplebar.min.js"],
+        "scripts": [],
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/styles/src/lib"]
         }

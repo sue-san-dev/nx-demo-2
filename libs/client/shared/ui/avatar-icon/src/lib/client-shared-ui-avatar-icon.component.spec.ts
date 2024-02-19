@@ -33,14 +33,14 @@ describe('ClientSharedUiAvatarIconComponent', () => {
     fixture = TestBed.createComponent(ClientSharedUiAvatarIconComponent);
     component = fixture.componentInstance;
 
-    const dummyUser2: User = {
+    const user: User = {
       ...dummyUser,
       channelAvatarUrl: url
     }
 
-    const dummyUserRef = () => dummyUser2
+    const dummyUserRef = () => user
 
-    Object.defineProperty(component, 'userRef', { value: dummyUserRef })
+    Object.defineProperty(component, 'user', { value: dummyUserRef })
 
     fixture.detectChanges();
     // imgタグがレンダリングされたかを確認
@@ -58,14 +58,14 @@ describe('ClientSharedUiAvatarIconComponent', () => {
     fixture = TestBed.createComponent(ClientSharedUiAvatarIconComponent);
     component = fixture.componentInstance;
 
-    const dummyUser2: User = {
+    const user: User = {
       ...dummyUser,
       channelAvatarUrl: url
     }
 
-    const dummyUserRef = () => dummyUser2
+    const dummyUserRef = () => user
 
-    Object.defineProperty(component, 'userRef', { value: dummyUserRef })
+    Object.defineProperty(component, 'user', { value: dummyUserRef })
 
     fixture.detectChanges();
     // imgタグがレンダリングされたかを確認

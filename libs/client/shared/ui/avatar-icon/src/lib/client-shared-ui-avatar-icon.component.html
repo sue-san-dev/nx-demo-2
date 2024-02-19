@@ -1,6 +1,6 @@
-@if (userRef().channelAvatarUrl) {
-<img [ngSrc]="userRef().channelAvatarUrl!" width="40" height="40" priority>
+@if (user().channelAvatarUrl) {
+<img [ngSrc]="user().channelAvatarUrl!" width="40" height="40" priority>
 } @else {
 <!-- アカウント名の最初の一文字 -->
-<div>{{ userRef().accountName[0] }}</div>
+<div>{{ user().accountName[0] }}</div>
 }

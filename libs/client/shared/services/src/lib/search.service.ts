@@ -12,7 +12,7 @@ export class SearchService {
   search(searchQuery: string): Observable<IVideoMetadata[]> {
     return this.#http.get<IVideoMetadata[]>(ReqUrlUtil.search.root, {
       params: {
-        [UrlUtil.SearchQuery]: searchQuery,
+        [UrlUtil.searchQuery]: searchQuery,
       }
     });
   }

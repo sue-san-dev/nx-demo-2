@@ -7,7 +7,7 @@ import { ClientSharedUiCommentComponent } from '@nx-demo/client-shared-ui-commen
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
 import { IComment } from '@nx-demo/shared-domain';
 import { computedAsync } from 'ngxtension/computed-async';
-import { concat, of } from 'rxjs';
+import { startWith } from 'rxjs';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -24,21 +24,17 @@ import { concat, of } from 'rxjs';
 })
 export class ClientWatchFeatureComponent {
 
-  commentService = inject(CommentService);
+  readonly #commentService = inject(CommentService);
 
   /** resolveデータ */
   readonly resolvedData = input.required<IWatchData>();
   /** ビデオ */
-  readonly videoRef = computed(() => this.resolvedData().video);
+  readonly video = computed(() => this.resolvedData().video);
   /** 関連ビデオリスト */
-  readonly relatedVideosRef = computed(() => this.resolvedData().relatedVideos);
+  readonly relatedVideos = computed(() => this.resolvedData().relatedVideos);
   /** コメントリスト */
-  readonly commentsRef = computedAsync<IComment[]>(() => {
-    // 再初期化後、コメントリスト取得
-    return concat(
-      of([]),
-      this.commentService.getComments(this.videoRef().uuid, 0),
-    );
+  readonly comments = computedAsync<IComment[]>(() => {
+    return this.#commentService.getComments(this.video().uuid, 0).pipe(startWith([]));
   }, {
     initialValue: [],
   });

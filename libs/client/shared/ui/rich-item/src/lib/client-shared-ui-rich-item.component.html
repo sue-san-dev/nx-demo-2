@@ -1,29 +1,29 @@
-<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams" [class.is-horizontal]="isHorizontal()">
+<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams" [class.is-horizontal]="horizontal()">
   <div class="thumbnail-container" [ngStyle]="{ 'width.px': thumbnailWidth(), 'height.px': thumbnailHeight() }">
-    <img [ngSrc]="videoRef().thumbnailUrl" [width]="thumbnailWidth()" [height]="thumbnailHeight()" priority>
+    <img [ngSrc]="video().thumbnailUrl" [width]="thumbnailWidth()" [height]="thumbnailHeight()" priority>
     <div>
-      <span>{{ videoRef().duration | formatDuration }}</span>
+      <span>{{ video().duration | formatDuration }}</span>
     </div>
   </div>
   <div class="metadata-container">
-    @if (!isHorizontal()) {
-    <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
+    @if (!horizontal()) {
+    <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="video().uploader" />
     }
     <div class="metadata">
-      <div class="title" [title]="videoRef().title">{{ videoRef().title }}</div>
+      <div class="title" [title]="video().title">{{ video().title }}</div>
       <div class="account-name-icon">
-        @if (isHorizontal() && !isMinimal()) {
-        <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
+        @if (horizontal() && !minimal()) {
+        <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="video().uploader" />
         }
-        <span>{{ videoRef().uploader.accountName }}</span>
+        <span>{{ video().uploader.accountName }}</span>
       </div>
       <div>
-        <span>{{ videoRef().viewCount | formatCount }} 回視聴</span>
-        <span class="created-at">{{ videoRef().createdAt | timeAgo }}</span>
+        <span>{{ video().viewCount | formatCount }} 回視聴</span>
+        <span class="created-at">{{ video().createdAt | timeAgo }}</span>
       </div>
-      @if (isHorizontal() && !isMinimal()) {
+      @if (horizontal() && !minimal()) {
       <div>
-        {{ videoRef().description }}
+        {{ video().description }}
       </div>
       }
     </div>
