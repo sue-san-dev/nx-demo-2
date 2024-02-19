@@ -11,7 +11,7 @@ export const createMockUser = (
     accountName: faker.person.fullName(),
     password: faker.internet.password(),
     channelHandle: faker.string.alpha(10),
-    channelAvatarUrl: faker.internet.avatar(),
+    channelAvatarUrl: faker.image.avatar(),
     ...userData,
   };
 
