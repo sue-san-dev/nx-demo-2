@@ -1,21 +1,31 @@
-<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams" [class.is-compact]="isCompact()">
-  <div class="thumbnail-container" [ngStyle]="{ 'width.px': thumbnailWidth, 'height.px': thumbnailHeight }">
-    <img [ngSrc]="videoRef().thumbnailUrl" [width]="thumbnailWidth" [height]="thumbnailHeight" priority>
+<a [routerLink]="watchPageUrl" [queryParams]="watchPageQueryParams" [class.is-horizontal]="isHorizontal()">
+  <div class="thumbnail-container" [ngStyle]="{ 'width.px': thumbnailWidth(), 'height.px': thumbnailHeight() }">
+    <img [ngSrc]="videoRef().thumbnailUrl" [width]="thumbnailWidth()" [height]="thumbnailHeight()" priority>
     <div>
       <span>{{ videoRef().duration | formatDuration }}</span>
     </div>
   </div>
   <div class="metadata-container">
-    @if (!isCompact()) {
+    @if (!isHorizontal()) {
     <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
     }
     <div class="metadata">
       <div class="title" [title]="videoRef().title">{{ videoRef().title }}</div>
-      <div>{{ videoRef().uploader.accountName }}</div>
+      <div class="account-name-icon">
+        @if (isHorizontal() && !isMinimal()) {
+        <nx-demo-client-shared-ui-avatar-icon class="avatar-icon" [user]="videoRef().uploader" />
+        }
+        <span>{{ videoRef().uploader.accountName }}</span>
+      </div>
       <div>
         <span>{{ videoRef().viewCount | formatCount }} 回視聴</span>
         <span class="created-at">{{ videoRef().createdAt | timeAgo }}</span>
       </div>
+      @if (isHorizontal() && !isMinimal()) {
+      <div>
+        {{ videoRef().description }}
+      </div>
+      }
     </div>
   </div>
 </a>

@@ -7,4 +7,6 @@ export class UrlUtil {
   static readonly Video = 'video';
   static readonly VideoKey = 'v';
   static readonly Offset = 'offset';
+  static readonly ParentCommentId = 'parent';
+  static readonly ChannelHandle = 'channelHandle';
 }

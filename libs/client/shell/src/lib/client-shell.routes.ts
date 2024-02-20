@@ -27,6 +27,10 @@ export const clientShellRoutes: Route[] = [
         resolve: { resolvedData: watchResolver },
         runGuardsAndResolvers: 'always',
       },
+      {
+        path: `:${ UrlUtil.ChannelHandle }`,
+        loadChildren: () => import('@nx-demo/client-shell').then(x => x.clientChannelRoutes),
+      },
     ]
   },
 ];

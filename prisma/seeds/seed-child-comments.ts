@@ -7,21 +7,23 @@ export async function seedChildComments(prisma: PrismaClient) {
   const length = 2000;
   // ユーザ全件取得
   const users = await prisma.user.findMany();
-  // ビデオ全件取得
-  const videos = await prisma.video.findMany();
   // コメント全件取得
-  const comments = await prisma.comment.findMany();
+  const comments = await prisma.comment.findMany({
+    include: {
+      video: true,
+    }
+  });
 
   await Promise.all(
     Array.from({ length }).map(() => {
+      // ランダムでコメントをピック
+      const parentComment = faker.helpers.arrayElement(comments);
       return createMockComment(
         prisma,
         // ランダムでユーザをピック
         faker.helpers.arrayElement(users),
-        // ランダムでビデオをピック
-        faker.helpers.arrayElement(videos),
-        // ランダムでコメントをピック
-        faker.helpers.arrayElement(comments),
+        parentComment.video,
+        parentComment,
       );
     })
   );

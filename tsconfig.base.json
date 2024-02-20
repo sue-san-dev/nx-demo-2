@@ -23,6 +23,27 @@
       "@nx-demo/client-browse-feature": [
         "libs/client/browse/feature/src/index.ts"
       ],
+      "@nx-demo/client-channel-feature": [
+        "libs/client/channel/feature/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-community": [
+        "libs/client/channel/ui/tab-community/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-home": [
+        "libs/client/channel/ui/tab-home/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-lives": [
+        "libs/client/channel/ui/tab-lives/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-playlists": [
+        "libs/client/channel/ui/tab-playlists/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-shorts": [
+        "libs/client/channel/ui/tab-shorts/src/index.ts"
+      ],
+      "@nx-demo/client-channel-ui-tab-videos": [
+        "libs/client/channel/ui/tab-videos/src/index.ts"
+      ],
       "@nx-demo/client-layout-feature": [
         "libs/client/layout/feature/src/index.ts"
       ],
@@ -56,6 +77,9 @@
       ],
       "@nx-demo/client-shared-ui-avatar-icon": [
         "libs/client/shared/ui/avatar-icon/src/index.ts"
+      ],
+      "@nx-demo/client-shared-ui-button": [
+        "libs/client/shared/ui/button/src/index.ts"
       ],
       "@nx-demo/client-shared-ui-comment": [
         "libs/client/shared/ui/comment/src/index.ts"

@@ -11,11 +11,14 @@
         <div class="row">
           <div class="uploader">
             <div class="avatar">
-              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader" />
+              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader"
+                routerLink="../{{ videoRef().uploader.channelHandle }}" />
             </div>
             <div class="channel-info">
               <div>
-                <span>{{ videoRef().uploader.accountName }}</span>
+                <span class="account-name" routerLink="../{{ videoRef().uploader.channelHandle }}">
+                  {{ videoRef().uploader.accountName }}
+                </span>
               </div>
               <div>
                 <span>チャンネル登録者数</span>
@@ -23,15 +26,34 @@
               </div>
             </div>
             <div class="subscribe-btn">
-              <button>チャンネル登録</button>
+              <nx-demo-client-shared-ui-button variant="inverse">
+                チャンネル登録
+              </nx-demo-client-shared-ui-button>
             </div>
           </div>
           <div class="btn-actions">
-            <div class="reactions">リアクション</div>
-            <div class="share">共有</div>
-            <div class="save">保存</div>
+            <div class="reactions">
+              <nx-demo-client-shared-ui-button variant="ghost">
+                <svg-icon key="thumb_up" height="24px" width="24px" />
+              </nx-demo-client-shared-ui-button>
+              <nx-demo-client-shared-ui-button variant="ghost">
+                <svg-icon key="thumb_down" height="24px" width="24px" />
+              </nx-demo-client-shared-ui-button>
+            </div>
+            <div class="share">
+              <nx-demo-client-shared-ui-button variant="ghost">
+                共有
+              </nx-demo-client-shared-ui-button>
+            </div>
+            <div class="save">
+              <nx-demo-client-shared-ui-button variant="ghost">
+                保存
+              </nx-demo-client-shared-ui-button>
+            </div>
             <div class="more">
-              <svg-icon key="more_horiz" height="24px" width="24px" />
+              <nx-demo-client-shared-ui-button variant="ghost">
+                <svg-icon key="more_horiz" height="24px" width="24px" />
+              </nx-demo-client-shared-ui-button>
             </div>
           </div>
         </div>
@@ -75,7 +97,8 @@
   <div class="secondary">
     <div class="secondary-inner">
       @for (video of relatedVideosRef(); track video.uuid) {
-      <nx-demo-client-shared-ui-rich-item [video]="video" compact />
+      <nx-demo-client-shared-ui-rich-item [video]="video" minimal horizontal thumbnailHeight="94"
+        thumbnailWidth="168" />
       }
     </div>
   </div>
