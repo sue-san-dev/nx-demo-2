@@ -32,7 +32,8 @@ export class ClientLoginFeatureComponent {
     this.authStore.login({ email, password }).subscribe({
       next: () => {
         this.#matSnackBar.open('ログインしました', undefined, { duration: 2000 });
-        this.#router.navigateByUrl('/');
+        // ログイン前のページに遷移する
+        this.#router.navigateByUrl(this.#router.lastSuccessfulNavigation?.previousNavigation?.finalUrl ?? '/');
       },
       error: console.error,
     });
