@@ -20,7 +20,7 @@ async function bootstrap() {
   });
   
   app.enableCors({
-    origin: 'https://nx-demo-2-test.onrender.com/',
+    origin: 'https://nx-demo-2-test.onrender.com',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
   });
 
