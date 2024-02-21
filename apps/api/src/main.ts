@@ -18,6 +18,11 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: ['1'],
   });
+  
+  app.enableCors({
+    origin: 'https://nx-demo-2-test.onrender.com/',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  });
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
