@@ -1,7 +1,16 @@
-name: learn-github-actions
-on: [push]
+name: Render Deploy
+
+on:
+  push:
+  pull_request:
+
 jobs:
-  check-bats-version:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-     - run: echo "Hello World"
+      - uses: ttskch/render-deploy@v1.0.0
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          interval: 20 # optional
+          timeout: 300 # optional
