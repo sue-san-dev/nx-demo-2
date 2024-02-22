@@ -83,9 +83,9 @@ export class ApiAuthController {
   async #setOrClearCookie(response: Response, user: IUser | null) {
     if (user) {
       const { accessToken, refreshToken } = await this.apiAuthService.getTokens(user);
-      response.cookie('accessToken', accessToken.value, { httpOnly: true, secure: true, expires: accessToken.expires });
-      response.cookie('refreshToken', refreshToken.value, { httpOnly: true, secure: true, expires: refreshToken.expires });
-      response.cookie('isAuthenticated', 'true', { secure: true });
+      response.cookie('accessToken', accessToken.value, { httpOnly: true, secure: true, sameSite: 'strict', expires: accessToken.expires });
+      response.cookie('refreshToken', refreshToken.value, { httpOnly: true, secure: true, sameSite: 'strict', expires: refreshToken.expires });
+      response.cookie('isAuthenticated', 'true', { secure: true, sameSite: 'strict' });
     } else {
       response.clearCookie('accessToken');
       response.clearCookie('refreshToken');
