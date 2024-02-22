@@ -83,7 +83,9 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "client:build",
-        "staticFilePath": "dist/apps/client/browser"
+        "staticFilePath": "dist/apps/client/browser",
+        "host": "0.0.0.0",
+        "port": 10000
       }
     }
   }
