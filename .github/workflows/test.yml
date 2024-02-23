@@ -1,4 +1,4 @@
-name: Typescript Test
+name: test
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - test
 
 jobs:
-  typescript-gRPC:
-    name: Typescript Test
+  jest-test:
+    name: Jest Test
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +25,22 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: npx nx run-many --target=test --codeCoverage=true --projects=client
+        run: npx nx run-many --target=test --codeCoverage=true 
+  deploy:
+    needs: jest-test
+    if: ${{ success() }}
+    steps:
+      - name: Deploy Client Service
+        uses: ttskch/render-deploy@v1.0.0
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID_CLIENT }}
+          interval: 20 # optional
+          timeout: 600 # optional
+      - name: Deploy API Service
+        uses: ttskch/render-deploy@v1.0.0
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID_API }}
+          interval: 20 # optional
+          timeout: 600 # optional
