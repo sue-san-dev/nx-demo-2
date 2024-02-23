@@ -87,11 +87,11 @@ describe('ApiWatchService', () => {
     ]
 
     const expectedData = videoComments.map(videoComment => {
-        return {
-            ...videoComment,
-          likeCount: videoComment.video._count.reactions,
-          childCommentCount: videoComment._count.childComments,
-        };
+      return {
+        ...videoComment,
+        likeCount: videoComment.video._count.reactions,
+        childCommentCount: videoComment._count.childComments,
+      };
     });
 
     mockApiPrismaService.comment.findMany.mockResolvedValue(videoComments);
@@ -106,12 +106,12 @@ describe('ApiWatchService', () => {
     [
       {
         uploader: {
-            id: 11
+          id: 11
         },
       },
       {
         uploader: {
-            id: 12
+          id: 12
         },
       },
     ]
