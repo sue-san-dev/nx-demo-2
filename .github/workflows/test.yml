@@ -1,5 +1,8 @@
 name: test
 
+env:
+  NODE_VERSION: "16"
+
 on:
   push:
     branches:
@@ -9,8 +12,33 @@ on:
       - test
 
 jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Runt lints
+        run:  npx nx run-many --target=lint --projects=api-watch
+
+      - name: Upload node_modules for reuse
+        uses: actions/upload-artifact@v3
+        with:
+          name: node_modules
+          path: node_modules
+
   jest-test:
     name: Jest Test
+    needs: eslint
+    if: ${{ success() }}
     runs-on: ubuntu-latest
 
     steps:
@@ -19,30 +47,33 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install packages
-        run: npm ci
+      - name: Download node_modules
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules
 
       - name: Run tests
         run: npx nx run-many --target=test --codeCoverage=true --projects=api-watch,client-shared-ui-avatar-icon
-  deploy:
-    name: Render Deploy
-    needs: jest-test
-    if: ${{ success() }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy Client Service
-        uses: ttskch/render-deploy@v1.0.0
-        with:
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          service-id: ${{ secrets.RENDER_SERVICE_ID_CLIENT }}
-          interval: 20 # optional
-          timeout: 600 # optional
-      - name: Deploy API Service
-        uses: ttskch/render-deploy@v1.0.0
-        with:
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          service-id: ${{ secrets.RENDER_SERVICE_ID_API }}
-          interval: 20 # optional
-          timeout: 600 # optional
+
+  # deploy:
+  #   name: Render Deploy
+  #   needs: jest-test
+  #   if: ${{ success() }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy Client Service
+  #       uses: ttskch/render-deploy@v1.0.0
+  #       with:
+  #         api-key: ${{ secrets.RENDER_API_KEY }}
+  #         service-id: ${{ secrets.RENDER_SERVICE_ID_CLIENT }}
+  #         interval: 20 # optional
+  #         timeout: 600 # optional
+  #     - name: Deploy API Service
+  #       uses: ttskch/render-deploy@v1.0.0
+  #       with:
+  #         api-key: ${{ secrets.RENDER_API_KEY }}
+  #         service-id: ${{ secrets.RENDER_SERVICE_ID_API }}
+  #         interval: 20 # optional
+  #         timeout: 600 # optional

@@ -4,7 +4,10 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "rules": {
+      "indent": ["error", 2],
+      "quotes": ["error", "single"]
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],
