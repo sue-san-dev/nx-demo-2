@@ -1,8 +1,8 @@
 name: Typescript Test
 
-defaults:
-  run:
-    shell: bash
+on:
+  push:
+  pull_request:
 
 jobs:
   typescript-gRPC:
