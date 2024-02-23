@@ -18,5 +18,5 @@ export class ClientSearchFeatureComponent {
   /** resolveデータ */
   readonly resolvedData = input.required<ISearchData>();
   /** ビデオ一覧 */
-  readonly videosRef = computed(() => this.resolvedData().videos);
+  readonly videos = computed(() => this.resolvedData().videos);
 }

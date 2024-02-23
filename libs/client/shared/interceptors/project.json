@@ -1,0 +1,12 @@
+{
+  "name": "client-shared-interceptors",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/shared/interceptors/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["scope:client", "type:util"]
+}

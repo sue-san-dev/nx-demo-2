@@ -14,15 +14,6 @@
         "^production"
       ]
     },
-    "lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
-      ]
-    },
     "e2e": {
       "cache": true,
       "inputs": [
@@ -47,13 +38,13 @@
         }
       }
     },
-    "build-storybook": {
+    "@nx/eslint:lint": {
       "cache": true,
       "inputs": [
         "default",
-        "^production",
-        "{projectRoot}/.storybook/**/*",
-        "{projectRoot}/tsconfig.storybook.json"
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
       ]
     }
   },

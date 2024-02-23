@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
 @Component({
   selector: 'nx-demo-client-shared-ui-button',
   standalone: true,

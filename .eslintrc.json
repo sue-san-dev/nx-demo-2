@@ -52,6 +52,7 @@
                 "sourceTag": "type:shell",
                 "onlyDependOnLibsWithTags": [
                   "type:feature",
+                  "type:ui",
                   "type:util"
                 ]
               },
@@ -72,6 +73,7 @@
               {
                 "sourceTag": "type:util",
                 "onlyDependOnLibsWithTags": [
+                  "type:ui",
                   "type:util"
                 ]
               }

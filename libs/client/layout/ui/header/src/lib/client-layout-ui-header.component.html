@@ -29,8 +29,18 @@
     <nx-demo-client-layout-ui-searchbox />
   </div>
   <div id="end">
-    <nx-demo-client-shared-ui-button variant="normal">
-      ログイン
-    </nx-demo-client-shared-ui-button>
+    @if (authStore.loginUser(); as loginUser) {
+      <nx-demo-client-shared-ui-avatar-icon [user]="loginUser" [matMenuTriggerFor]="menu" />
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onLogout()">ログアウト</button>
+      </mat-menu>
+    } @else {
+      <nx-demo-client-shared-ui-button variant="normal">
+        <a class="login-btn" routerLink="/login">
+          <svg-icon key="account_circle"></svg-icon>
+          <span>ログイン</span>
+        </a>
+      </nx-demo-client-shared-ui-button>
+    }
   </div>
 </div>

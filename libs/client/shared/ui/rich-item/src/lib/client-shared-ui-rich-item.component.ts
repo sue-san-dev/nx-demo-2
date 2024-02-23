@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, booleanAttribute, input, numberAttribute } from '@angular/core';
 import { IVideoMetadata } from '@nx-demo/shared-domain';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { UrlUtil } from '@nx-demo/shared-utils';
 import { Params } from '@angular/router';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, NumberInput } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'nx-demo-client-shared-ui-rich-item',
@@ -19,28 +19,20 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class ClientSharedUiRichItemComponent {
   /** ビデオ */
-  readonly videoRef = input.required<IVideoMetadata>({
-    alias: 'video',
-  });
+  readonly video = input.required<IVideoMetadata>();
   /** サムネとメタ情報を横並び */
-  readonly isHorizontal = input<boolean, BooleanInput>(false, {
-    alias: 'horizontal',
-    transform: coerceBooleanProperty,
-  });
+  readonly horizontal = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
   /** 縮小表示 */
-  readonly isMinimal = input<boolean, BooleanInput>(false, {
-    alias: 'minimal',
-    transform: coerceBooleanProperty,
-  });
+  readonly minimal = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
   /** サムネ幅.px */
-  readonly thumbnailWidth = input.required<string>();
+  readonly thumbnailWidth = input.required<number, NumberInput>({ transform: numberAttribute });
   /** サムネ高さ.px */
-  readonly thumbnailHeight = input.required<string>();
+  readonly thumbnailHeight = input.required<number, NumberInput>({ transform: numberAttribute });
 
   get watchPageUrl(): string {
-    return '/' + UrlUtil.Watch;
+    return '/' + UrlUtil.watch;
   }
   get watchPageQueryParams(): Params {
-    return { [UrlUtil.VideoKey]: this.videoRef().uuid };
+    return { [UrlUtil.videoKey]: this.video().uuid };
   }
 }

@@ -6,23 +6,23 @@
       </video>
       <div class="metadata">
         <div class="row title">
-          <span>{{ videoRef().title }}</span>
+          <span>{{ video().title }}</span>
         </div>
         <div class="row">
           <div class="uploader">
             <div class="avatar">
-              <nx-demo-client-shared-ui-avatar-icon [user]="videoRef().uploader"
-                routerLink="../{{ videoRef().uploader.channelHandle }}" />
+              <nx-demo-client-shared-ui-avatar-icon [user]="video().uploader"
+                routerLink="../{{ video().uploader.channelHandle }}" />
             </div>
             <div class="channel-info">
               <div>
-                <span class="account-name" routerLink="../{{ videoRef().uploader.channelHandle }}">
-                  {{ videoRef().uploader.accountName }}
+                <span class="account-name" routerLink="../{{ video().uploader.channelHandle }}">
+                  {{ video().uploader.accountName }}
                 </span>
               </div>
               <div>
                 <span>チャンネル登録者数</span>
-                <span>{{ videoRef().uploader.channelSubscriberCount }}人</span>
+                <span>{{ video().uploader.channelSubscriberCount }}人</span>
               </div>
             </div>
             <div class="subscribe-btn">
@@ -60,11 +60,11 @@
         <div class="row description">
           <div class="description-inner">
             <div>
-              <span>{{ videoRef().viewCount | formatCount }}回視聴</span>
-              <span>{{ videoRef().createdAt | timeAgo }}</span>
+              <span>{{ video().viewCount | formatCount }}回視聴</span>
+              <span>{{ video().createdAt | timeAgo }}</span>
             </div>
             <div>
-              <span>{{ videoRef().description }}</span>
+              <span>{{ video().description }}</span>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
       <div class="comments">
         <div>
           <div class="comment-count">
-            <span>{{ videoRef().commentCount | number }}</span>
+            <span>{{ video().commentCount | number }}</span>
             <span>件のコメント</span>
           </div>
           <div class="sort-menu">
@@ -85,7 +85,7 @@
             コメントする
           </div>
           <div class="comment-display">
-            @for (comment of commentsRef(); track comment.id) {
+            @for (comment of comments(); track comment.id) {
             <nx-demo-client-shared-ui-comment [comment]="comment" />
             }
           </div>
@@ -96,8 +96,8 @@
 
   <div class="secondary">
     <div class="secondary-inner">
-      @for (video of relatedVideosRef(); track video.uuid) {
-      <nx-demo-client-shared-ui-rich-item [video]="video" minimal horizontal thumbnailHeight="94"
+      @for (relatedVideo of relatedVideos(); track relatedVideo.uuid) {
+      <nx-demo-client-shared-ui-rich-item [video]="relatedVideo" minimal horizontal thumbnailHeight="94"
         thumbnailWidth="168" />
       }
     </div>

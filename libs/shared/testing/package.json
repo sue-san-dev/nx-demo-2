@@ -1,7 +1,10 @@
 {
   "name": "@nx-demo/shared-testing",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@faker-js/faker": "8.4.1",
+    "@prisma/client": "^5.9.1"
+  },
   "type": "commonjs",
   "main": "./index.cjs"
 }

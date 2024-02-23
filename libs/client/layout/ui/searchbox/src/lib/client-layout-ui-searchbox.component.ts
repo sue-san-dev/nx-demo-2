@@ -25,8 +25,8 @@ export class ClientLayoutUiSearchboxComponent {
   onClickSearch() {
     if (this.keywordCtrl.invalid) return;
 
-    this.#router.navigate(['/', UrlUtil.Result], {
-      queryParams: { [UrlUtil.SearchQuery]: this.keywordCtrl.value },
+    this.#router.navigate(['/', UrlUtil.result], {
+      queryParams: { [UrlUtil.searchQuery]: this.keywordCtrl.value },
       onSameUrlNavigation: 'reload',
     });
   }

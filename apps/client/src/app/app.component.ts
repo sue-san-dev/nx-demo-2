@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 
 @Component({
   standalone: true,
   imports: [
-    RouterModule,
+    SHARED_MODULES,
   ],
   selector: 'nx-demo-root',
   template: `<router-outlet />`,

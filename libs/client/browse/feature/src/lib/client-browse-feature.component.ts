@@ -18,5 +18,5 @@ export class ClientBrowseFeatureComponent {
   /** resolveデータ */
   readonly resolvedData = input.required<IBrowseData>();
   /** ビデオ一覧 */
-  readonly videosRef = computed(() => this.resolvedData().videos);
+  readonly videos = computed(() => this.resolvedData().videos);
 }

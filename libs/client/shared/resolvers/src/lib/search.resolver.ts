@@ -3,7 +3,7 @@ import { ResolveFn } from '@angular/router';
 import { SearchService } from '@nx-demo/client-shared-services';
 import { IVideoMetadata } from '@nx-demo/shared-domain';
 import { UrlUtil } from '@nx-demo/shared-utils';
-import { map } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 export interface ISearchData {
   videos: IVideoMetadata[];
@@ -11,14 +11,10 @@ export interface ISearchData {
 
 export const searchResolver: ResolveFn<ISearchData> = (route) => {
   const searchService = inject(SearchService);
-  const searchQuery = route.queryParamMap.get(UrlUtil.SearchQuery);
+  const searchQuery = route.queryParamMap.get(UrlUtil.searchQuery);
   if (searchQuery == null) throw new Error();
 
-  return searchService.search(searchQuery).pipe(
-    map(videos => {
-      return {
-        videos,
-      }
-    })
-  );
+  return forkJoin({
+    videos: searchService.search(searchQuery),
+  });
 }

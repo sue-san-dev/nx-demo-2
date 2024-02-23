@@ -16,6 +16,9 @@ import { thumbDownIcon } from '../assets/svg/thumb-down.icon';
 import { searchIcon } from '../assets/svg/search.icon';
 import { playlistAddIcon } from '../assets/svg/playlist-add.icon';
 import { environment } from '@nx-demo/shared-environments';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { authStateCheckInterceptor } from '@nx-demo/client-shared-interceptors';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,19 +37,25 @@ export const appConfig: ApplicationConfig = {
       searchIcon,
       playlistAddIcon,
     ]),
+    // cookie操作用
+    CookieService,
+    // アニメーション
+    provideAnimationsAsync(),
     // HttpClient
     provideHttpClient(
       // Fetch APIを使用
       withFetch(),
       // インターセプター設定
       withInterceptors([
-        // req加工
+        // 認証状態確認インターセプター
+        authStateCheckInterceptor,
+        // req加工インターセプター
         (req, next) => {
           req = req.clone({
             url: environment.apiUrl + req.url,
           });
           return next(req);
-        }
+        },
       ]),
     ),
     // router設定
@@ -61,8 +70,8 @@ export const appConfig: ApplicationConfig = {
       // URL遷移時にアニメーション付与
       withViewTransitions({
         onViewTransitionCreated: ({ transition }) => {
-          const router = inject(Router)
-          const targetUrl = router.getCurrentNavigation()!.finalUrl!
+          const router = inject(Router);
+          const targetUrl = router.getCurrentNavigation()?.finalUrl ?? '';
 
           // fragmentとqueryParamsの変更は無視する（transitionを行わない）
           const config: IsActiveMatchOptions = {
@@ -70,9 +79,9 @@ export const appConfig: ApplicationConfig = {
             matrixParams: 'exact',
             fragment: 'ignored',
             queryParams: 'ignored',
-          }
+          };
           if (router.isActive(targetUrl, config) || router.lastSuccessfulNavigation === null) {
-            transition.skipTransition()
+            transition.skipTransition();
           }
         },
       }),
