@@ -1,5 +1,6 @@
 /* eslint-disable */
 export default {
+  testMatch: ['**/api-watch.service.spec.ts'],
   displayName: 'api-watch',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
