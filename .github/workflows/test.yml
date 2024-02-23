@@ -27,8 +27,10 @@ jobs:
       - name: Run tests
         run: npx nx run-many --target=test --codeCoverage=true 
   deploy:
+    name: Render Deploy
     needs: jest-test
     if: ${{ success() }}
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy Client Service
         uses: ttskch/render-deploy@v1.0.0
