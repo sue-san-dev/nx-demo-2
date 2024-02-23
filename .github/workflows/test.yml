@@ -29,12 +29,6 @@ jobs:
       - name: Runt lints
         run:  npx nx run-many --target=lint --projects=api-watch
 
-      - name: Upload node_modules for reuse
-        uses: actions/upload-artifact@v3
-        with:
-          name: node_modules
-          path: node_modules
-
   jest-test:
     name: Jest Test
     needs: eslint
@@ -49,14 +43,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Download node_modules
-        uses: actions/download-artifact@v3
-        with:
-          name: node_modules
+      - name: Install packages
+        run: npm ci
 
       - name: Run tests
         run: npx nx run-many --target=test --codeCoverage=true --projects=api-watch,client-shared-ui-avatar-icon
-
   # deploy:
   #   name: Render Deploy
   #   needs: jest-test
