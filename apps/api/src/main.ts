@@ -17,8 +17,9 @@ async function bootstrap() {
     defaultVersion: ['1'],
   });
   
+  const clientUrl = process.env.CLIENT_URL ?? 'http://localhost';
   app.enableCors({
-    origin: 'https://nx-demo-2-test.onrender.com',
+    origin: clientUrl,
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
   });
 
