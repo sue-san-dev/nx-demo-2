@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { SHARED_MODULES_TEMP } from '@nx-demo/client-shared-modules';
 
 @Component({
   selector: 'nx-demo-client-shared-ui-button',
   standalone: true,
-  imports: [],
+  imports: [ SHARED_MODULES_TEMP ],
   templateUrl: './client-shared-ui-button.component.html',
   styleUrl: './client-shared-ui-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

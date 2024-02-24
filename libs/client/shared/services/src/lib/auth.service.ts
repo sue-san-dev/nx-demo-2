@@ -17,7 +17,7 @@ export class AuthService {
     if (this.#auth$ == null) {
       this.#auth$ = this.#http.post<IUser | null>(ReqUrlUtil.auth.root, null).pipe(
         shareReplay(1),
-        // tap(() => this.#auth$ = null),
+        tap(() => this.#auth$ = null),
       );
     }
     return this.#auth$;

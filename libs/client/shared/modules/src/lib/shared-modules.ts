@@ -26,3 +26,18 @@ export const SHARED_MODULES = [
   MatSnackBarModule,
   MatMenuModule,
 ];
+
+export const SHARED_MODULES_TEMP = [
+  RouterModule,
+  ReactiveFormsModule,
+  NgOptimizedImage,
+  NgStyle,
+  NgClass,
+  DecimalPipe,
+  FormatCountPipe,
+  FormatDurationPipe,
+  TimeAgoPipe,
+  SvgIconComponent,
+  MatSnackBarModule,
+  MatMenuModule,
+];
