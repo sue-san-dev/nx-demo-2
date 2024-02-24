@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ILoginPayload, IUser } from '@nx-demo/shared-domain';
 import { ReqUrlUtil } from '@nx-demo/shared-utils';
-import { Observable, finalize, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,7 +17,7 @@ export class AuthService {
     if (this.#auth$ == null) {
       this.#auth$ = this.#http.post<IUser | null>(ReqUrlUtil.auth.root, null).pipe(
         shareReplay(1),
-        finalize(() => this.#auth$ = null),
+        // tap(() => this.#auth$ = null),
       );
     }
     return this.#auth$;
