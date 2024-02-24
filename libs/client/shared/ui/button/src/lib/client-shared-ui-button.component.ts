@@ -4,7 +4,7 @@ import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 @Component({
   selector: 'nx-demo-client-shared-ui-button',
   standalone: true,
-  imports: [ SHARED_MODULES ],
+  imports: [ ],
   templateUrl: './client-shared-ui-button.component.html',
   styleUrl: './client-shared-ui-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
