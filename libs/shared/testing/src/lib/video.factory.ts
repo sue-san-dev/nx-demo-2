@@ -10,6 +10,7 @@ export const createMockVideo = (
     uuid: faker.string.uuid(),
     description: faker.lorem.sentences({ min: 1, max: 3 }),
     title: faker.lorem.words({ min: 3, max: 10 }).split(' ').join(''),
+    manifestUrl: 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd',
     thumbnailUrl: faker.image.urlLoremFlickr({ category: 'nature', width: 640, height: 360 }),
     viewCount: faker.number.int({ max: 100000 }),
     duration: faker.number.int({ min: 30, max: 2 * 60 * 60 }),
