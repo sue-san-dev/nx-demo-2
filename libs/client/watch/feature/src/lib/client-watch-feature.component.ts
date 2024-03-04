@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, viewChild } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { CommentService } from '@nx-demo/client-shared-services';
@@ -8,6 +8,7 @@ import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-
 import { IComment } from '@nx-demo/shared-domain';
 import { computedAsync } from 'ngxtension/computed-async';
 import { startWith } from 'rxjs';
+import * as dashjs from 'dashjs';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -26,6 +27,8 @@ export class ClientWatchFeatureComponent {
 
   readonly #commentService = inject(CommentService);
 
+  /** video要素 */
+  readonly videoPlayer = viewChild.required<ElementRef<HTMLMediaElement>>('videoPlayer');
   /** resolveデータ */
   readonly resolvedData = input.required<IWatchData>();
   /** ビデオ */
@@ -38,4 +41,14 @@ export class ClientWatchFeatureComponent {
   }, {
     initialValue: [],
   });
+
+  constructor() {
+    // player初期化
+    effect(() => {
+      const player = dashjs.MediaPlayer().create();
+      const url = this.video().manifestUrl;
+      const autoPlay = true;
+      player.initialize(this.videoPlayer().nativeElement, url, autoPlay);
+    });
+  }
 }
