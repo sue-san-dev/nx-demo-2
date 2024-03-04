@@ -48,7 +48,8 @@ export class ClientWatchFeatureComponent {
       const player = dashjs.MediaPlayer().create();
       const url = this.video().manifestUrl;
       const autoPlay = true;
-      player.initialize(this.videoPlayer().nativeElement, url, autoPlay);
+      const startTime = 0;
+      player.initialize(this.videoPlayer().nativeElement, url, autoPlay, startTime);
     });
   }
 }
