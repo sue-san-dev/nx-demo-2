@@ -17,6 +17,7 @@
     "paths": {
       "@nx-demo/api-auth": ["libs/api/auth/src/index.ts"],
       "@nx-demo/api-browse": ["libs/api/browse/src/index.ts"],
+      "@nx-demo/api-file-upload": ["libs/api/file-upload/src/index.ts"],
       "@nx-demo/api-prisma": ["libs/api/prisma/src/index.ts"],
       "@nx-demo/api-search": ["libs/api/search/src/index.ts"],
       "@nx-demo/api-shared-decorators": [
