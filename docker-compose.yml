@@ -11,6 +11,9 @@ services:
       - postgres:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+  ffmpeg:
+    build: .
+    image: nx-demo-ffmpeg
 
 volumes:
   postgres:
