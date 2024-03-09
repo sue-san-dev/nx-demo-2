@@ -2,9 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3 } from 'aws-sdk';
 import { randomUUID } from 'crypto';
-import { spawn } from 'child_process';
-import { get720Commands } from './ffmpeg-encode-fns';
-import { createReadStream } from 'fs';
+import { Readable } from 'stream';
+import ffmpegPath from 'ffmpeg-static';
+import fluentFfmpeg from 'fluent-ffmpeg';
+import path from 'path';
+import fs from 'fs';
+
+// ffmpegのバイナリへのパスを指定
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const ffmpeg = fluentFfmpeg().setFfmpegPath(ffmpegPath!);
 
 @Injectable()
 export class ApiFileUploadService {
@@ -13,56 +19,71 @@ export class ApiFileUploadService {
     private configService: ConfigService,
   ) { }
 
-  async uploadFile(filePath: string, filename: string) {
+  async uploadFile(file: Express.Multer.File) {
     const uuid = randomUUID();
-    const outputPath = `/temp-videos/${ uuid }_manifest.mpd`;
 
-    console.log('filePath: ', filePath);
+    const tempVideosPath = path.join(process.cwd(), 'temp-videos');
+    if (!fs.existsSync(tempVideosPath)) {
+      // ディレクトリが存在しない場合、作成
+      fs.mkdirSync(tempVideosPath);
+    }
+    const outputPath = path.join(tempVideosPath, `${ uuid }_manifest.mpd`);
 
-    const ffmpegArgs = [
-      // 入力ファイル
-      '-i', filePath,
-      // 720pでエンコード
-      ...get720Commands(),
-      // DASH形式で出力
-      '-f', 'dash', outputPath,
-    ];
+    ffmpeg
+      .input(Readable.from(file.buffer))
+      // .inputFormat('mp4')
+      .outputOptions([
+        '-f', 'dash',
+        '-seg_duration', '4',
+        '-use_template', '1',
+        '-use_timeline', '1',
+        '-init_seg_name', 'init-stream$RepresentationID$.m4s',
+        '-media_seg_name', 'chunk-stream$RepresentationID$-$Number%05d$.m4s',
+        '-map', '0:v:0',
+        '-b:v:0', '2800k',
+        '-s:v:0', '1280x720',
+        '-map', '0:v:0',
+        '-b:v:1', '1400k',
+        '-s:v:1', '854x480',
+        '-map', '0:v:0',
+        '-b:v:2', '800k',
+        '-s:v:2', '640x360',
+        '-map', '0:a:0',
+        '-b:a', '128k'
+      ])
+      .output(outputPath)
+      .on('end', () => {
+        console.log('変換完了');
+      })
+      .on('error', (err, stdout, stderr) => {
+        console.error('変換エラー:', err);
+        console.error('FFmpegの標準エラー出力:', stderr);
+      })
+      .on('close', async (code: number) => {
+        console.log(`child process exited with code ${ code }`);
 
-    const child = spawn('docker', [
-      'run', '--rm', '-i',
-      'nx-demo-ffmpeg', // Docker イメージ名
-      'ffmpeg', // Docker 内で実行するコマンド
-      ...ffmpegArgs, // ffmpeg 引数
-    ]);
+        // S3アップロードはffmpegが完了した後に行う
+        if (code === 0) {
+          const s3 = new S3();
+          const fileStream = fs.createReadStream(outputPath);
 
-    child.stdout.on('data', (data) => {
-      console.log(`stdout: ${ data }`);
-    });
+          const uploadResult = await s3.upload({
+            Bucket: this.configService.get('AWS_BUCKET_NAME') as string,
+            Body: fileStream,
+            Key: `${ uuid }-${ file.filename }`,
+          }).promise();
 
-    child.stderr.on('data', (data) => {
-      console.error(`stderr: ${ data }`);
-    });
+          console.log('Key:', uploadResult.Key);
+          console.log('url:', uploadResult.Location);
 
-    child.on('close', async (code) => {
-      console.log(`child process exited with code ${ code }`);
-
-      // S3アップロードはffmpegが完了した後に行う
-      if (code === 0) {
-        const s3 = new S3();
-        const fileStream = createReadStream(outputPath);
-
-        const uploadResult = await s3.upload({
-          Bucket: this.configService.get('AWS_BUCKET_NAME') as string,
-          Body: fileStream,
-          Key: `${ uuid }-${ filename }`,
-        }).promise();
-
-        console.log('Key:', uploadResult.Key);
-        console.log('url:', uploadResult.Location);
-
-        // 一時ファイルを削除
-      }
-    });
+          // 一時ファイルを削除
+        }
+      })
+      .addOptions([
+        '-analyzeduration 10000000',
+        '-probesize 10000000'
+      ])
+      .run();
   }
 
 }

@@ -14,10 +14,8 @@ export class ApiFileUploadController {
   @Post('/file/upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log('path: ', file.path);
-    
     try {
-      await this.apiFileUploadService.uploadFile(file.path, file.originalname);
+      await this.apiFileUploadService.uploadFile(file);
     } catch (error) {
       console.error(error);
     }
