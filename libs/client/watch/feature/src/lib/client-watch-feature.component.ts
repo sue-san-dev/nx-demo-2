@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { CommentService } from '@nx-demo/client-shared-services';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
 import { ClientSharedUiCommentComponent } from '@nx-demo/client-shared-ui-comment';
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
+import { ClientWatchUiVideoPlayerComponent } from '@nx-demo/client-watch-ui-video-player';
 import { IComment } from '@nx-demo/shared-domain';
 import { computedAsync } from 'ngxtension/computed-async';
 import { startWith } from 'rxjs';
-import * as dashjs from 'dashjs';
+import 'media-chrome';
+import '@luwes/dash-video-element';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -18,6 +20,7 @@ import * as dashjs from 'dashjs';
     ClientSharedUiAvatarIconComponent,
     ClientSharedUiRichItemComponent,
     ClientSharedUiCommentComponent,
+    ClientWatchUiVideoPlayerComponent,
   ],
   templateUrl: './client-watch-feature.component.html',
   styleUrl: './client-watch-feature.component.scss',
@@ -27,39 +30,16 @@ export class ClientWatchFeatureComponent {
 
   readonly #commentService = inject(CommentService);
 
-  /** video要素 */
-  readonly videoPlayer = viewChild.required<ElementRef<HTMLMediaElement>>('videoPlayer');
   /** resolveデータ */
   readonly resolvedData = input.required<IWatchData>();
   /** ビデオ */
   readonly video = computed(() => this.resolvedData().video);
   /** 関連ビデオリスト */
   readonly relatedVideos = computed(() => this.resolvedData().relatedVideos);
-  /** 解像度リスト */
-  readonly bitrateList = signal<dashjs.BitrateInfo[]>([]);
-  /** 選択中解像度 */
-  readonly selectedBitrate = signal<dashjs.BitrateInfo | undefined>(undefined);
   /** コメントリスト */
   readonly comments = computedAsync<IComment[]>(() => {
     return this.#commentService.getComments(this.video().uuid, 0).pipe(startWith([]));
   }, {
     initialValue: [],
   });
-
-  constructor() {
-    // player初期化
-    effect(() => {
-      const player = dashjs.MediaPlayer().create();
-      const url = this.video().manifestUrl;
-      const autoPlay = true;
-      const startTime = 0;
-      player.initialize(this.videoPlayer().nativeElement, url, autoPlay, startTime);
-
-      // 解像度リストセット
-      player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
-        const bitrateList = player.getBitrateInfoListFor('video');
-        this.bitrateList.set(bitrateList);
-      });
-    });
-  }
 }
