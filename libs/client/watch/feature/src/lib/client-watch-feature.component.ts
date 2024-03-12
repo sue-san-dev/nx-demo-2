@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, input, signal, viewChild } from '@angular/core';
 import { SHARED_MODULES } from '@nx-demo/client-shared-modules';
 import { IWatchData } from '@nx-demo/client-shared-resolvers';
 import { CommentService } from '@nx-demo/client-shared-services';
@@ -35,6 +35,10 @@ export class ClientWatchFeatureComponent {
   readonly video = computed(() => this.resolvedData().video);
   /** 関連ビデオリスト */
   readonly relatedVideos = computed(() => this.resolvedData().relatedVideos);
+  /** 解像度リスト */
+  readonly bitrateList = signal<dashjs.BitrateInfo[]>([]);
+  /** 選択中解像度 */
+  readonly selectedBitrate = signal<dashjs.BitrateInfo | undefined>(undefined);
   /** コメントリスト */
   readonly comments = computedAsync<IComment[]>(() => {
     return this.#commentService.getComments(this.video().uuid, 0).pipe(startWith([]));
@@ -50,6 +54,12 @@ export class ClientWatchFeatureComponent {
       const autoPlay = true;
       const startTime = 0;
       player.initialize(this.videoPlayer().nativeElement, url, autoPlay, startTime);
+
+      // 解像度リストセット
+      player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
+        const bitrateList = player.getBitrateInfoListFor('video');
+        this.bitrateList.set(bitrateList);
+      });
     });
   }
 }

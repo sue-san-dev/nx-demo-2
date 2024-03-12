@@ -16,6 +16,7 @@ export class ApiFileUploadController {
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
     try {
       await this.apiFileUploadService.uploadFile(file);
+      console.log('POST /file/upload finished!');
     } catch (error) {
       console.error(error);
     }
