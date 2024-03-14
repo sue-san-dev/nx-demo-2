@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<template>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+</template>
+
+<!-- <script setup lang="ts"></script>
 
 <template>
   <main>
@@ -41,4 +49,4 @@ nav > a {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
