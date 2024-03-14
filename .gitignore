@@ -41,3 +41,9 @@ Thumbs.db
 .nx/cache
 .angular
 .env
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
