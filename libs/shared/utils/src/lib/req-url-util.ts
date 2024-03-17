@@ -22,4 +22,8 @@ export class ReqUrlUtil {
     comments: `/${ UrlUtil.video }/comments`,
     relatedVideos: `/${ UrlUtil.video }/relatedVideos`,
   } as const;
+
+  static readonly file = {
+    upload: `/${ UrlUtil.file }/upload`,
+  } as const;
 }

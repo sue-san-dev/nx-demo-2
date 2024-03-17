@@ -11,4 +11,5 @@ export class UrlUtil {
   static readonly parentCommentId = 'parent';
   static readonly channelHandle = 'channelHandle';
   static readonly login = 'login';
+  static readonly file = 'file';
 }
