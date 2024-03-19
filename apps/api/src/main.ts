@@ -11,8 +11,6 @@ async function bootstrap() {
 
   app.use(cookieParser.default());
 
-  app.enableCors();
-
   // バージョン管理を有効にする
   app.enableVersioning({
     type: VersioningType.URI,

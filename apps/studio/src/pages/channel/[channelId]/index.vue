@@ -66,10 +66,6 @@
                 >
                   ファイルを選択
                 </v-btn>
-                <!-- 進捗度 -->
-                <div>
-                  進捗: {{ progress }}%
-                </div>
                 <!-- 非表示のinputタグ -->
                 <input
                   ref="hiddenInput"
@@ -94,7 +90,6 @@ import { ref } from 'vue';
 // import { ReqUrlUtil } from '@nx-demo/shared-utils';
 
 const dialog = ref(false);
-const progress = ref(0);
 
 const selectedFile = async event => {
   const target = event.target as HTMLInputElement;
@@ -106,19 +101,9 @@ const selectedFile = async event => {
 
   const formData = new FormData();
   formData.append('file', file);
-  const response = await $fetch<Response>(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/file/upload', {
-    method: 'POST',
+  const { data, error } = await useFetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/file/upload', {
+    method: 'post',
     body: formData,
-    headers: {
-      'Content-Type': 'text/event-stream',
-    },
   });
-  const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const { value, done } = await reader.read();
-    if (done) break;
-    progress.value = +value;
-  }
 }
 </script>
