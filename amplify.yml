@@ -1,0 +1,15 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - nx build client
+      artifacts:
+        baseDirectory: dist\apps\client
+        files:
+          - '**\*'
+    appRoot: apps\client
