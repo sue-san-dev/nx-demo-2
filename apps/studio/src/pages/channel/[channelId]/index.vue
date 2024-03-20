@@ -66,13 +66,25 @@
                 >
                   ファイルを選択
                 </v-btn>
+                <!-- 進捗度 -->
+                <div>
+                  <v-progress-circular
+                    :model-value="progress"
+                    :rotate="360"
+                    :size="100"
+                    :width="15"
+                    color="teal"
+                  >
+                    {{ progress }}
+                  </v-progress-circular>
+                </div>
                 <!-- 非表示のinputタグ -->
                 <input
                   ref="hiddenInput"
                   style="display: none"
                   type="file"
                   accept="video/mp4"
-                  @change="selectedFile"
+                  @change="onSelectFile"
                 >
               </div>
             </v-card-text>
@@ -84,26 +96,31 @@
 </template>
 
 <script setup lang="ts">
-import { useFetch } from 'nuxt/app';
 import { ref } from 'vue';
 // なぜかimportできない...
 // import { ReqUrlUtil } from '@nx-demo/shared-utils';
 
 const dialog = ref(false);
+const progress = ref(0);
 
-const selectedFile = async event => {
+const onSelectFile = async event => {
   const target = event.target as HTMLInputElement;
   const file = (target.files as FileList)[0];
-
-  if (!file) {
-    return;
-  }
+  if (!file) return;
 
   const formData = new FormData();
   formData.append('file', file);
-  const { data, error } = await useFetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/file/upload', {
+  // nuxt組み込みのuserFetch APIがSSEに対応していないのでnode標準のfetchを使用
+  const response = await fetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/file/upload', {
     method: 'post',
     body: formData,
   });
+  const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    progress.value = Math.floor(+value);
+  }
 }
 </script>
