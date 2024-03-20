@@ -87,6 +87,13 @@
         "host": "0.0.0.0",
         "port": 10000
       }
+    },
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/client"],
+      "options": {
+        "config": "apps/client/playwright.config.ts"
+      }
     }
   }
 }
