@@ -63,3 +63,10 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+
+amplify/backend/function/nxDemo2/src/apps
+amplify/backend/function/nxDemo2/src/dist
+amplify/backend/function/nxDemo2/src/libs
+amplify/backend/function/nxDemo2/src/node_modules
+amplify/backend/function/nxDemo2/src/prisma

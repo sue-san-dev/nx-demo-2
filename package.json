@@ -2,7 +2,9 @@
   "name": "@nx-demo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "amplify:nxDemo2": "tsc -p ./tsconfig-amplify.json"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "17.2.0",
@@ -93,6 +95,8 @@
     "@ngrx/signals": "^17.1.0",
     "@nrwl/nx-cloud": "^18.0.0",
     "@prisma/client": "^5.9.1",
+    "aws-sdk": "^2.1582.0",
+    "aws-serverless-express": "^3.4.0",
     "axios": "1.6.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",

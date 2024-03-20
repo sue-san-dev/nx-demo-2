@@ -1,1 +1,9 @@
-{}
+{
+  "function": {
+    "nxDemo2": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  }
+}
