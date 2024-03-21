@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import { ref, readonly } from 'vue';
 
-const drawer = ref(null);
+const drawer = ref<boolean | null>(null);
 const menuItems = readonly([
   { title: 'ダッシュボード', path: '/', icon: 'mdi-view-dashboard' },
   { title: 'コンテンツ', path: '/videos/upload', icon: 'mdi-play-box-multiple-outline' },
