@@ -13,7 +13,10 @@
     },
     "categories": {
       "function": {
-        "nxDemo2": {}
+        "nxDemo2": {
+          "deploymentBucketName": "amplify-nxdemo2-dev-95144-deployment",
+          "s3Key": "amplify-builds/nxDemo2-514154514c3536636156-build.zip"
+        }
       }
     }
   }
