@@ -1,10 +1,16 @@
 import { Logger, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
+const serverlessHttp = require('serverless-http');
 const cookieParser = require('cookie-parser');
+const express = require('express');
+const { ExpressAdapter } = require('@nestjs/platform-express');
+
+const expressApp = express();
+const adapter = new ExpressAdapter(expressApp);
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, adapter);
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
@@ -31,3 +37,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+exports.handler = serverlessHttp(expressApp);

@@ -120,5 +120,7 @@
         "tmp",
         "**/*.spec.ts",
         "**/client/**",
+        "amplify/backend/function/nxDemo2/src/",
+        "**/*e2e/**",
     ]
   }

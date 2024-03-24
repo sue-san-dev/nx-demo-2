@@ -4,7 +4,7 @@ import { eventContext } from 'aws-serverless-express/middleware';
 
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../../../../../apps/api/src/app/app.module';
+import { AppModule } from './apps/api/src/app/app.module';
 import * as express from 'express';
 
 import { config } from 'aws-sdk';
