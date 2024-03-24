@@ -29,6 +29,7 @@
       <template #item.1>
         <VideoDetailStepItem 
           :file-name="file.name"
+          :file-convert-progress="fileConvertProgress"
           :file-upload-progress="fileUploadProgress"
           :video-url="videoUrl"
           v-model:video-title="videoTitle"
@@ -78,6 +79,7 @@ const step = ref(1);
 const videoTitle = ref(props.file.name);
 const videoUrl = ref('');
 const description = ref('');
+const fileConvertProgress = ref(0);
 const fileUploadProgress = ref(0);
 const isFormInvalid = ref(false);
 const stepperItems = readonly([
@@ -101,19 +103,27 @@ const init = async () => {
   const formData = new FormData();
   formData.append('file', props.file);
   // nuxt組み込みのuserFetch APIがSSEに対応していないのでnode標準のfetchを使用
-  const response = await fetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/file/upload', {
+  const response = await fetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/video', {
     method: 'post',
     body: formData,
   });
   const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const { value, done } = await reader.read();
-    if (done) {
-      videoUrl.value = value!;
-      break;
-    } else {
-      fileUploadProgress.value = Math.floor(+value);
+    const { value: streamValue, done } = await reader.read();
+    if (done) break;
+
+    const [type, value] = streamValue.split(':');
+    switch (type) {
+      case 'converting':
+        fileConvertProgress.value = Math.floor(+value);
+        break;
+      case 'uploading':
+        fileUploadProgress.value = Math.floor(+value);
+        break;
+      case 'completed':
+        videoUrl.value = 'http://localhost:4200/watch?v=' + value;
+        break;
     }
   }
 }
@@ -135,6 +145,7 @@ init();
   .v-stepper-window {
     flex: 1;
     margin-top: 0;
+    overflow-y: auto;
   }
   .v-stepper-header {
     margin: 0.5rem 1.5rem;

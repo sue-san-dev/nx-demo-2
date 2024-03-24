@@ -74,13 +74,13 @@
             動画プレビュー未実装
           </div>
           <v-progress-circular
-            :model-value="fileUploadProgress"
+            :model-value="fileConvertProgress"
             :rotate="360"
             :size="100"
             :width="15"
             color="teal"
           >
-            {{ fileUploadProgress }}%
+            {{ fileConvertProgress }}%
           </v-progress-circular>
         </v-responsive>
         <div class="bg-grey-lighten-3 rounded-b pa-3 ga-2 d-flex flex-column">
@@ -90,14 +90,16 @@
             </div>
             <div class="text-body-2">
               <div v-if="!videoUrl">生成中...</div>
-              <a v-if="videoUrl" :href="videoUrl" target="_blank">{{ videoUrl }}</a>
+              <a v-if="videoUrl" :href="videoUrl" target="_blank" class="word-break">
+                {{ videoUrl }}
+              </a>
             </div>
           </div>
           <div>
             <div class="text-caption text-grey-darken-2">
               ファイル名
             </div>
-            <div class="text-body-2">
+            <div class="text-body-2 word-break">
               {{ fileName }}
             </div>
           </div>
@@ -110,6 +112,7 @@
 <script setup lang="ts">
 defineProps<{
   fileName: string,
+  fileConvertProgress: number,
   fileUploadProgress: number,
   videoUrl: string,
 }>();
@@ -119,6 +122,7 @@ const description = defineModel('description');
 
 <style lang="scss">
 .right-side {
+  width: 280px;
   min-width: 280px;
 
   .v-responsive {
@@ -130,6 +134,12 @@ const description = defineModel('description');
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+  .word-break {
+    word-break: break-all;
+  }
+  a {
+    color: revert;
   }
 }
 </style>

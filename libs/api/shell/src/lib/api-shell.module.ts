@@ -4,7 +4,6 @@ import { ApiBrowseModule } from '@nx-demo/api-browse';
 import { ApiSearchModule } from '@nx-demo/api-search';
 import { ApiWatchModule } from '@nx-demo/api-watch';
 import { ApiAuthModule } from '@nx-demo/api-auth';
-import { ApiFileUploadModule } from '@nx-demo/api-file-upload';
 
 @Module({
   imports: [
@@ -13,7 +12,6 @@ import { ApiFileUploadModule } from '@nx-demo/api-file-upload';
     ApiBrowseModule,
     ApiSearchModule,
     ApiWatchModule,
-    ApiFileUploadModule,
   ],
 })
 export class ApiShellModule { }
