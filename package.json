@@ -2,8 +2,9 @@
   "name": "@nx-demo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "amplify:nxDemo2": "tsc -p ./tsconfig-amplify.json"
+"scripts": {
+    "prepare": "ts-patch install -s",
+    "amplify:nxDemo2": "ttsc -p ./tsconfig-amplify.json"
   },
   "private": true,
   "devDependencies": {
@@ -70,7 +71,9 @@
     "prisma": "^5.9.1",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3"
+    "ts-patch": "^3.1.2",
+    "typescript": "5.3.3",
+    "typescript-transform-paths": "^3.4.7"
   },
   "dependencies": {
     "@angular-devkit/architect": "^0.1702.3",
@@ -113,6 +116,7 @@
     "rxjs": "7.8.1",
     "the-new-css-reset": "1.11.2",
     "tslib": "^2.6.2",
+    "ttsc": "^0.3.1",
     "zone.js": "0.14.3"
   },
   "prisma": {
