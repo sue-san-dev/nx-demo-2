@@ -1,4 +1,20 @@
 {
+  "api": {
+    "apie2b4c029": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "nxDemo2"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "function": {
     "nxDemo2": {
       "build": true,
