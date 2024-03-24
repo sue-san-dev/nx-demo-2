@@ -126,6 +126,19 @@ export class ApiWatchService {
     return videos;
   }
 
+  async patchVideo(videoKey: string, payload: Prisma.VideoUpdateInput): Promise<Video> {
+    const video = await this.apiPrismaService.video.update({
+      where: {
+        uuid: videoKey,
+      },
+      data: {
+        ...payload,
+      }
+    });
+
+    return video;
+  }
+
   postVideo(file: Express.Multer.File): Observable<PostVideoProgress> {
     const progressNotifierSubject = new Subject<PostVideoProgress>();
     this.#execUploadProcess(file, progressNotifierSubject);
@@ -239,7 +252,6 @@ export class ApiWatchService {
             }
           },
         });
-        console.log('★videoデータ', video);
         progressNotifierSubject.next({ type: 'completed', videoUuid: video.uuid });
 
         progressNotifierSubject.complete();

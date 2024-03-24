@@ -1,4 +1,4 @@
-import { Controller, Get, ParseIntPipe, Post, Query, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, ParseIntPipe, Patch, Post, Query, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ApiWatchService } from './api-watch.service';
 import { ReqUrlUtil, UrlUtil } from '@nx-demo/shared-utils';
 import { IComment, IVideoMetadata, IVideoMetadataDetail } from '@nx-demo/shared-domain';
@@ -6,6 +6,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express, Response } from 'express';
 import { catchError, finalize, tap, throwError } from 'rxjs';
 import 'multer';
+import { Prisma, Video } from '@prisma/client';
 
 @Controller()
 export class ApiWatchController {
@@ -22,9 +23,22 @@ export class ApiWatchController {
     return result;
   }
 
+  @Patch(ReqUrlUtil.video.root)
+  async patchVideo(
+    @Query(UrlUtil.videoKey) videoKey: string,
+    @Body() payload: Prisma.VideoUpdateInput,
+  ): Promise<Video> {
+    const result = await this.apiWatchService.patchVideo(videoKey, payload);
+
+    return result;
+  }
+
   @Post(ReqUrlUtil.video.root)
   @UseInterceptors(FileInterceptor('file'))
-  postVideo(@UploadedFile() file: Express.Multer.File, @Res() response: Response) {
+  postVideo(
+    @UploadedFile() file: Express.Multer.File, 
+    @Res() response: Response,
+  ) {
     // SSE用header設定
     response.setHeader('Cache-Control', 'no-cache');
     response.setHeader('Content-Type', 'text/event-stream');

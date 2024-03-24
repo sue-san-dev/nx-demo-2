@@ -50,7 +50,7 @@
         <v-divider />
         <v-stepper-actions
           color="primary"
-          :disabled="stepperActionsDisabled()"
+          :disabled="stepperActionsDisabled"
           :prev-text="step === 1 ? '' : '戻る'"
           @click:prev="prev()"
           :next-text="step === stepperItems.length ? '保存' : '次へ'"
@@ -59,14 +59,25 @@
       </template>
     </v-stepper>
   </v-card>
+
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="2000"
+    color="success"
+    elevation="2"
+  >
+    登録に成功しました
+  </v-snackbar>
 </template>
 
 <script setup lang="ts">
 import { readonly, ref } from 'vue';
+import { useFetch } from 'nuxt/app';
 import VideoDetailStepItem from './fileInfoInputStepItems/videoDetailStepItem.vue';
 import VideoElementsStepItem from './fileInfoInputStepItems/videoElementsStepItem.vue';
 import VideoCheckStepItem from './fileInfoInputStepItems/videoCheckStepItem.vue';
 import VideoPrivacySettingStepItem from './fileInfoInputStepItems/videoPrivacySettingStepItem.vue';
+import { computed } from 'vue';
 // なぜかimportできない...
 // import { ReqUrlUtil } from '@nx-demo/shared-utils';
 
@@ -76,12 +87,19 @@ const props = defineProps<{
 }>();
 
 const step = ref(1);
+const snackbar = ref(false);
 const videoTitle = ref(props.file.name);
-const videoUrl = ref('');
+const videoUuid = ref('');
+const videoUrl = computed(() => !videoUuid.value ? '' : 'http://localhost:4200/watch?v=' + videoUuid.value);
 const description = ref('');
 const fileConvertProgress = ref(0);
 const fileUploadProgress = ref(0);
-const isFormInvalid = ref(false);
+const isFormInvalid = computed(() => !videoUuid.value);
+const stepperActionsDisabled = computed<boolean | 'prev' | 'next'>(() => {
+  if (isFormInvalid.value) return true;
+  if (step.value === 1) return 'prev';
+  return false;
+});
 const stepperItems = readonly([
   '詳細',
   '動画の要素',
@@ -89,20 +107,26 @@ const stepperItems = readonly([
   '公開設定',
 ] as const);
 
-const stepperActionsDisabled = (): boolean | 'prev' | 'next' => {
-  if (isFormInvalid.value) return true;
-  if (step.value === 1) return 'prev';
-  return false;
-}
+const onClickSave = async () => {
+  if (!videoUuid.value) return;
 
-const onClickSave = () => {
-  
+  const { data } = await useFetch('http://localhost:3000/api/v1/video', {
+    method: 'patch',
+    query: {
+      v: videoUuid.value
+    },
+    body: {
+      title: videoTitle,
+      description,
+    }
+  });
+  snackbar.value = true;
 }
 
 const init = async () => {
   const formData = new FormData();
   formData.append('file', props.file);
-  // nuxt組み込みのuserFetch APIがSSEに対応していないのでnode標準のfetchを使用
+  // nuxt組み込みのuseFetchがSSEに対応していないのでnode標準のfetchを使用
   const response = await fetch(/** ReqUrlUtil.file.upload */'http://localhost:3000/api/v1/video', {
     method: 'post',
     body: formData,
@@ -122,7 +146,7 @@ const init = async () => {
         fileUploadProgress.value = Math.floor(+value);
         break;
       case 'completed':
-        videoUrl.value = 'http://localhost:4200/watch?v=' + value;
+        videoUuid.value = value;
         break;
     }
   }

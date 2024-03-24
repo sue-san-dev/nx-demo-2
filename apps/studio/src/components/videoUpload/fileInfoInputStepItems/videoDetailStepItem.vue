@@ -89,7 +89,16 @@
               動画リンク
             </div>
             <div class="text-body-2">
-              <div v-if="!videoUrl">生成中...</div>
+              <div v-if="!videoUrl">
+                生成中...
+                <v-progress-circular
+                  :model-value="fileUploadProgress"
+                  :rotate="360"
+                  :size="15"
+                  :width="3"
+                  color="teal"
+                />
+              </div>
               <a v-if="videoUrl" :href="videoUrl" target="_blank" class="word-break">
                 {{ videoUrl }}
               </a>
