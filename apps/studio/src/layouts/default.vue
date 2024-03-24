@@ -1,6 +1,13 @@
 <template>
   <div>
     <v-app>
+      <div v-if="showLoading" id="loading">
+        <v-progress-circular 
+          indeterminate 
+          color="primary"
+        />
+      </div>
+
       <!-- header -->
       <v-app-bar 
         :elevation="0"
@@ -58,7 +65,9 @@
 
 <script setup lang="ts">
 import { ref, readonly } from 'vue';
+import { useToggleLoading } from '../composables/toggleLoading';
 
+const { showLoading } = useToggleLoading();
 const drawer = ref<boolean | null>(null);
 const menuItems = readonly([
   { title: 'ダッシュボード', path: '/', icon: 'mdi-view-dashboard' },
@@ -67,3 +76,16 @@ const menuItems = readonly([
   { title: 'コメント', path: '/comments/inbox', icon: 'mdi-comment-text' },
 ]);
 </script>
+
+<style lang="scss">
+  #loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    z-index:9999;
+    position: fixed;
+    background-color: rgba(#000, 0.5);
+  }
+</style>

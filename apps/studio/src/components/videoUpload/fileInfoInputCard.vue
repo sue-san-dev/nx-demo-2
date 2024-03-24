@@ -78,6 +78,7 @@ import VideoElementsStepItem from './fileInfoInputStepItems/videoElementsStepIte
 import VideoCheckStepItem from './fileInfoInputStepItems/videoCheckStepItem.vue';
 import VideoPrivacySettingStepItem from './fileInfoInputStepItems/videoPrivacySettingStepItem.vue';
 import { computed } from 'vue';
+import { useToggleLoading } from '../../composables/toggleLoading';
 // なぜかimportできない...
 // import { ReqUrlUtil } from '@nx-demo/shared-utils';
 
@@ -110,6 +111,9 @@ const stepperItems = readonly([
 const onClickSave = async () => {
   if (!videoUuid.value) return;
 
+  const { toggleLoading } = useToggleLoading();
+
+  toggleLoading(true);
   const { data } = await useFetch('http://localhost:3000/api/v1/video', {
     method: 'patch',
     query: {
@@ -120,6 +124,8 @@ const onClickSave = async () => {
       description,
     }
   });
+  toggleLoading(false);
+
   snackbar.value = true;
 }
 
