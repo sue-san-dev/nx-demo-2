@@ -2,6 +2,7 @@ import { Logger, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import * as cookieParser from 'cookie-parser';
+import { environment } from '@nx-demo/shared-environments';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,6 +11,13 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   app.use(cookieParser.default());
+
+  app.enableCors({
+    origin: [
+      environment.clientUrl,
+      environment.studioUrl,
+    ],
+  });
 
   // バージョン管理を有効にする
   app.enableVersioning({

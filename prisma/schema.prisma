@@ -20,15 +20,6 @@ enum PrivacyKind {
   PUBLIC
 }
 
-enum Resolution {
-  p144
-  p240
-  p360
-  p480
-  p720
-  p1080
-}
-
 /// ユーザテーブル
 /// ユーザを管理する
 model User {
@@ -69,6 +60,8 @@ model Video {
   title          String
   /// 説明
   description    String
+  /// マニフェストファイルURL
+  manifestUrl    String
   /// サムネイルURL
   thumbnailUrl   String
   /// 再生回数
@@ -83,8 +76,6 @@ model Video {
   comments       Comment[]
   /// 評価リスト
   reactions      UserVideoReaction[]
-  /// 解像度リスト
-  resolutions    VideoResolution[]
   /// プレイリスト動画リスト
   playlistVideos PlaylistVideo[]
   createdAt      DateTime            @default(now())
@@ -106,21 +97,6 @@ model WatchHistory {
   createdAt DateTime @default(now())
 
   @@index([userId])
-}
-
-/// 動画解像度テーブル
-/// 動画の解像度ごとのURLを管理する
-model VideoResolution {
-  /// 対象動画UUID
-  videoUuid  String
-  /// 対象動画
-  video      Video      @relation(fields: [videoUuid], references: [uuid])
-  /// 解像度
-  resolution Resolution
-  /// 動画URL
-  url        String
-
-  @@unique([videoUuid, resolution])
 }
 
 /// コメントテーブル

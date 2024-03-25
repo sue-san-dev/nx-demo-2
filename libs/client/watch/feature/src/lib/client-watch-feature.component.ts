@@ -5,9 +5,12 @@ import { CommentService } from '@nx-demo/client-shared-services';
 import { ClientSharedUiAvatarIconComponent } from '@nx-demo/client-shared-ui-avatar-icon';
 import { ClientSharedUiCommentComponent } from '@nx-demo/client-shared-ui-comment';
 import { ClientSharedUiRichItemComponent } from '@nx-demo/client-shared-ui-rich-item';
+import { ClientWatchUiVideoPlayerComponent } from '@nx-demo/client-watch-ui-video-player';
 import { IComment } from '@nx-demo/shared-domain';
 import { computedAsync } from 'ngxtension/computed-async';
 import { startWith } from 'rxjs';
+import 'media-chrome';
+import '@luwes/dash-video-element';
 
 @Component({
   selector: 'nx-demo-client-watch-feature',
@@ -17,6 +20,7 @@ import { startWith } from 'rxjs';
     ClientSharedUiAvatarIconComponent,
     ClientSharedUiRichItemComponent,
     ClientSharedUiCommentComponent,
+    ClientWatchUiVideoPlayerComponent,
   ],
   templateUrl: './client-watch-feature.component.html',
   styleUrl: './client-watch-feature.component.scss',
