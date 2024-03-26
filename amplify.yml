@@ -1,7 +1,7 @@
 version: 1
 applications:
   - frontend:
-      appRoot: apps/client
+      appRoot: "apps/client"
       phases:
         preBuild:
           commands:
