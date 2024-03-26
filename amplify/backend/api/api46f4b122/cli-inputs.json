@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/items": {
-      "name": "/items",
+    "/dep1": {
+      "name": "/dep1",
       "lambdaFunction": "nxDemo2",
       "permissions": {
         "setting": "open"

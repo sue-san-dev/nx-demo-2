@@ -17,10 +17,6 @@
           "deploymentBucketName": "amplify-nxdemo2-dev-95144-deployment",
           "s3Key": "amplify-builds/nxDemo2-67697837424a4439376b-build.zip"
         }
-      },
-      "api": {
-        "apie2b4c029": {},
-        "api23d47f35": {}
       }
     }
   }
