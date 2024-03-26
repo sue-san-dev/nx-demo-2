@@ -1,6 +1,7 @@
 version: 1
 applications:
   - frontend:
+      appRoot: apps/client
       phases:
         preBuild:
           commands:
@@ -12,4 +13,3 @@ applications:
         baseDirectory: dist\apps\client
         files:
           - '**\*'
-    appRoot: apps\client
