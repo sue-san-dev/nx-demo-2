@@ -1,5 +1,19 @@
 {
   "api": {
+    "api23d47f35": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "nxDemo2"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "apie2b4c029": {
       "dependsOn": [
         {
