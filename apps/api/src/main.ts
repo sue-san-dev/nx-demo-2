@@ -17,11 +17,11 @@ async function bootstrap() {
     defaultVersion: ['1'],
   });
   
-  // const clientUrl = process.env.CLIENT_URL ?? 'http://localhost';
-  // app.enableCors({
-  //   origin: clientUrl,
-  //   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-  // });
+  const clientUrl = process.env.CLIENT_URL ?? 'http://localhost';
+  app.enableCors({
+    origin: clientUrl,
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  });
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
