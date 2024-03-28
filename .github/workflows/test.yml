@@ -47,24 +47,25 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: npx nx run-many --target=test --codeCoverage=true --projects=api-watch,client-shared-ui-avatar-icon
-  # deploy:
-  #   name: Render Deploy
-  #   needs: jest-test
-  #   if: ${{ success() }}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy Client Service
-  #       uses: ttskch/render-deploy@v1.0.0
-  #       with:
-  #         api-key: ${{ secrets.RENDER_API_KEY }}
-  #         service-id: ${{ secrets.RENDER_SERVICE_ID_CLIENT }}
-  #         interval: 20 # optional
-  #         timeout: 600 # optional
-  #     - name: Deploy API Service
-  #       uses: ttskch/render-deploy@v1.0.0
-  #       with:
-  #         api-key: ${{ secrets.RENDER_API_KEY }}
-  #         service-id: ${{ secrets.RENDER_SERVICE_ID_API }}
-  #         interval: 20 # optional
-  #         timeout: 600 # optional
+        run: npx nx run-many --target=test --codeCoverage=true --projects=api-watch,client-shared-ui-avatar-icon 
+  e2e-test:
+  deploy:
+    name: Render Deploy
+    needs: jest-test
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Client Service
+        uses: ttskch/render-deploy@v1.0.0
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID_CLIENT }}
+          interval: 20 # optional
+          timeout: 600 # optional
+      - name: Deploy API Service
+        uses: ttskch/render-deploy@v1.0.0
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID_API }}
+          interval: 20 # optional
+          timeout: 600 # optional
