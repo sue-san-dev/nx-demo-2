@@ -48,7 +48,6 @@ jobs:
 
       - name: Run tests
         run: npx nx run-many --target=test --codeCoverage=true --projects=api-watch,client-shared-ui-avatar-icon 
-  e2e-test:
   deploy:
     name: Render Deploy
     needs: jest-test
